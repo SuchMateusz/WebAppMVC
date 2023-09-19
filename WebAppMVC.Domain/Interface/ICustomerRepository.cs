@@ -8,7 +8,7 @@ namespace WebAppMVC.Application.Interfaces
 {
     public interface ICustomerRepository
     {
-        IQueryable<Customer> GetAllActiveCustomers();
+        public IQueryable<Customer> GetAllActiveCustomers();
 
         public int AddCustomer(Customer customer);
 

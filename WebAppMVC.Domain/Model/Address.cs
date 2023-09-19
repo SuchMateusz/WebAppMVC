@@ -16,9 +16,6 @@ namespace WebAppMVC.Domain.Model
 
         public string Country { get; set; }
 
-        //public int AddressCountryTypeId { get; set; }
-        //public AddressCountryTypeId AddressCountryTypeId { get; set; }
-
         public int CustomerId { get; set; }
 
         public Customer Customer { get; set; }

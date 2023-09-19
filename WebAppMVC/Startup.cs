@@ -11,7 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppMVC.Application;
+using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Infrastructure;
+using WebAppMVC.Infrastructure.Repositories;
 
 namespace WebAppMVC
 {
@@ -32,6 +35,10 @@ namespace WebAppMVC
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
+
+            services.AddApplication();
+            services.AddInfrastructure();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

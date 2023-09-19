@@ -12,7 +12,7 @@ using WebAppMVC.Infrastructure;
 namespace WebAppMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230809193249_InitialCreate")]
+    [Migration("20230919103005_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -288,6 +288,9 @@ namespace WebAppMVC.Infrastructure.Migrations
 
                     b.Property<string>("PhoneNubmer")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

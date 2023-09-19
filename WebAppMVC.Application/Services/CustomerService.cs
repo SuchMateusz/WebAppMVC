@@ -3,10 +3,12 @@ using AutoMapper.QueryableExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Customer;
+using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Services
 {
@@ -14,6 +16,12 @@ namespace WebAppMVC.Application.Services
     {
         private readonly ICustomerRepository _customerRepo;
         private readonly IMapper _mapper;
+
+        public CustomerService(ICustomerRepository customerRepo, IMapper mapper)
+        {
+            _customerRepo = customerRepo;
+            _mapper = mapper;
+        }
 
         public int AddAddressModel(AddressForListVM address)
         {
@@ -28,6 +36,19 @@ namespace WebAppMVC.Application.Services
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
         {
             throw new NotImplementedException();
+        }
+
+        public CustomerContactInformactionForListVm GetCustConDetails(int customerContactDetail)
+        {
+            var custContDetail = _customerRepo.GetCustomerContactInformactions();
+            var custContDetailList = _mapper.Map<CustomerContactInformactionForListVm>(custContDetail);
+            var customerList = new CustomerContactInformactionForListVm()
+            {
+                Name = custContDetailList.Name,
+                LastNameUser = custContDetailList.LastNameUser,
+                Position = custContDetailList.Position,
+            };
+            return custContDetailList;
         }
 
         public AddressForListVM GetAddressCustomerDetails(int customerId)
@@ -45,22 +66,9 @@ namespace WebAppMVC.Application.Services
                 Customers = customers,
                 TotalCount = customers.Count
             };
-            //ListCustomerForListVM result = new ListCustomerForListVM();
-            //result.Customers = new List<CustomerForListVM>();
-            //foreach (var customer in customers)
-            //{
-            //    var custVM = new CustomerForListVM()
-            //    {
-            //        Id = customer.Id,
-            //        Name = customer.Name,
-            //        NIP = customer.NIP,
-            //    };
-            //    result.Customers.Add(custVM);
-            //}
-            //result.TotalCount = result.Customers.Count;
-
             return customerList;
         }
+
 
         public CustomerDetailsVM GetCustomerDetails(int customerId)
         {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebAppMVC.Application.Interfaces;
+using WebAppMVC.Application.Services;
 using WebAppMVC.Models;
 
 namespace WebAppMVC.Controllers

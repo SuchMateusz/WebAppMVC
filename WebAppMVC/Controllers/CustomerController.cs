@@ -6,20 +6,16 @@ namespace WebAppMVC.Controllers
 {
     public class CustomerController : Controller
     {
-        CustomerService customerService;
+        private readonly ICustomerService _customerService;
 
-        //utworzyć widok dla tej akcji
-        //tabela z klientami
-        //filtrowanei klientów
-        //przygotowanie danych
-        //przekazać filtry do serwisu
-        //serwis musi przygotować
-        //serwis musi zwrócić danej w odpowiednim formacie
-
+        public CustomerController (ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         public IActionResult Index()
         {
-            var model = customerService.GetAllCustomerForList();
+            var model = _customerService.GetAllCustomerForList();
             return View(model);
         }
 
@@ -30,14 +26,12 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        //po wypełnieniu formularza
-        //zwracam model formularza przekazany do serwisu
-        [HttpPost]
-        public IActionResult AddCustomer(CustomerModel model)
-        {
-            var id = customerService.AddCustomer(model);
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult AddCustomer(CustomerModel model)
+        //{
+        //    var id = _customerService.AddCustomer(model);
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult AddNewAddressForCustomer()
@@ -45,16 +39,16 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddNewAddressForCustomer(AddressModel model)
-        {
-            var id = customerService.AddAddressModel(model);
-            return View(model);
-        }
+        //[HttpPost]
+        //public IActionResult AddNewAddressForCustomer(AddressModel model)
+        //{
+        //    var id = _customerService.AddAddressModel(model);
+        //    return View(model);
+        //}
 
         public IActionResult GetAddressCustomerDetails(int customerId)
         {
-            var model = customerService.GetAddressCustomerDetails(customerId);
+            var model = _customerService.GetAddressCustomerDetails(customerId);
             return View(model);
         }
 
@@ -64,16 +58,16 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddCustomerContactInformaction (ContactInformationModel model) 
-        { 
-            var id = customerService.AddCustomerContactInformaction(model);
-            return View(model);
-        }
+        //[HttpPost]
+        //public IActionResult AddCustomerContactInformaction (ContactInformationModel model) 
+        //{ 
+        //    var id = _customerService.AddCustomerContactInformaction(model);
+        //    return View(model);
+        //}
 
         public IActionResult ViewCustomer(int custmerId)
         {
-            var customerModel = customerService.GetCustomerDetails(custmerId);
+            var customerModel = _customerService.GetCustomerDetails(custmerId);
             return View(customerModel);
         }
     }

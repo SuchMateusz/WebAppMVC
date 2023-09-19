@@ -61,6 +61,7 @@ namespace WebAppMVC.Infrastructure.Migrations
                     NIP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNubmer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

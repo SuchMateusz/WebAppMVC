@@ -11,6 +11,7 @@ namespace WebAppMVC.Infrastructure.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly Context _context;
+
         public CustomerRepository(Context context)
         {
             _context = context;
@@ -73,7 +74,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public IQueryable<Customer> GetAllActiveCustomers()
         {
-            var customers = _context.Customers;
+            var customers = _context.Customers.Where(p=>p.isActive);
             return customers;
         }
 

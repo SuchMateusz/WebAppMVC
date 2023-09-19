@@ -286,6 +286,9 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.Property<string>("PhoneNubmer")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customers");

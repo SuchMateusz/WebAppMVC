@@ -1,4 +1,6 @@
-﻿namespace WebAppMVC.Application.ViewModel.Customer
+﻿using AutoMapper;
+
+namespace WebAppMVC.Application.ViewModel.Customer
 {
     public class AddressForListVM
     {
@@ -11,5 +13,10 @@
         public string City { get; set; }
 
         public string Country { get; set; }
+
+        public void Mapper (Profile profile)
+        {
+            profile.CreateMap<WebAppMVC.Domain.Model.Customer, AddressForListVM>();
+        }
     }
 }
