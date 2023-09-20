@@ -12,7 +12,7 @@ using WebAppMVC.Infrastructure;
 namespace WebAppMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230919103005_InitialCreate")]
+    [Migration("20230920172509_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -274,9 +274,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.Property<string>("AddressEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LoginCustomer")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NIP")
                         .HasColumnType("nvarchar(max)");
 
@@ -287,6 +284,9 @@ namespace WebAppMVC.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNubmer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("REGON")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isActive")

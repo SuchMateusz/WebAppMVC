@@ -56,9 +56,9 @@ namespace WebAppMVC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LoginCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NIP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    REGON = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNubmer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isActive = table.Column<bool>(type: "bit", nullable: false),
