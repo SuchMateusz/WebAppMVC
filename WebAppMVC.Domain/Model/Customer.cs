@@ -7,12 +7,11 @@ namespace WebAppMVC.Domain.Model
 {
     public class Customer : EntityModel
     {
-        [DisplayName("Login")]
-        public string LoginCustomer { get; set; }
-
         public string Password { get; set; }
 
         public string NIP { get; set; }
+
+        public string REGON { get; set; }
 
         public string PhoneNubmer { get; set; }
 

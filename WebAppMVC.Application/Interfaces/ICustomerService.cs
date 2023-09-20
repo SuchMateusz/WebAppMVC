@@ -9,7 +9,7 @@ namespace WebAppMVC.Application.Interfaces
 {
     public interface ICustomerService
     {
-        ListCustomerForListVM GetAllCustomerForList();
+        ListCustomerForListVM GetAllCustomerForList(int pageSize, int pageNo, string searchString);
 
         int AddCustomer (NewCustomerVM customer);
 

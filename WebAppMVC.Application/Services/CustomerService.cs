@@ -30,7 +30,9 @@ namespace WebAppMVC.Application.Services
 
         public int AddCustomer(NewCustomerVM customer)
         {
-            throw new NotImplementedException();
+            var cust = _mapper.Map<Customer>(customer);
+            int id = _customerRepo.AddCustomer(cust);
+            return id;
         }
 
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
@@ -56,19 +58,21 @@ namespace WebAppMVC.Application.Services
             throw new NotImplementedException();
         }
 
-        public ListCustomerForListVM GetAllCustomerForList()
+        public ListCustomerForListVM GetAllCustomerForList(int pageSize, int pageNo, string searchString)
         {
-            var customers = _customerRepo.GetAllActiveCustomers()
+            var customers = _customerRepo.GetAllActiveCustomers().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<CustomerForListVM>(_mapper.ConfigurationProvider).ToList();
-
+            var customersToShow = customers.Skip(pageSize*(pageNo-1)).Take(pageSize).ToList();
             var customerList = new ListCustomerForListVM()
             {
-                Customers = customers,
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                SearchString = searchString,
+                Customers = customersToShow,
                 TotalCount = customers.Count
             };
             return customerList;
         }
-
 
         public CustomerDetailsVM GetCustomerDetails(int customerId)
         {

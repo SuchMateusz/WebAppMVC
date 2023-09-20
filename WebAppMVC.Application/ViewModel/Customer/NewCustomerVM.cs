@@ -1,12 +1,14 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMVC.Application.Mapping;
 
 namespace WebAppMVC.Application.ViewModel.Customer
 {
-    public class NewCustomerVM
+    public class NewCustomerVM : IMapFrom<WebAppMVC.Domain.Model.Customer>
     {
         public int Id { get; set; }
 
@@ -16,8 +18,15 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public string NIP { get; set; }
 
+        public string REGON {  get; set; }
+
         public string PhoneNubmer { get; set; }
 
         public string AddressEmail { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<NewCustomerVM, WebAppMVC.Domain.Model.Customer>();
+        }
     }
 }

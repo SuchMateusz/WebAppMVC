@@ -15,9 +15,9 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public string Name { get; set; }
 
-        public string Login { get; set; }
-
         public string NIP { get; set; }
+
+        public string REGON { get; set; }
 
         public string PhoneNubmer { get; set; }
 
@@ -32,8 +32,8 @@ namespace WebAppMVC.Application.ViewModel.Customer
             profile.CreateMap<WebAppMVC.Domain.Model.Customer, CustomerDetailsVM>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
-                .ForMember(d => d.Login, opt => opt.MapFrom(s => s.LoginCustomer))
                 .ForMember(d => d.NIP, opt => opt.MapFrom(s => s.NIP))
+                .ForMember(d => d.REGON, opt => opt.MapFrom(s => s.REGON))
                 .ForMember(d => d.PhoneNubmer, opt => opt.MapFrom(s => s.PhoneNubmer))
                 .ForMember(d => d.AddressEmail, opt => opt.MapFrom(s => s.AddressEmail))
                 .ForMember(d => d.CustomerContactInformaction, opt => opt.MapFrom(s => s.CustomerContactInformaction))

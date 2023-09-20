@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.Services;
+using WebAppMVC.Application.ViewModel.Customer;
 
 namespace WebAppMVC.Controllers
 {
@@ -13,25 +15,41 @@ namespace WebAppMVC.Controllers
             _customerService = customerService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            var model = _customerService.GetAllCustomerForList();
+            var model = _customerService.GetAllCustomerForList(2, 1, "");
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int pageSize, int? pageNo, string searchString)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            if(searchString ==null)
+            {
+                searchString = String.Empty;
+            }
+
+            var model = _customerService.GetAllCustomerForList(pageSize, pageNo.Value, searchString);
             return View(model);
         }
 
         [HttpGet]
         public IActionResult AddCustomer()
         {
-
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddCustomer(CustomerModel model)
-        //{
-        //    var id = _customerService.AddCustomer(model);
-        //    return View();
-        //}
+        [HttpPost]
+        public IActionResult AddCustomer(NewCustomerVM model)
+        {
+            var id = _customerService.AddCustomer(model);
+            return View();
+        }
 
         [HttpGet]
         public IActionResult AddNewAddressForCustomer()
@@ -40,7 +58,7 @@ namespace WebAppMVC.Controllers
         }
 
         //[HttpPost]
-        //public IActionResult AddNewAddressForCustomer(AddressModel model)
+        //public IActionResult AddNewAddressForCustomer(AddressForListVM model)
         //{
         //    var id = _customerService.AddAddressModel(model);
         //    return View(model);
