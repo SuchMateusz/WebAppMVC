@@ -29,7 +29,7 @@ namespace WebAppMVC.Controllers
             {
                 pageNo = 1;
             }
-            if(searchString ==null)
+            if (searchString == null)
             {
                 searchString = String.Empty;
             }
@@ -47,7 +47,7 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddCustomer(NewCustomerVM model)
         {
-            var id = _customerService.AddCustomer(model);
+            _customerService.AddCustomer(model);
             return View();
         }
 

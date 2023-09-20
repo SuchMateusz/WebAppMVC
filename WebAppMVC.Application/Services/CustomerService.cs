@@ -50,7 +50,7 @@ namespace WebAppMVC.Application.Services
                 LastNameUser = custContDetailList.LastNameUser,
                 Position = custContDetailList.Position,
             };
-            return custContDetailList;
+            return customerList;
         }
 
         public AddressForListVM GetAddressCustomerDetails(int customerId)
