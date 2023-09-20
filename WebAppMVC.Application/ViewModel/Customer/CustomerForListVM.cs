@@ -18,7 +18,10 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<WebAppMVC.Domain.Model.Customer, CustomerForListVM>();
+            profile.CreateMap<WebAppMVC.Domain.Model.Customer, CustomerForListVM>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+                .ForMember(d => d.NIP, opt => opt.MapFrom(s => s.NIP));
         }
     }
 }

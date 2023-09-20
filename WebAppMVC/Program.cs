@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Infrastructure;
+using WebAppMVC.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +14,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
-builder.Services.AddControllersWithViews();
 
-//builder.Services.AddTransient<IItemRepository, ICustomerRepository>();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
