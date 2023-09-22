@@ -13,6 +13,8 @@ namespace WebAppMVC.Application.Interfaces
 
         int AddCustomer (NewCustomerVM customer);
 
+        NewCustomerVM GetCustomerForEdit(int id);
+
         int AddAddressModel (AddressForListVM address);
 
         AddressForListVM GetAddressCustomerDetails(int customerId);
@@ -22,5 +24,9 @@ namespace WebAppMVC.Application.Interfaces
         CustomerContactInformactionForListVm GetCustConDetails(int customerContactDetail);
 
         CustomerDetailsVM GetCustomerDetails(int customerId);
+
+        void DeleteCustomer(int id);
+
+        void UpdateCustomer(NewCustomerVM model);
     }
 }

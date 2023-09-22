@@ -18,7 +18,7 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = _customerService.GetAllCustomerForList(2, 1, "");
+            var model = _customerService.GetAllCustomerForList(3, 1, "");
             return View(model);
         }
 
@@ -48,7 +48,31 @@ namespace WebAppMVC.Controllers
         public IActionResult AddCustomer(NewCustomerVM model)
         {
             _customerService.AddCustomer(model);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditCustomer(int id)
+        {
+            var customer = _customerService.GetCustomerForEdit(id);
+            return View(new NewCustomerVM());
+        }
+
+        [HttpPost]
+        public IActionResult EditCustomer(NewCustomerVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _customerService.UpdateCustomer(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _customerService.DeleteCustomer(id);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -57,12 +81,12 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddNewAddressForCustomer(AddressForListVM model)
-        //{
-        //    var id = _customerService.AddAddressModel(model);
-        //    return View(model);
-        //}
+        [HttpPost]
+        public IActionResult AddNewAddressForCustomer(AddressForListVM model)
+        {
+            var id = _customerService.AddAddressModel(model);
+            return View(model);
+        }
 
         public IActionResult GetAddressCustomerDetails(int customerId)
         {

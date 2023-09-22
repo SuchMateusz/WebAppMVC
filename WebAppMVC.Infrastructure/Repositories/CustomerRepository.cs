@@ -19,6 +19,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public int AddCustomer(Customer customer)
         {
+            customer.isActive = true;
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return customer.Id;
@@ -32,6 +33,19 @@ namespace WebAppMVC.Infrastructure.Repositories
                 _context.Customers.Remove(customer);
                 _context.SaveChanges();
             }
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            _context.Attach(customer);
+            _context.Entry(customer).Property("Name").IsModified=true;
+            _context.Entry(customer).Property("Password").IsModified = true;
+            _context.Entry(customer).Property("NIP").IsModified = true;
+            _context.Entry(customer).Property("REGON").IsModified = true;
+            _context.Entry(customer).Property("PhoneNumber").IsModified = true;
+            _context.Entry(customer).Property("AddressEmail").IsModified = true;
+            _context.SaveChanges();
+
         }
 
         public int AddCustomerContactInformaction(CustomerContactInformaction customerContactInformaction)

@@ -27,5 +27,6 @@ namespace WebAppMVC.Application.Interfaces
         public void DeleteAddresses (Address address);
 
         public IQueryable<Address> GetAddresses();
+        void UpdateCustomer(Customer customer);
     }
 }

@@ -14,6 +14,8 @@ namespace WebAppMVC.Domain.Model
 
         public int NumberOfLiters { get; set; }
 
+        public decimal Price { get; set; }
+
         public Ingredient Ingredients { get; set; }
 
         public Item Item { get; set; }

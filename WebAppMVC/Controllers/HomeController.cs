@@ -17,6 +17,7 @@ namespace WebAppMVC.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Jestem w hoome");
             return View();
         }
 

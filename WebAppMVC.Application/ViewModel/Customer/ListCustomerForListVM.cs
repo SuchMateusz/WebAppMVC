@@ -18,5 +18,6 @@ namespace WebAppMVC.Application.ViewModel.Customer
         public string SearchString { get; set; }
 
         public int TotalCount { get; set; }
+
     }
 }

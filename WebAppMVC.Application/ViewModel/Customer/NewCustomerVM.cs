@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +23,26 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public string REGON {  get; set; }
 
-        public string PhoneNubmer { get; set; }
+        public string PhoneNumber { get; set; }
 
         public string AddressEmail { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<NewCustomerVM, WebAppMVC.Domain.Model.Customer>();
+            profile.CreateMap<NewCustomerVM, WebAppMVC.Domain.Model.Customer>().ReverseMap();
+        }
+    }
+
+    public class NewCustomerValidation : AbstractValidator<NewCustomerVM>
+    {
+        public NewCustomerValidation()
+        {
+            RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.NIP).Length(10);
+            RuleFor(x => x.REGON).Length(9,14);
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).MaximumLength(150);
+            RuleFor(x => x.AddressEmail).NotEmpty();
         }
     }
 }

@@ -35,6 +35,19 @@ namespace WebAppMVC.Application.Services
             return id;
         }
 
+        public NewCustomerVM GetCustomerForEdit(int id)
+        {
+            var customer = _customerRepo.GetCustomer(id);
+            var customerForEdit = _mapper.Map<NewCustomerVM>(customer);
+            return customerForEdit;
+        }
+
+        public void UpdateCustomer(NewCustomerVM model)
+        {
+            var customer = _mapper.Map<Customer>(model);
+            _customerRepo.UpdateCustomer(customer);
+        }
+
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
         {
             throw new NotImplementedException();
@@ -92,6 +105,11 @@ namespace WebAppMVC.Application.Services
                 customerVM.AddressDetails.Add(add);
             }
             return customerVM;
+        }
+
+        public void DeleteCustomer(int id)
+        {
+            _customerRepo.DeleteCustomer(id);
         }
     }
 }
