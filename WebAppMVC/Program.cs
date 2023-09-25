@@ -32,6 +32,7 @@ namespace WebAppMVC
             builder.Services.AddControllersWithViews().AddFluentValidation();
 
             builder.Services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
+            builder.Services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
 
             var app = builder.Build();
 

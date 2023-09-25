@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
@@ -69,7 +70,14 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public int AddAddresses(Address address)
         {
+            Customer customer;
             _context.Addresses.Add(address);
+            customer = _context.Customers.FirstOrDefault(x => x.Id == address.CustomerId);
+            if (customer != null)
+            {
+                customer.AddressDetails.Add(address);
+            }
+
             _context.SaveChanges();
             return address.Id;
         }
@@ -94,7 +102,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public Customer GetCustomer(int customerId)
         {
-            var customer = _context.Customers.Find(customerId);
+            var customer = _context.Customers.FirstOrDefault(x => x.Id == customerId);
             return customer;
         }
     }

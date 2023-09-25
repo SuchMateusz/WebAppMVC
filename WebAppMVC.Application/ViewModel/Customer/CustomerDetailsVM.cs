@@ -23,9 +23,9 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public string AddressEmail { get; set; }
 
-        public List<CustomerContactInformactionForListVm> CustomerContactInformaction { get; set; }
+        //public List<CustomerContactInformactionForListVm> CustomerContactInformaction { get; set; }
 
-        public List<AddressForListVM> AddressDetails { get; set; }
+        //public List<AddressForListVM> AddressDetails { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -35,9 +35,9 @@ namespace WebAppMVC.Application.ViewModel.Customer
                 .ForMember(d => d.NIP, opt => opt.MapFrom(s => s.NIP))
                 .ForMember(d => d.REGON, opt => opt.MapFrom(s => s.REGON))
                 .ForMember(d => d.PhoneNubmer, opt => opt.MapFrom(s => s.PhoneNubmer))
-                .ForMember(d => d.AddressEmail, opt => opt.MapFrom(s => s.AddressEmail))
-                .ForMember(d => d.CustomerContactInformaction, opt => opt.MapFrom(s => s.CustomerContactInformaction))
-                .ForMember(d => d.AddressDetails, opt => opt.Ignore());
+                .ForMember(d => d.AddressEmail, opt => opt.MapFrom(s => s.AddressEmail));
+                //.ForMember(d => d.CustomerContactInformaction, opt => opt.MapFrom(s => s.CustomerContactInformaction))
+                //.ForMember(d => d.AddressDetails, opt => opt.MapFrom(s=>s.AddressDetails))
         }
     }
 }

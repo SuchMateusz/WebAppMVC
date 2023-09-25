@@ -25,7 +25,9 @@ namespace WebAppMVC.Application.Services
 
         public int AddAddressModel(AddressForListVM address)
         {
-            throw new NotImplementedException();
+            var adress = _mapper.Map<Address>(address);
+            int id = _customerRepo.AddAddresses(adress);
+            return id;
         }
 
         public int AddCustomer(NewCustomerVM customer)
@@ -50,25 +52,34 @@ namespace WebAppMVC.Application.Services
 
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
         {
-            throw new NotImplementedException();
+            var custContactInforma = _mapper.Map<CustomerContactInformaction>(custContactDetail);
+            int id = _customerRepo.AddCustomerContactInformaction(custContactInforma);
+            return id;
         }
 
         public CustomerContactInformactionForListVm GetCustConDetails(int customerContactDetail)
         {
-            var custContDetail = _customerRepo.GetCustomerContactInformactions();
+            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p=>p.CustomerRef==customerContactDetail).
+                ProjectTo<CustomerContactInformactionForListVm>(_mapper.ConfigurationProvider).ToList();
             var custContDetailList = _mapper.Map<CustomerContactInformactionForListVm>(custContDetail);
             var customerList = new CustomerContactInformactionForListVm()
             {
                 Name = custContDetailList.Name,
                 LastNameUser = custContDetailList.LastNameUser,
                 Position = custContDetailList.Position,
+                DirectPersonAddressEmail = custContDetailList.DirectPersonAddressEmail,
+                DirectPhoneNumber = custContDetailList.DirectPhoneNumber,
+                CustomerRef = custContDetailList.CustomerRef,
             };
             return customerList;
         }
 
-        public AddressForListVM GetAddressCustomerDetails(int customerId)
+        public List<AddressForListVM> GetAddressCustomerDetails(int customerId)
         {
-            throw new NotImplementedException();
+            var address = _customerRepo.GetAddresses().Where(p => p.CustomerId == customerId)
+                .ProjectTo<AddressForListVM>(_mapper.ConfigurationProvider).ToList();
+            //var addressToListVM = _mapper.Map<AddressForListVM>(address);
+            return address;
         }
 
         public ListCustomerForListVM GetAllCustomerForList(int pageSize, int pageNo, string searchString)
@@ -91,19 +102,21 @@ namespace WebAppMVC.Application.Services
         {
             var customer = _customerRepo.GetCustomer(customerId);
             var customerVM = _mapper.Map<CustomerDetailsVM>(customer);
-            customerVM.AddressDetails = new List<AddressForListVM>();
-            foreach(var address in customer.AddressDetails)
-            {
-                var add = new AddressForListVM()
-                {
-                    BuildingNumber = address.BuildingNumber,
-                    Street = address.Street,
-                    ZipCode = address.ZipCode,
-                    City = address.City,
-                    Country = address.Country,
-                };
-                customerVM.AddressDetails.Add(add);
-            }
+            //var address = GetAddressCustomerDetails(customerId);
+            //customerVM.AddressDetails = new List<AddressForListVM>();
+            //customerVM.AddressDetails.Add(address);
+            //foreach (var addres in address)
+            //{
+            //    var add = new AddressForListVM()
+            //    {
+            //        BuildingNumber = addres.BuildingNumber,
+            //        Street = addres.Street,
+            //        ZipCode = addres.ZipCode,
+            //        City = addres.City,
+            //        Country = addres.Country,
+            //    };
+            //    customerVM.AddressDetails.Add(add);
+            //}
             return customerVM;
         }
 

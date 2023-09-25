@@ -78,14 +78,14 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult AddNewAddressForCustomer()
         {
-            return View();
+            return View(new AddressForListVM());
         }
 
         [HttpPost]
         public IActionResult AddNewAddressForCustomer(AddressForListVM model)
         {
             var id = _customerService.AddAddressModel(model);
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         public IActionResult GetAddressCustomerDetails(int customerId)
@@ -94,18 +94,31 @@ namespace WebAppMVC.Controllers
             return View(model);
         }
 
+        //[HttpGet]
+        //public IActionResult EditAddressDetailsCustomer()
+        //{
+
+        //}
+
         [HttpGet]
         public IActionResult AddCustomerContactInformaction()
         {
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddCustomerContactInformaction (ContactInformationModel model) 
-        //{ 
-        //    var id = _customerService.AddCustomerContactInformaction(model);
-        //    return View(model);
-        //}
+        [HttpPost]
+        public IActionResult AddCustomerContactInformaction(CustomerContactInformactionForListVm model)
+        {
+            var id = _customerService.AddCustomerContactInformaction(model);
+            return View(model);
+        }
+
+        public IActionResult CustomerContactDetailsInformaction(int customerRef)
+        {
+            var model = _customerService.GetCustConDetails(customerRef);
+            return View(model);
+        }
+
 
         public IActionResult ViewCustomer(int custmerId)
         {

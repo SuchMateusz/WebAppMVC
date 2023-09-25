@@ -17,7 +17,7 @@ namespace WebAppMVC.Application.Interfaces
 
         int AddAddressModel (AddressForListVM address);
 
-        AddressForListVM GetAddressCustomerDetails(int customerId);
+        List<AddressForListVM> GetAddressCustomerDetails(int customerId);
 
         int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail);
 

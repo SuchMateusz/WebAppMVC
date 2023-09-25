@@ -8,6 +8,10 @@ namespace WebAppMVC.Domain.Model
 
         public string Position { get; set; }
 
+        public string DirectPersonAddressEmail { get; set; }
+
+        public string DirectPhoneNumber { get; set; }
+
         public int CustomerRef { get; set; }
 
         public Customer Customer { get; set; }
