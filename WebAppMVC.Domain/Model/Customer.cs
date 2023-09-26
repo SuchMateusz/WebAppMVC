@@ -21,6 +21,6 @@ namespace WebAppMVC.Domain.Model
 
         public CustomerContactInformaction CustomerContactInformaction { get; set; }
 
-        public virtual ICollection<Address> AddressDetails { get; set; }
+        public ICollection<Address> AddressDetails { get; set; }
     }
 }

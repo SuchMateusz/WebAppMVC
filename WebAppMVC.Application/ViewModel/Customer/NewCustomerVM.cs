@@ -35,7 +35,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
     public class NewCustomerValidation : AbstractValidator<NewCustomerVM>
     {
-        public NewCustomerValidation()
+        public NewCustomerValidation ()
         {
             RuleFor(x => x.Id).NotNull();
             RuleFor(x => x.NIP).Length(10);

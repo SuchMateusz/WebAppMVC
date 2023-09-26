@@ -3,6 +3,7 @@ using WebAppMVC.Models;
 using System.Diagnostics;
 using WebAppMVC.Application.Interfaces;
 using AutoMapper;
+using WebAppMVC.Application.ViewModel.Item;
 
 
 namespace WebAppMVC.Controllers
@@ -24,10 +25,19 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        public IActionResult AddNewIngredient()
+        [HttpGet]
+        public IActionResult AddNewItem()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult AddNewItem(NewItemForListVM newItemForListVM)
+        {
+
+            return View();
+        }
+
 
     }
 }

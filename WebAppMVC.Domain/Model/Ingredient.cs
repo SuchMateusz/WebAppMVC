@@ -8,6 +8,8 @@ namespace WebAppMVC.Domain.Model
 {
     public class Ingredient : EntityModel
     {
+        public decimal Price { get; set; }
+
         public ICollection<ItemIngredient> ItemIngredients { get; set; }
     }
 }

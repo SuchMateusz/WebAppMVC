@@ -24,6 +24,10 @@ namespace WebAppMVC.Application.ViewModel.Customer
             profile.CreateMap<WebAppMVC.Domain.Model.CustomerContactInformaction, CustomerContactInformactionForListVm>()
                 .ForMember(s=>s.DirectPhoneNumber, opt => opt.MapFrom(s=> s.DirectPhoneNumber))
                 .ForMember(s => s.DirectPersonAddressEmail, opt => opt.MapFrom(s=>s.DirectPersonAddressEmail))
+                .ForMember(s => s.Name, opt => opt.MapFrom(s => s.Name))
+                .ForMember(s => s.LastNameUser, opt => opt.MapFrom(s => s.LastNameUser))
+                .ForMember(s => s.Position, opt => opt.MapFrom(s => s.Position))
+                .ForMember(s => s.CustomerRef, opt => opt.MapFrom(s => s.CustomerRef))
                 .ReverseMap();
         }
 

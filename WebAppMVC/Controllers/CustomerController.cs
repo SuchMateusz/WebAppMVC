@@ -119,7 +119,6 @@ namespace WebAppMVC.Controllers
             return View(model);
         }
 
-
         public IActionResult ViewCustomer(int custmerId)
         {
             var customerModel = _customerService.GetCustomerDetails(custmerId);

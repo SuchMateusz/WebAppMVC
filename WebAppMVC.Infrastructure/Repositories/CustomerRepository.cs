@@ -46,7 +46,6 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.Entry(customer).Property("PhoneNumber").IsModified = true;
             _context.Entry(customer).Property("AddressEmail").IsModified = true;
             _context.SaveChanges();
-
         }
 
         public int AddCustomerContactInformaction(CustomerContactInformaction customerContactInformaction)

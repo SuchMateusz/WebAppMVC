@@ -21,7 +21,7 @@ namespace WebAppMVC.Application.Interfaces
 
         int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail);
 
-        CustomerContactInformactionForListVm GetCustConDetails(int customerContactDetail);
+        List<CustomerContactInformactionForListVm> GetCustConDetails(int customerContactDetail);
 
         CustomerDetailsVM GetCustomerDetails(int customerId);
 

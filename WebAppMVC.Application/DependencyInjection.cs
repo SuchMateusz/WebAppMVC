@@ -15,6 +15,7 @@ namespace WebAppMVC.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IItemService, ItemService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }

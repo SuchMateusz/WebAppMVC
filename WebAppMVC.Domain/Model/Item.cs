@@ -8,11 +8,11 @@ namespace WebAppMVC.Domain.Model
     {
         public int TypeId { get; set; }
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         public int YearProduction { get; set; }
 
-        public int SugarContent { get; set; }
+        public float SugarContent { get; set; }
 
         public int Quantity { get; set; }
 

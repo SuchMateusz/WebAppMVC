@@ -57,21 +57,11 @@ namespace WebAppMVC.Application.Services
             return id;
         }
 
-        public CustomerContactInformactionForListVm GetCustConDetails(int customerContactDetail)
+        public List<CustomerContactInformactionForListVm> GetCustConDetails(int customerContactDetail)
         {
-            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p=>p.CustomerRef==customerContactDetail).
-                ProjectTo<CustomerContactInformactionForListVm>(_mapper.ConfigurationProvider).ToList();
-            var custContDetailList = _mapper.Map<CustomerContactInformactionForListVm>(custContDetail);
-            var customerList = new CustomerContactInformactionForListVm()
-            {
-                Name = custContDetailList.Name,
-                LastNameUser = custContDetailList.LastNameUser,
-                Position = custContDetailList.Position,
-                DirectPersonAddressEmail = custContDetailList.DirectPersonAddressEmail,
-                DirectPhoneNumber = custContDetailList.DirectPhoneNumber,
-                CustomerRef = custContDetailList.CustomerRef,
-            };
-            return customerList;
+            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p=>p.CustomerRef==customerContactDetail)
+                .ProjectTo<CustomerContactInformactionForListVm>(_mapper.ConfigurationProvider).ToList();
+            return custContDetail;
         }
 
         public List<AddressForListVM> GetAddressCustomerDetails(int customerId)
@@ -103,20 +93,6 @@ namespace WebAppMVC.Application.Services
             var customer = _customerRepo.GetCustomer(customerId);
             var customerVM = _mapper.Map<CustomerDetailsVM>(customer);
             //var address = GetAddressCustomerDetails(customerId);
-            //customerVM.AddressDetails = new List<AddressForListVM>();
-            //customerVM.AddressDetails.Add(address);
-            //foreach (var addres in address)
-            //{
-            //    var add = new AddressForListVM()
-            //    {
-            //        BuildingNumber = addres.BuildingNumber,
-            //        Street = addres.Street,
-            //        ZipCode = addres.ZipCode,
-            //        City = addres.City,
-            //        Country = addres.Country,
-            //    };
-            //    customerVM.AddressDetails.Add(add);
-            //}
             return customerVM;
         }
 

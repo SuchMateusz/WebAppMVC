@@ -17,6 +17,24 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context = context;
         }
 
+        public int AddItem(Item item)
+        {
+            _context.Items.Add(item);
+            _context.SaveChanges();
+            return item.Id;
+        }
+
+        public void EditItem(Item item)
+        {
+            _context.Attach(item);
+            _context.Entry(item).Property("Name").IsModified = true;
+            _context.Entry(item).Property("TypeId").IsModified = true;
+            _context.Entry(item).Property("Price").IsModified = true;
+            _context.Entry(item).Property("Quantity").IsModified = true;
+            _context.Entry(item).Property("ItemCategoryId").IsModified = true;
+            _context.SaveChanges();
+        }
+
         public void DeleteItem(int itemId)
         {
             var item = _context.Items.Find(itemId);
@@ -25,13 +43,6 @@ namespace WebAppMVC.Infrastructure.Repositories
                 _context.Items.Remove(item);
                 _context.SaveChanges();
             }
-        }
-
-        public int AddItem(Item item)
-        {
-            _context.Items.Add(item);
-            _context.SaveChanges();
-            return item.Id;
         }
 
         public Item GetItemById(int itemId)
@@ -120,7 +131,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public Ingredient GetIngredientById(int ingredientId)
         {
-            var ingredient = _context.Ingredients.Find (ingredientId);
+            var ingredient = _context.Ingredients.Find(ingredientId);
             return ingredient;
         }
 
@@ -137,9 +148,9 @@ namespace WebAppMVC.Infrastructure.Repositories
             return tag.Id;
         }
 
-        public void DeleteTag(Tag tag)
+        public void DeleteTag(int id)
         {
-            var tagId = _context.Tags.Find(tag);
+            var tagId = _context.Tags.FirstOrDefault(p => p.Id == id);
             if (tagId != null)
             {
                 _context.Tags.Remove(tagId);
@@ -166,12 +177,12 @@ namespace WebAppMVC.Infrastructure.Repositories
             return type.Id;
         }
 
-        public void DeleteType(Type type)
+        public void DeleteType(int typeId)
         {
-            var typeId = _context.Types.Find(type);
-            if (typeId != null)
+            var type = _context.Types.FirstOrDefault(p => p.Id == typeId);
+            if (type != null)
             {
-                _context.Types.Remove(typeId);
+                _context.Types.Remove(type);
                 _context.SaveChanges();
             }
         }
@@ -180,6 +191,29 @@ namespace WebAppMVC.Infrastructure.Repositories
         {
             var types = _context.Types;
             return types;
+        }
+
+        public void EditIngredient(Ingredient ingredient)
+        {
+            _context.Attach(ingredient);
+            _context.Entry(ingredient).Property("Name").IsModified = true;
+            _context.Entry(ingredient).Property("Price").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void EditTag(Tag tag)
+        {
+            _context.Attach(tag);
+            _context.Entry(tag).Property("Name").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void EditType(Type type)
+        {
+            _context.Attach(type);
+            _context.Entry(type).Property("Name").IsModified = true;
+            _context.Entry(type).Property("ItemId").IsModified = true;
+            _context.SaveChanges();
         }
     }
 }

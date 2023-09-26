@@ -43,7 +43,7 @@ namespace WebAppMVC.Application.Interfaces
 
         public int AddTag (Tag tag);
 
-        public void DeleteTag(Tag tag);
+        public void DeleteTag(int tagId);
 
         public Tag GetTagById(int tagId);
 
@@ -51,7 +51,13 @@ namespace WebAppMVC.Application.Interfaces
 
         public int AddType (Type type);
 
-        public void DeleteType(Type type);
+        public void DeleteType(int typeId);
         public IQueryable<Type> GetAllTypes();
+
+        void EditItem(Item item);
+
+        void EditIngredient(Ingredient ingredient);
+        void EditTag(Tag tag);
+        void EditType(Type type);
     }
 }
