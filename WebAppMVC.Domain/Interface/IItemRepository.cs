@@ -51,13 +51,18 @@ namespace WebAppMVC.Application.Interfaces
 
         public int AddType (Type type);
 
+        public Type GetTypeById(int typeId);
+
         public void DeleteType(int typeId);
+
         public IQueryable<Type> GetAllTypes();
 
         void EditItem(Item item);
 
         void EditIngredient(Ingredient ingredient);
+
         void EditTag(Tag tag);
+
         void EditType(Type type);
     }
 }

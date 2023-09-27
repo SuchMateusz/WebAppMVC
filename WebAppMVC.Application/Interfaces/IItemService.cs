@@ -13,44 +13,50 @@ namespace WebAppMVC.Application.Interfaces
 
         ListItemForListVM GetAllItems(int pageSize, int pageNo, string searchStrin);
 
-        ItemForListVM GetItemToEditItem(ItemForListVM model);
+        ItemForListVM GetItemToEditItem(int id);
 
         void UpdateItem(ItemForListVM model);
 
         void DeleteItem(int id);
+
+        ItemForListVM GetItemDetails(int id);
 
 
         int AddNewIngredient(IngredientForListVM model);
 
         ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchStrin);
 
-        IngredientForListVM GetIngredientToEditItem(IngredientForListVM model);
+        IngredientForListVM GetIngredientToEditItem(int id);
 
         void UpdateIngredient (IngredientForListVM model);
 
         void DeleteIngredient(int id);
+        
+        IngredientForListVM GetIngredientDetails(int id);
 
 
         int AddTag(TagForListVM model);
 
         ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchStrin);
 
-        TagForListVM GetTagToEdit(TagForListVM model);
+        TagForListVM GetTagToEdit(int id);
 
         void UpdateTag(TagForListVM model);
 
         void DeleteTag(int id);
 
+        TagForListVM GetTagDetails(int id);
 
         int AddType(NewItemForListVM model);
 
         ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin);
 
-        TypeForListVM GetTypeToEdit(TypeForListVM model);
+        TypeForListVM GetTypeToEdit(int id);
 
         void UpdateType(TypeForListVM model);
 
         void DeleteType(int id);
 
+        TypeForListVM GetTypeDetails(int id);
     }
 }

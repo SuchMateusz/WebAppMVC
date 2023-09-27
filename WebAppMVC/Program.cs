@@ -8,6 +8,7 @@ using FluentValidation;
 using WebAppMVC.Application.ViewModel.Customer;
 using System.ComponentModel.DataAnnotations;
 using Serilog;
+using WebAppMVC.Application.ViewModel.Item;
 
 namespace WebAppMVC
 {
@@ -33,6 +34,7 @@ namespace WebAppMVC
 
             builder.Services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
             builder.Services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
+            builder.Services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
 
             var app = builder.Build();
 

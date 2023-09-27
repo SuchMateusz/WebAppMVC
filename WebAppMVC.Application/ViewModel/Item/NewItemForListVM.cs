@@ -43,7 +43,9 @@ namespace WebAppMVC.Application.ViewModel.Item
             RuleFor(x => x.Name).Length(3,30);
             RuleFor(x => x.TypeId).NotNull();
             RuleFor(x => x.Price).NotNull();
+            RuleFor(x => x.Price).NotEmpty();
             RuleFor(x => x.YearProduction).NotNull();
+            RuleFor(x => x.YearProduction).GreaterThan(1000);
             RuleFor(x => x.SugarContent).NotNull();
             RuleFor(x => x.Quantity).NotNull();
             RuleFor(x => x.ItemCategoryId).NotNull();

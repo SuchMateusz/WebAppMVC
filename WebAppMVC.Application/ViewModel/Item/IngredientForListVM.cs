@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,14 @@ namespace WebAppMVC.Application.ViewModel.Item
         }
     }
 
-
-
+    public class IngredientValidation : AbstractValidator<IngredientForListVM>
+    {
+        public IngredientValidation()
+        {
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).Length(1, 40);
+            RuleFor(x => x.Price).NotEmpty();
+            RuleFor(x => x.Price).NotNull();
+        }
+    }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,20 @@ namespace WebAppMVC.Application.ViewModel.Item
         public int Quantity { get; set; }
 
         public int ItemCategoryId { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<ItemForListVM, WebAppMVC.Domain.Model.Item>()
+                .ReverseMap();
+        }
+    }
+
+    public class ItemValidation : AbstractValidator<ItemForListVM>
+    {
+        public ItemValidation() 
+        {
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.TypeId).NotEmpty();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Configuration.Conventions;
 using AutoMapper.QueryableExtensions;
 using System;
 using System.Collections.Generic;
@@ -121,33 +122,72 @@ namespace WebAppMVC.Application.Services
 
         public ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin)
         {
-            throw new NotImplementedException();
+            var type = _itemRepository.GetAllTypes().Where(p => p.Name == searchStrin)
+                .ProjectTo<TypeForListVM>(_mapper.ConfigurationProvider).ToList();
+            var typeToShow = type.Skip(pageSize * (pageNo -1)).Take(pageSize).ToList();
+            var typesList = new ListTypeForListVM()
+            {
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                Type = typeToShow,
+                TotalCount = type.Count,
+                SearchString = searchStrin,
+            };
+            return typesList;
         }
 
-        public IngredientForListVM GetIngredientToEditItem(IngredientForListVM model)
+        public IngredientForListVM GetIngredientDetails(int id)
         {
-            var ingredientEdit = _itemRepository.GetIngredientById(model.Id);
+            var ingredient = _itemRepository.GetIngredientById(id);
+            var ingredientToShow = _mapper.Map<IngredientForListVM>(ingredient);
+            return ingredientToShow;
+        }
+
+        public IngredientForListVM GetIngredientToEditItem(int id)
+        {
+            var ingredientEdit = _itemRepository.GetIngredientById(id);
             var ingredientToEdit = _mapper.Map<IngredientForListVM>(ingredientEdit);
             return ingredientToEdit;
         }
 
-        public ItemForListVM GetItemToEditItem(ItemForListVM model)
+        public ItemForListVM GetItemDetails(int id)
         {
-            var item = _itemRepository.GetItemById(model.Id);
-            var itemToEdit = _mapper.Map<ItemForListVM>(model);
+            var item = _itemRepository.GetItemById(id);
+            var itemToShow = _mapper.Map<ItemForListVM>(item);
+            return itemToShow;
+        }
+
+        public ItemForListVM GetItemToEditItem(int id)
+        {
+            var item = _itemRepository.GetItemById(id);
+            var itemToEdit = _mapper.Map<ItemForListVM>(item);
             return itemToEdit;
         }
 
-        public TagForListVM GetTagToEdit(TagForListVM model)
+        public TagForListVM GetTagDetails(int id)
         {
-            var tag = _itemRepository.GetTagById(model.Id);
-            var tagToEdit = _mapper.Map<TagForListVM>(model);
+            var tag = _itemRepository.GetTagById(id);
+            var tagToShow = _mapper.Map<TagForListVM>(tag);
+            return tagToShow;
+        }
+
+        public TagForListVM GetTagToEdit(int id)
+        {
+            var tag = _itemRepository.GetTagById(id);
+            var tagToEdit = _mapper.Map<TagForListVM>(tag);
             return tagToEdit;
         }
 
-        public TypeForListVM GetTypeToEdit(TypeForListVM model)
+        public TypeForListVM GetTypeDetails(int id)
         {
-            var type = _itemRepository.GetAllTypes().Where(p=>p.Id==model.Id);
+            var type = _itemRepository.GetTypeById(id);
+            var typeToShow = _mapper.Map<TypeForListVM>(type);
+            return typeToShow;
+        }
+
+        public TypeForListVM GetTypeToEdit(int id)
+        {
+            var type = _itemRepository.GetAllTypes().Where(p=>p.Id==id);
             var typeToEdit = _mapper.Map<TypeForListVM>(type);
             return typeToEdit;
         }

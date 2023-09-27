@@ -215,5 +215,11 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.Entry(type).Property("ItemId").IsModified = true;
             _context.SaveChanges();
         }
+
+        public Type GetTypeById(int typeId)
+        {
+            var type =_context.Types.FirstOrDefault(p => p.Id == typeId);
+            return type;
+        }
     }
 }
