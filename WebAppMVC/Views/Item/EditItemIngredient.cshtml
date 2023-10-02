@@ -1,0 +1,48 @@
+﻿@model WebAppMVC.Application.ViewModel.Item.ItemIngredientsForListVM
+
+@{
+    ViewData["Title"] = "EditItemIngredient";
+}
+
+<h1>EditItemIngredient</h1>
+
+<h4>ItemIngredientsForListVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditItemIngredient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemRef" class="control-label"></label>
+                <input asp-for="ItemRef" class="form-control" />
+                <span asp-validation-for="ItemRef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemIngredientsId" class="control-label"></label>
+                <input asp-for="ItemIngredientsId" class="form-control" />
+                <span asp-validation-for="ItemIngredientsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPiece" class="control-label"></label>
+                <input asp-for="NumberOfPiece" class="form-control" />
+                <span asp-validation-for="NumberOfPiece" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfLiters" class="control-label"></label>
+                <input asp-for="NumberOfLiters" class="form-control" />
+                <span asp-validation-for="NumberOfLiters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

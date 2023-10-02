@@ -64,5 +64,7 @@ namespace WebAppMVC.Application.Interfaces
         void EditTag(Tag tag);
 
         void EditType(Type type);
+
+        void EditItemIngredient(ItemIngredient itemingredient);
     }
 }

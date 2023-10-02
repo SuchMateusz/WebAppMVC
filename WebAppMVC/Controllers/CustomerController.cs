@@ -29,11 +29,7 @@ namespace WebAppMVC.Controllers
             {
                 pageNo = 1;
             }
-            if (searchString == null)
-            {
-                searchString = String.Empty;
-            }
-
+            searchString ??= String.Empty;
             var model = _customerService.GetAllCustomerForList(pageSize, pageNo.Value, searchString);
             return View(model);
         }
@@ -55,7 +51,7 @@ namespace WebAppMVC.Controllers
         public IActionResult EditCustomer(int id)
         {
             var customer = _customerService.GetCustomerForEdit(id);
-            return View(new NewCustomerVM());
+            return View(customer);
         }
 
         [HttpPost]
@@ -93,12 +89,6 @@ namespace WebAppMVC.Controllers
             var model = _customerService.GetAddressCustomerDetails(customerId);
             return View(model);
         }
-
-        //[HttpGet]
-        //public IActionResult EditAddressDetailsCustomer()
-        //{
-
-        //}
 
         [HttpGet]
         public IActionResult AddCustomerContactInformaction()

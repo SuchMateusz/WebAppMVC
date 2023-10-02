@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration.Conventions;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,15 +41,15 @@ namespace WebAppMVC.Application.Services
 
         public int AddTag(TagForListVM model)
         {
-            var tag = _mapper.Map<Ingredient>(model);
-            int id = _itemRepository.AddIngredients(tag);
+            var tag = _mapper.Map<Tag>(model);
+            int id = _itemRepository.AddTag(tag);
             return id;
         }
 
-        public int AddType(NewItemForListVM model)
+        public int AddType(TypeForListVM model)
         {
-            var type = _mapper.Map<Ingredient>(model);
-            int id = _itemRepository.AddIngredients(type);
+            var type = _mapper.Map<Domain.Model.Type>(model);
+            int id = _itemRepository.AddType(type);
             return id;
         }
 
@@ -214,6 +215,47 @@ namespace WebAppMVC.Application.Services
         {
             var type = _mapper.Map<WebAppMVC.Domain.Model.Type>(model);
             _itemRepository.EditType(type);
+        }
+
+        public int AddItemIngredients(ItemIngredientsForListVM model)
+        {
+            var itemIngredient = _mapper.Map<ItemIngredient>(model);
+            itemIngredient.Id = _itemRepository.AddItemIngredients(itemIngredient);
+            return itemIngredient.Id;
+        }
+
+        public ListItemIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id)
+        {
+            var itemIngredient = _itemRepository.GetAllItemIngredients().Where(p=>p.ItemRef == id)
+                .ProjectTo<ItemIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
+            var itemIngredientsToShow = itemIngredient.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            var itemIngredientsList = new ListItemIngredientsForListVM()
+            {
+                Ingredients = itemIngredientsToShow,
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                SearchString = id,
+
+            };
+            return itemIngredientsList;
+        }
+
+        public ItemIngredientsForListVM EditItemIngredients(int id)
+        {
+            var itemIngredients = _itemRepository.GetItemIngredientsById(id);
+            var itemIngredientToShow = _mapper.Map<ItemIngredientsForListVM>(itemIngredients);
+            return itemIngredientToShow;
+        }
+
+        public void DeleteItemIngredients(int id)
+        {
+            _itemRepository.DeleteItemIngredients(id);
+        }
+
+        public void UpdateItemIngredient(ItemIngredientsForListVM model)
+        {
+            var itemIngredient = _mapper.Map<ItemIngredient>(model);
+            _itemRepository.EditItemIngredient(itemIngredient);
         }
     }
 }

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class TypeForListVM
+    public class DescriptionForListVM
     {
-        public int Id { get; set; }
+        public int id {  get; set; }
 
         public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

@@ -216,6 +216,16 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
+        public void EditItemIngredient(ItemIngredient itemingredient)
+        {
+            _context.Attach(itemingredient);
+            _context.Entry(itemingredient).Property("Name").IsModified = true;
+            _context.Entry(itemingredient).Property("Price").IsModified = true;
+            _context.Entry(itemingredient).Property("NumberOfPiece").IsModified=true;
+            _context.Entry(itemingredient).Property("NumberOfLiters").IsModified = true;
+            _context.SaveChanges();
+        }
+
         public Type GetTypeById(int typeId)
         {
             var type =_context.Types.FirstOrDefault(p => p.Id == typeId);

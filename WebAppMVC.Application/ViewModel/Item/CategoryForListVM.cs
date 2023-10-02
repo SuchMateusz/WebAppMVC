@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class TypeForListVM
+    public class CategoryForListVM
     {
         public int Id { get; set; }
 

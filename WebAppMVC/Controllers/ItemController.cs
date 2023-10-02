@@ -11,12 +11,10 @@ namespace WebAppMVC.Controllers
     public class ItemController : Controller
     {
         private readonly IItemService _itemService;
-        private readonly IMapper _mapper;
 
-        public ItemController (IItemService itemService, IMapper mapper)
+        public ItemController (IItemService itemService)
         {
             _itemService = itemService;
-            _mapper = mapper;
         }
 
         public IActionResult Index() 
@@ -42,7 +40,7 @@ namespace WebAppMVC.Controllers
         public IActionResult GetAllItems()
         {
             var model = _itemService.GetAllItems(5, 1, "");
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -52,10 +50,8 @@ namespace WebAppMVC.Controllers
             {
                 paigeNo = 1;
             }
-            if (searchString == null)
-            {
-                searchString = string.Empty;
-            }
+
+            searchString ??= string.Empty;
             var model = _itemService.GetAllItems(paigeSize, paigeNo.Value, searchString);
             return View(model); 
         }
@@ -64,7 +60,7 @@ namespace WebAppMVC.Controllers
         public IActionResult EditItem (int id)
         {
             var model = _itemService.GetItemToEditItem(id);
-            return View(new ItemForListVM());
+            return View(model);
         }
 
         [HttpPost]
@@ -103,10 +99,111 @@ namespace WebAppMVC.Controllers
                 return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult GetAllIngredients()
+        {
+            var model = _itemService.GetAllIngredient(10, 1, "");
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllIngredients(int pageSize, int? pageNo, string searchString)
+        {
+            searchString ??= String.Empty;
+
+            if (!pageNo.HasValue)
+            {
+                pageNo = 0;
+            }
+            var model = _itemService.GetAllIngredient(pageSize, pageNo.Value, searchString);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult IngredientToEdit(int id)
+        {
+            var model = _itemService.GetItemToEditItem(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult IngredientToEdit(IngredientForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.UpdateIngredient(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public IActionResult DeleteIngredients(int id)
+        {
+            _itemService.DeleteIngredient(id);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult GetIngredientDetails(int id)
         {
             var model = _itemService.GetIngredientDetails(id);
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddNewtag()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewTag(TagForListVM model)
+        {
+            int id = _itemService.AddTag(model);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult GetAllTags()
+        {
+            var model = _itemService.GetAllTags(10, 1, "");
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllTags(int pageSize, int? pageNo, string searchstring)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+
+            searchstring ??= string.Empty;
+            var model = _itemService.GetAllTags(pageSize, pageNo.Value, searchstring);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditTag(int id)
+        {
+            var model = _itemService.GetTagToEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditTag(TagForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.UpdateTag(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public IActionResult DeleteTag(int id)
+        {
+            _itemService.DeleteTag(id);
+            return RedirectToAction("Index");
         }
 
         public IActionResult GetTagsDetails(int id)
@@ -115,9 +212,114 @@ namespace WebAppMVC.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult AddNewType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewType(TypeForListVM model)
+        {
+            var id = _itemService.AddType(model);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAllType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GetAllType(int pageSize, int? pageNo, string searchString)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+
+            searchString ??= string.Empty;
+            var model = _itemService.GetAllType(pageSize, pageNo.Value, searchString);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditType(int id)
+        {
+            var model = _itemService.GetTypeToEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditType(TypeForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.UpdateType(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public IActionResult DeleteType(int id)
+        {
+            _itemService.DeleteType(id);
+            return RedirectToAction("index");
+        }
+
         public IActionResult GetTypeDetails(int id)
         {
             var model = _itemService.GetTypeDetails(id);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddNewItemIngredient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewItemIngredient(ItemIngredientsForListVM model)
+        {
+            int id = _itemService.AddItemIngredients(model);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAllItemIngredientByItem()
+        {
+            var model = _itemService.GetAllItemIngredientsByIdItem(5, 1, 1);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllItemIngredientByItem(int pageSize, int? pageNo, int itemId)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            var model = _itemService.GetAllItemIngredientsByIdItem(pageSize, pageNo.Value, itemId);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditItemIngredient(int id)
+        {
+            var model = _itemService.EditItemIngredients(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditItemIngredient(ItemIngredientsForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.UpdateItemIngredient(model);
+                return RedirectToAction("Index");
+            }
             return View(model);
         }
     }

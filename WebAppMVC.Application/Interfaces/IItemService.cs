@@ -21,7 +21,6 @@ namespace WebAppMVC.Application.Interfaces
 
         ItemForListVM GetItemDetails(int id);
 
-
         int AddNewIngredient(IngredientForListVM model);
 
         ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchStrin);
@@ -33,7 +32,6 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteIngredient(int id);
         
         IngredientForListVM GetIngredientDetails(int id);
-
 
         int AddTag(TagForListVM model);
 
@@ -47,7 +45,7 @@ namespace WebAppMVC.Application.Interfaces
 
         TagForListVM GetTagDetails(int id);
 
-        int AddType(NewItemForListVM model);
+        int AddType(TypeForListVM model);
 
         ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin);
 
@@ -58,5 +56,15 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteType(int id);
 
         TypeForListVM GetTypeDetails(int id);
+
+        int AddItemIngredients (ItemIngredientsForListVM model);
+
+        ListItemIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id);
+
+        ItemIngredientsForListVM EditItemIngredients(int id);
+
+        void DeleteItemIngredients(int id);
+
+        void UpdateItemIngredient(ItemIngredientsForListVM model);
     }
 }
