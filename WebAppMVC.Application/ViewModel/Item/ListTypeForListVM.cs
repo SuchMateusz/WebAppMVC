@@ -8,7 +8,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 {
     public class ListTypeForListVM
     {
-        public List<TypeForListVM> Type { get; set; }
+        public List<TypeForListVM> AllTypes { get; set; }
 
         public int CurrentPage { get; set; }
 

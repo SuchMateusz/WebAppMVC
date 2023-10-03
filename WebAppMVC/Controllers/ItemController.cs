@@ -4,6 +4,7 @@ using System.Diagnostics;
 using WebAppMVC.Application.Interfaces;
 using AutoMapper;
 using WebAppMVC.Application.ViewModel.Item;
+using System.Drawing.Printing;
 
 
 namespace WebAppMVC.Controllers
@@ -33,7 +34,7 @@ namespace WebAppMVC.Controllers
         public IActionResult AddNewItem(NewItemForListVM newItemForListVM)
         {
             _itemService.AddItem(newItemForListVM);
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllItems");
         }
 
         [HttpGet]
@@ -228,6 +229,7 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult GetAllType()
         {
+            var model = _itemService.GetAllType(10, 1, "");
             return View();
         }
 
@@ -238,8 +240,8 @@ namespace WebAppMVC.Controllers
             {
                 pageNo = 1;
             }
-
             searchString ??= string.Empty;
+
             var model = _itemService.GetAllType(pageSize, pageNo.Value, searchString);
             return View(model);
         }
@@ -290,7 +292,7 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult GetAllItemIngredientByItem()
         {
-            var model = _itemService.GetAllItemIngredientsByIdItem(5, 1, 1);
+            var model = _itemService.GetAllItemIngredientsByIdItem(5, 1, 2);
             return View(model);
         }
 
@@ -320,6 +322,63 @@ namespace WebAppMVC.Controllers
                 _itemService.UpdateItemIngredient(model);
                 return RedirectToAction("Index");
             }
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddNewCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewCategory(CategoryForListVM model)
+        {
+            int id = _itemService.AddNewCategory(model);
+            return View();
+        }
+
+        public IActionResult DeleteCategory(int id) 
+        { 
+            _itemService.DeleteCategory(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditCategory(int id)
+        {
+            var model = _itemService.EditCategory(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(CategoryForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.UpdateCategory(model);
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllCategory()
+        {
+            var model = _itemService.GetCategoryForListVM(10, 1, "");
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllCategory(int pageSize, int? pageNo, string searchString) 
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            searchString ??= string.Empty;
+            var model = _itemService.GetCategoryForListVM(pageSize, pageNo.Value, searchString);
             return View(model);
         }
     }

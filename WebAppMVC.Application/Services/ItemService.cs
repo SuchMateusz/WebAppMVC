@@ -53,6 +53,13 @@ namespace WebAppMVC.Application.Services
             return id;
         }
 
+        public int AddNewCategory(CategoryForListVM model)
+        {
+            var category = _mapper.Map<Domain.Model.ItemCategory>(model);
+            int id = _itemRepository.AddItemCategory(category);
+            return id;
+        }
+
         public void DeleteIngredient(int id)
         {
             _itemRepository.DeleteIngredients(id);
@@ -73,9 +80,9 @@ namespace WebAppMVC.Application.Services
             _itemRepository.DeleteType(id);
         }
 
-        public ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchStrin)
+        public ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchString)
         {
-            var ingredients = _itemRepository.GetAllIngredients().Where(p => p.Name == searchStrin)
+            var ingredients = _itemRepository.GetAllIngredients().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<IngredientForListVM>(_mapper.ConfigurationProvider).ToList();
             var ingredientsToShow = ingredients.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var ingredientsList = new ListIngredientsForListVM()
@@ -83,31 +90,31 @@ namespace WebAppMVC.Application.Services
                 PageSize = pageSize,
                 CurrentPage = pageNo,
                 Ingredients = ingredientsToShow,
-                SearchString = searchStrin,
+                SearchString = searchString,
                 TotalCount = ingredients.Count,
             };
             return ingredientsList;
         }
 
-        public ListItemForListVM GetAllItems(int pageSize, int pageNo, string searchStrin)
+        public ListItemForListVM GetAllItems(int pageSize, int pageNo, string searchString)
         {
-            var items = _itemRepository.GetAllItems().Where(p=>p.Name == searchStrin)
+            var items = _itemRepository.GetAllItems().Where(p=>p.Name.StartsWith(searchString))
                 .ProjectTo<ItemForListVM>(_mapper.ConfigurationProvider).ToList();
-            var itemsToShow = items.Skip(pageSize * (pageNo -1)).Take(pageSize).ToList();
+            var itemsToShow = items.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var itemsList = new ListItemForListVM()
             {
                 PageSize = pageSize,
                 CurrentPage = pageNo,
                 Items = itemsToShow,
-                SearchString = searchStrin,
+                SearchString = searchString,
                 TotalCount = items.Count,
             };
             return itemsList;
         }
 
-        public ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchStrin)
+        public ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchString)
         {
-            var tags = _itemRepository.GetAllTags().Where(p => p.Name == searchStrin)
+            var tags = _itemRepository.GetAllTags().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<TagForListVM>(_mapper.ConfigurationProvider).ToList();
             var tagsToShow = tags.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var tagsList = new ListTagsForListVM()
@@ -116,23 +123,23 @@ namespace WebAppMVC.Application.Services
                 Tags = tagsToShow,
                 PageSize = pageSize,
                 TotalCount = tags.Count,
-                SearchString = searchStrin,
+                SearchString = searchString,
             };
             return tagsList;
         }
 
-        public ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin)
+        public ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchString)
         {
-            var type = _itemRepository.GetAllTypes().Where(p => p.Name == searchStrin)
+            var type = _itemRepository.GetAllTypes().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<TypeForListVM>(_mapper.ConfigurationProvider).ToList();
             var typeToShow = type.Skip(pageSize * (pageNo -1)).Take(pageSize).ToList();
             var typesList = new ListTypeForListVM()
             {
                 PageSize = pageSize,
                 CurrentPage = pageNo,
-                Type = typeToShow,
+                AllTypes = typeToShow,
                 TotalCount = type.Count,
-                SearchString = searchStrin,
+                SearchString = searchString,
             };
             return typesList;
         }
@@ -188,9 +195,18 @@ namespace WebAppMVC.Application.Services
 
         public TypeForListVM GetTypeToEdit(int id)
         {
-            var type = _itemRepository.GetAllTypes().Where(p=>p.Id==id);
+            var type = _itemRepository.GetTypeById(id);
+                //.ProjectTo<TypeForListVM>(_mapper.ConfigurationProvider);
             var typeToEdit = _mapper.Map<TypeForListVM>(type);
             return typeToEdit;
+        }
+
+        public CategoryForListVM EditCategory(int id)
+        {
+            var category = _itemRepository.GetCategoryById(id);
+           //     .ProjectTo<CategoryForListVM>(_mapper.ConfigurationProvider);
+            var categoryToShow = _mapper.Map<CategoryForListVM>(category);
+            return categoryToShow;
         }
 
         public void UpdateIngredient(IngredientForListVM model)
@@ -226,18 +242,33 @@ namespace WebAppMVC.Application.Services
 
         public ListItemIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id)
         {
-            var itemIngredient = _itemRepository.GetAllItemIngredients().Where(p=>p.ItemRef == id)
+            //if (id == 0)
+            //{
+                var item = _itemRepository.GetAllItemIngredients()
                 .ProjectTo<ItemIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
-            var itemIngredientsToShow = itemIngredient.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
-            var itemIngredientsList = new ListItemIngredientsForListVM()
-            {
-                Ingredients = itemIngredientsToShow,
-                PageSize = pageSize,
-                CurrentPage = pageNo,
-                SearchString = id,
+                var itemIngredientsToShow = item.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+                var itemIngredientsList = new ListItemIngredientsForListVM()
+                {
+                    Ingredients = itemIngredientsToShow,
+                    PageSize = pageSize,
+                    CurrentPage = pageNo,
+                    SearchString = id,
 
-            };
-            return itemIngredientsList;
+                };
+                return itemIngredientsList;
+            //}
+
+            //var itemIngredient = _itemRepository.GetAllItemIngredients().Where(p => p.ItemRef==id)
+            //    .ProjectTo<ItemIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
+            //var itemIngredientToShow = itemIngredient.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            //var itemIngredientList = new ListItemIngredientsForListVM()
+            //{
+            //    Ingredients = itemIngredientToShow,
+            //    PageSize = pageSize,
+            //    CurrentPage = pageNo,
+            //    SearchString = id,
+            //};
+            //return itemIngredientList;
         }
 
         public ItemIngredientsForListVM EditItemIngredients(int id)
@@ -256,6 +287,34 @@ namespace WebAppMVC.Application.Services
         {
             var itemIngredient = _mapper.Map<ItemIngredient>(model);
             _itemRepository.EditItemIngredient(itemIngredient);
+        }
+
+
+        public void UpdateCategory(CategoryForListVM model)
+        {
+            var category = _mapper.Map<ItemCategory>(model);
+            _itemRepository.EditItemCategory(category);
+        }
+
+        public void DeleteCategory(int id)
+        {
+            _itemRepository.DeleteItemCategory(id);
+        }
+
+        public ListCategoryForVM GetCategoryForListVM(int pageSize, int pageNo, string searchString)
+        {
+            var category = _itemRepository.GetAllCategories().Where(p => p.Name.StartsWith(searchString))
+                .ProjectTo<CategoryForListVM>(_mapper.ConfigurationProvider).ToList();
+            var categoryToShow = category.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            var categoryToList = new ListCategoryForVM()
+            {
+                PageSize = pageSize,
+                Category = category,
+                CurrentPage = pageNo,
+                SearchString = searchString,
+                TotalCount = category.Count,
+            };
+            return categoryToList;
         }
     }
 }

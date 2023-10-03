@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-action="GetAllItemIngredientByItem" asp-controller="ItemIngredients method="post">
+<form asp-action="GetAllItemIngredientByItem" asp-controller="Item" method="post">
 <div class="row">
     <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
     <input type="submit" value="Wyszukaj po item ID"/>

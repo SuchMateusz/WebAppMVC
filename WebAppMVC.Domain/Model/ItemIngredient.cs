@@ -8,7 +8,7 @@ namespace WebAppMVC.Domain.Model
     {
         public int ItemRef { get; set; }
 
-        public int ItemIngredientsId { get; set; }
+        public int IngredientId { get; set; }
 
         public string NumberOfPiece { get; set; }
 

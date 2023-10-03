@@ -9,30 +9,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-action="Index" asp-controller="Tag" method="post">
+<form asp-action="GetAllType" asp-controller="Item" method="post">
     <div class ="row"/>
         <input type = "text" asp-for = "SearchString" name = "searchString" id ="searchString"/>
-        <input type = "submit" asp-action = "Wyszukaj"/>
+        <input type = "submit" value = "Wyszukaj"/>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CurrentPage)
+                Id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PageSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SearchString)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalCount)
+                Name
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Type) {
+@foreach (var item in Model.AllTypes) 
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -46,7 +41,7 @@
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
 <div class="row">

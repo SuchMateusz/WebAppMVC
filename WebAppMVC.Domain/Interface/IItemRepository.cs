@@ -33,6 +33,10 @@ namespace WebAppMVC.Application.Interfaces
 
         public IQueryable<ItemCategory> GetAllCategories();
 
+        public ItemCategory GetCategoryById(int id);
+
+        public void DeleteItemCategory(int categoryId);
+
         public int AddIngredients(Ingredient ingredient);
 
         public void DeleteIngredients(int ingredientId);
@@ -66,5 +70,7 @@ namespace WebAppMVC.Application.Interfaces
         void EditType(Type type);
 
         void EditItemIngredient(ItemIngredient itemingredient);
+
+        void EditItemCategory(ItemCategory category);
     }
 }

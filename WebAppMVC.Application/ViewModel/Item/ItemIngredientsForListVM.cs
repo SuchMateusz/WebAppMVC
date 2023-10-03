@@ -12,6 +12,10 @@ namespace WebAppMVC.Application.ViewModel.Item
 {
     public class ItemIngredientsForListVM : IMapFrom<ItemIngredient>
     {
+        public int id { get; set; }
+
+        public string name { get; set; }
+
         public IngredientForListVM Ingredient { get; set; }
 
         public ItemForListVM Item { get; set; }
@@ -24,9 +28,21 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public int NumberOfLiters { get; set; }
 
-        public void Mapper(Profile profile)
+        public decimal Price { get; set; }
+
+        public void Mapping(Profile profile)
         {
-            profile.CreateMap<ItemIngredient, ItemIngredientsForListVM>().ReverseMap();
+            profile.CreateMap<ItemIngredient, ItemIngredientsForListVM>()
+                //.ForMember(x => x.Ingredient, opt => opt.MapFrom(s => s.Ingredients))
+                //.ForMember(x => x.Item, opt => opt.MapFrom(s => s.Item))
+                //.ForMember(x => x.ItemRef, opt => opt.MapFrom(s => s.ItemRef))
+                //.ForMember(x => x.ItemIngredientsId, opt => opt.MapFrom(s => s.ItemIngredientsId))
+                //.ForMember(x => x.NumberOfPiece, opt => opt.MapFrom(s => s.NumberOfPiece))
+                //.ForMember(x => x.NumberOfLiters, opt => opt.MapFrom(s => NumberOfLiters))
+                //.ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
+                .ReverseMap();
+            //profile.CreateMap<Ingredient,IngredientForListVM>().ReverseMap();
+            //profile.CreateMap<Domain.Model.Item,ItemForListVM>().ReverseMap();
         }
     }
 

@@ -66,5 +66,15 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteItemIngredients(int id);
 
         void UpdateItemIngredient(ItemIngredientsForListVM model);
+
+        int AddNewCategory(CategoryForListVM model);
+
+        CategoryForListVM EditCategory(int id);
+
+        void UpdateCategory(CategoryForListVM model);
+
+        void DeleteCategory(int id);
+
+        ListCategoryForVM GetCategoryForListVM(int pageSize, int pageNo, string searchString);
     }
 }

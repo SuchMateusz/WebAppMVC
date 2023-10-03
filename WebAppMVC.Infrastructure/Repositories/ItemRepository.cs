@@ -108,7 +108,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public ItemIngredient GetItemIngredientsById(int itemId)
         {
-            var ingredients = _context.ItemIngredients.Find(itemId);
+            var ingredients = _context.ItemIngredients.FirstOrDefault(p=>p.Id == itemId);
             return ingredients;
         }
 
@@ -230,6 +230,28 @@ namespace WebAppMVC.Infrastructure.Repositories
         {
             var type =_context.Types.FirstOrDefault(p => p.Id == typeId);
             return type;
+        }
+
+        public void DeleteItemCategory(int categoryId)
+        {
+            var category = _context.ItemCategories.FirstOrDefault(p => p.Id == categoryId);
+            if (category != null)
+            {
+                _context.ItemCategories.Remove(category);
+                _context.SaveChanges();
+            }
+        }
+
+        public void EditItemCategory(ItemCategory category)
+        {
+            _context.Attach(category);
+            _context.Entry(category).Property("Name").IsModified = true;
+        }
+
+        public ItemCategory GetCategoryById(int id)
+        {
+            var category = _context.ItemCategories.FirstOrDefault(p => p.Id == id);
+            return category;
         }
     }
 }

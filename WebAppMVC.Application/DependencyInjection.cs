@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.Services;
+using WebAppMVC.Application.ViewModel.Customer;
+using WebAppMVC.Application.ViewModel.Item;
 
 namespace WebAppMVC.Application
 {
@@ -17,6 +20,9 @@ namespace WebAppMVC.Application
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
+            services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
+            services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
             return services;
         }
     }

@@ -77,7 +77,7 @@ namespace WebAppMVC.Infrastructure
                 .HasForeignKey(e => e.ItemCategoryId);
 
             builder.Entity<ItemIngredient>()
-                .HasKey(it => new { it.ItemIngredientsId, it.ItemRef });
+                .HasKey(it => new { it.Id, it.ItemRef });
 
             builder.Entity<ItemIngredient>()
                 .HasOne<Item>(it => it.Item)
@@ -87,7 +87,7 @@ namespace WebAppMVC.Infrastructure
             builder.Entity<ItemIngredient>()
                 .HasOne<Ingredient>(it => it.Ingredients)
                 .WithMany(t => t.ItemIngredients)
-                .HasForeignKey(i => i.ItemIngredientsId);
+                .HasForeignKey(i => i.IngredientId);
         }
     }
 }
