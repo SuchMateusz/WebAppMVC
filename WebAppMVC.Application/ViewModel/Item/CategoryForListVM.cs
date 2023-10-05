@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,15 @@ namespace WebAppMVC.Application.ViewModel.Item
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CategoryForListVM, ItemCategory>().ReverseMap();
+        }
+    }
+
+    public class NewCategoryValidation : AbstractValidator<CategoryForListVM>
+    {
+        public NewCategoryValidation()
+        {
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).Length(1, 100);
         }
     }
 }

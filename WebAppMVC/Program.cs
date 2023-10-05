@@ -30,11 +30,11 @@ namespace WebAppMVC
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
 
-            builder.Services.AddControllersWithViews().AddFluentValidation();
+            builder.Services.AddControllersWithViews().AddFluentValidation(fv => fv.DisableDataAnnotationsValidation = true);
 
-            builder.Services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
-            builder.Services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
-            builder.Services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
+            //builder.Services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
+            //builder.Services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
+            //builder.Services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
 
             var app = builder.Build();
 

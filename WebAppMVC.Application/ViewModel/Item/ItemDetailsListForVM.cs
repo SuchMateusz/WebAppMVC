@@ -25,10 +25,6 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public List<IngredientForListVM> ItemIngredients { get; set; }
 
-        //public ItemDescription ItemDescription { get; set; }
-
         public List<ItemTag> ItemTags { get; set; }
-
-        //public List<Categ ItemCategory { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.Services;
 using WebAppMVC.Application.ViewModel.Customer;
 using WebAppMVC.Application.ViewModel.Item;
+using static WebAppMVC.Application.ViewModel.Customer.CustomerContactInformactionForListVm;
 
 namespace WebAppMVC.Application
 {
@@ -20,9 +21,19 @@ namespace WebAppMVC.Application
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
             services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
             services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
+            services.AddTransient<IValidator<CustomerContactInformactionForListVm>, NewCustomerContactInformactionValidation>();
+
+            services.AddTransient<IValidator<IngredientForListVM>, NewIngredientValidation>();
+            services.AddTransient<IValidator<ItemIngredientsForListVM>, ItemIngredientsValidation>();
+            services.AddTransient<IValidator<NewItemForListVM>, NewItemValidation>();
             services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
+            services.AddTransient<IValidator<TypeForListVM>, NewTypeValidation>();
+            services.AddTransient<IValidator<TagForListVM>, NewTagValidation>();
+            services.AddTransient<IValidator<CategoryForListVM>, NewCategoryValidation>();
+            services.AddTransient<IValidator<DescriptionForListVM>, NewDescriptionValidation>();
             return services;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,15 @@ namespace WebAppMVC.Application.ViewModel.Item
         public void Mapping(Profile profile)
         {
             profile.CreateMap<TagForListVM, Domain.Model.Tag>().ReverseMap();
+        }
+    }
+
+    public class NewTagValidation : AbstractValidator<TagForListVM>
+    {
+        public NewTagValidation()
+        {
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).Length(1, 100);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddCustomer(NewCustomerVM model)
         {
             _customerService.AddCustomer(model);
@@ -59,12 +60,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditCustomer(NewCustomerVM model)
         {
-            if (ModelState.IsValid)
-            {
-                _customerService.UpdateCustomer(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            _customerService.UpdateCustomer(model);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
@@ -80,6 +77,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddNewAddressForCustomer(AddressForListVM model)
         {
             var id = _customerService.AddAddressModel(model);
@@ -114,12 +112,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditAddressCustDetails(AddressForListVM model)
         {
-            if (ModelState.IsValid)
-            {
-                _customerService.UpdateAddress(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            _customerService.UpdateAddress(model); 
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -129,6 +123,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddCustomerContactInformaction(CustomerContactInformactionForListVm model)
         {
             var id = _customerService.AddCustomerContactInformaction(model);
@@ -163,12 +158,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditCustContactDetails(CustomerContactInformactionForListVm model)
         {
-            if (ModelState.IsValid)
-            {
-                _customerService.UpdateCustContact(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            _customerService.UpdateCustContact(model);
+            return RedirectToAction("Index");
         }
     }
 }

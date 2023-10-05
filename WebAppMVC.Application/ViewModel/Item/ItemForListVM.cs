@@ -47,7 +47,15 @@ namespace WebAppMVC.Application.ViewModel.Item
         public ItemValidation() 
         {
             RuleFor(x => x.Name).NotEmpty();
-            //RuleFor(x => x.TypeId).NotEmpty();
+            RuleFor(x => x.TypeId).NotEmpty();
+            RuleFor(x => x.ItemCategoryId).NotEmpty();
+            RuleFor(x => x.ItemCategoryId).NotNull();
+            RuleFor(x => x.Price).NotEmpty(); 
+            RuleFor(x => x.Price).GreaterThan(0);
+            RuleFor(x => x.YearProduction).NotEmpty();
+            RuleFor(x => x.YearProduction).GreaterThan(1000);
+            RuleFor(x => x.Quantity).NotEmpty();
+            RuleFor(x => x.Quantity).GreaterThan(0);
         }
     }
 }

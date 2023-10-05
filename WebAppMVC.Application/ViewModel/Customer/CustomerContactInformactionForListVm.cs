@@ -34,15 +34,18 @@ namespace WebAppMVC.Application.ViewModel.Customer
                 .ReverseMap();
         }
 
-        public class CustomerContactInformactionValidation : AbstractValidator<CustomerContactInformactionForListVm>
+        public class NewCustomerContactInformactionValidation : AbstractValidator<CustomerContactInformactionForListVm>
         {
-            public CustomerContactInformactionValidation()
+            public NewCustomerContactInformactionValidation()
             {
                 RuleFor(x => x.Name).NotEmpty();
+                RuleFor(x => x.Name).Length(2, 30);
                 RuleFor(x => x.LastNameUser).NotEmpty();
                 RuleFor(x => x.Position).NotEmpty();
                 RuleFor(x => x.DirectPersonAddressEmail).NotEmpty();
+                RuleFor(x => x.DirectPersonAddressEmail).EmailAddress();
                 RuleFor(x => x.DirectPhoneNumber).NotEmpty();
+                RuleFor(x => x.DirectPhoneNumber).MinimumLength(5);
             }
         }
     }

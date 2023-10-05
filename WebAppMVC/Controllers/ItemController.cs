@@ -73,12 +73,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditItem(ItemForListVM item)
         {
-            if(ModelState.IsValid)
-            {
                 _itemService.UpdateItem(item);
                 return RedirectToAction("Index");
-            }
-            return View(item);
         }
 
         public IActionResult DeleteItem(int id)
@@ -136,12 +132,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult IngredientToEdit(IngredientForListVM model)
         {
-            if (ModelState.IsValid)
-            {
-                _itemService.UpdateIngredient(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            _itemService.UpdateIngredient(model);
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeleteIngredients(int id)
@@ -193,12 +185,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditTag(TagForListVM model)
         {
-            if (ModelState.IsValid)
-            {
                 _itemService.UpdateTag(model);
                 return RedirectToAction("Index");
-            }
-            return View(model);
         }
 
         public IActionResult DeleteTag(int id)
@@ -250,12 +238,9 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditType(TypeForListVM model)
         {
-            if (ModelState.IsValid)
-            {
-                _itemService.UpdateType(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
+            _itemService.UpdateType(model);
+            return RedirectToAction("Index");
+
         }
 
         public IActionResult DeleteType(int id)
@@ -305,12 +290,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditItemIngredient(ItemIngredientsForListVM model)
         {
-            if (ModelState.IsValid)
-            {
                 _itemService.UpdateItemIngredient(model);
                 return RedirectToAction("Index");
-            }
-            return View(model);
         }
 
         [HttpGet]
@@ -342,13 +323,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult EditCategory(CategoryForListVM model)
         {
-            if (ModelState.IsValid)
-            {
                 _itemService.UpdateCategory(model);
                 return RedirectToAction("Index");
-            }
-
-            return View(model);
         }
 
         [HttpGet]
