@@ -13,13 +13,13 @@ namespace WebAppMVC.Domain.Model
 
         public string REGON { get; set; }
 
-        public string PhoneNubmer { get; set; }
+        public string PhoneNumber { get; set; }
 
         public string AddressEmail { get; set; }
 
         public bool isActive { get; set; }
 
-        public CustomerContactInformaction CustomerContactInformaction { get; set; }
+        public ICollection<CustomerContactInformaction> CustomerContactInformaction { get; set; }
 
         public ICollection<Address> AddressDetails { get; set; }
     }

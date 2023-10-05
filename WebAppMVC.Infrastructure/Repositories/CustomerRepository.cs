@@ -104,5 +104,41 @@ namespace WebAppMVC.Infrastructure.Repositories
             var customer = _context.Customers.FirstOrDefault(x => x.Id == customerId);
             return customer;
         }
+
+        public Address GetAddressById(int id)
+        {
+            var address = _context.Addresses.FirstOrDefault(x => x.Id == id);
+            return address;
+        }
+
+        public void UpdateAddress(Address address)
+        {
+            _context.Attach(address);
+            _context.Entry(address).Property("BuildingNumber").IsModified = true;
+            _context.Entry(address).Property("Street").IsModified = true;
+            _context.Entry(address).Property("ZipCode").IsModified = true;
+            _context.Entry(address).Property("City").IsModified = true;
+            _context.Entry(address).Property("Country").IsModified = true;
+            _context.Entry(address).Property("CustomerId").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public object GetCustContactById(int id)
+        {
+            var custContact = _context.CustomerContactInformactions.FirstOrDefault(x => x.Id == id);
+            return custContact;
+        }
+
+        public void UpdateCustContact(CustomerContactInformaction custContact)
+        {
+            _context.Attach(custContact);
+            _context.Entry(custContact).Property("Name").IsModified = true;
+            _context.Entry(custContact).Property("LastNameUser").IsModified = true;
+            _context.Entry(custContact).Property("Position").IsModified = true;
+            _context.Entry(custContact).Property("DirectPersonAddressEmail").IsModified = true;
+            _context.Entry(custContact).Property("DirectPhoneNumber").IsModified = true;
+            _context.Entry(custContact).Property("CustomerRef").IsModified = true;
+            _context.SaveChanges();
+        }
     }
 }

@@ -12,10 +12,12 @@ namespace WebAppMVC.Controllers
     public class ItemController : Controller
     {
         private readonly IItemService _itemService;
+        private readonly ILogger<ItemController> _logger;
 
-        public ItemController (IItemService itemService)
+        public ItemController (IItemService itemService, ILogger<ItemController> logger)
         {
             _itemService = itemService;
+            _logger = logger;
         }
 
         public IActionResult Index() 
@@ -33,7 +35,11 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewItem(NewItemForListVM newItemForListVM)
         {
-            _itemService.AddItem(newItemForListVM);
+            int id = _itemService.AddItem(newItemForListVM);
+            if (id >0)
+            {
+                _logger.LogInformation("Create new Item success");
+            }
             return RedirectToAction("GetAllItems");
         }
 
@@ -144,12 +150,6 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult GetIngredientDetails(int id)
-        {
-            var model = _itemService.GetIngredientDetails(id);
-            return View(model);
-        }
-
         [HttpGet]
         public IActionResult AddNewtag()
         {
@@ -207,12 +207,6 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult GetTagsDetails(int id)
-        {
-            var model = _itemService.GetTagDetails(id);
-            return View(model);
-        }
-
         [HttpGet]
         public IActionResult AddNewType()
         {
@@ -268,12 +262,6 @@ namespace WebAppMVC.Controllers
         {
             _itemService.DeleteType(id);
             return RedirectToAction("index");
-        }
-
-        public IActionResult GetTypeDetails(int id)
-        {
-            var model = _itemService.GetTypeDetails(id);
-            return View(model);
         }
 
         [HttpGet]

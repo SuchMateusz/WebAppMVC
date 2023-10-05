@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,10 +46,24 @@ namespace WebAppMVC.Application.Services
             return customerForEdit;
         }
 
+        public AddressForListVM GetAddressForEdit(int id)
+        {
+            var address = _customerRepo.GetAddressById(id);
+            var addressForEdit = _mapper.Map<AddressForListVM>(address);
+            return addressForEdit;
+
+        }
+
         public void UpdateCustomer(NewCustomerVM model)
         {
             var customer = _mapper.Map<Customer>(model);
             _customerRepo.UpdateCustomer(customer);
+        }
+
+        public void UpdateAddress(AddressForListVM model)
+        {
+            var address = _mapper.Map<Address>(model);
+            _customerRepo.UpdateAddress(address);
         }
 
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
@@ -57,19 +73,36 @@ namespace WebAppMVC.Application.Services
             return id;
         }
 
-        public List<CustomerContactInformactionForListVm> GetCustConDetails(int customerContactDetail)
+        public ListCustomerContactInformactionForListVm GetCustConDetails(int pageSize, int pageNo, int customerContactDetail)
         {
-            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p=>p.CustomerRef==customerContactDetail)
+            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p => p.CustomerRef == customerContactDetail)
                 .ProjectTo<CustomerContactInformactionForListVm>(_mapper.ConfigurationProvider).ToList();
-            return custContDetail;
+            var custContactToShow = custContDetail.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            var custoContactList = new ListCustomerContactInformactionForListVm()
+            {
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                ContactCustomerInfo = custContDetail,
+                CustomerId = customerContactDetail,
+                TotalCount = custContDetail.Count
+            };
+            return custoContactList;
         }
 
-        public List<AddressForListVM> GetAddressCustomerDetails(int customerId)
+        public ListAddressForListVM GetAllAddressCustomer(int pageSize, int pageNo, int customerId)
         {
             var address = _customerRepo.GetAddresses().Where(p => p.CustomerId == customerId)
                 .ProjectTo<AddressForListVM>(_mapper.ConfigurationProvider).ToList();
-            //var addressToListVM = _mapper.Map<AddressForListVM>(address);
-            return address;
+            var addressToShow = address.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            var addressList = new ListAddressForListVM()
+            {
+                PageSize = pageSize,
+                CurrentPage = pageNo,
+                CustomerId = customerId,
+                Address = addressToShow,
+                TotalCount = address.Count
+            };
+            return addressList;
         }
 
         public ListCustomerForListVM GetAllCustomerForList(int pageSize, int pageNo, string searchString)
@@ -88,17 +121,22 @@ namespace WebAppMVC.Application.Services
             return customerList;
         }
 
-        public CustomerDetailsVM GetCustomerDetails(int customerId)
-        {
-            var customer = _customerRepo.GetCustomer(customerId);
-            var customerVM = _mapper.Map<CustomerDetailsVM>(customer);
-            //var address = GetAddressCustomerDetails(customerId);
-            return customerVM;
-        }
-
         public void DeleteCustomer(int id)
         {
             _customerRepo.DeleteCustomer(id);
+        }
+
+        public CustomerContactInformactionForListVm GetCustContactForEdit(int id)
+        {
+            var custContact = _customerRepo.GetCustContactById(id);
+            var contactForEdit = _mapper.Map<CustomerContactInformactionForListVm>(custContact);
+            return contactForEdit;
+        }
+
+        public void UpdateCustContact(CustomerContactInformactionForListVm model)
+        {
+            var custContact = _mapper.Map<CustomerContactInformaction>(model);
+            _customerRepo.UpdateCustContact(custContact);
         }
     }
 }

@@ -7,6 +7,8 @@ namespace WebAppMVC.Application.ViewModel.Customer
 {
     public class AddressForListVM : IMapFrom<Address>
     {
+        public int Id { get; set; }
+
         public string BuildingNumber { get; set; }
 
         public string Street { get; set; }
@@ -22,6 +24,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
         public void Mapping (Profile profile)
         {
             profile.CreateMap<WebAppMVC.Domain.Model.Address, AddressForListVM>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.BuildingNumber, opt => opt.MapFrom(s => s.BuildingNumber))
                 .ForMember(d => d.Street, opt => opt.MapFrom(s => s.Street))
                 .ForMember(d => d.ZipCode, opt => opt.MapFrom(s => s.ZipCode))
@@ -31,6 +34,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
                 .ReverseMap();
         }
     }
+
     public class NewAddressValidation : AbstractValidator<AddressForListVM>
     {
         public NewAddressValidation()

@@ -17,16 +17,22 @@ namespace WebAppMVC.Application.Interfaces
 
         int AddAddressModel (AddressForListVM address);
 
-        List<AddressForListVM> GetAddressCustomerDetails(int customerId);
+        ListAddressForListVM GetAllAddressCustomer(int pageSize, int pageNo, int customerId);
 
         int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail);
 
-        List<CustomerContactInformactionForListVm> GetCustConDetails(int customerContactDetail);
-
-        CustomerDetailsVM GetCustomerDetails(int customerId);
+        ListCustomerContactInformactionForListVm GetCustConDetails(int pageSize, int pageNo, int customerContactDetail);
 
         void DeleteCustomer(int id);
 
         void UpdateCustomer(NewCustomerVM model);
+
+        public AddressForListVM GetAddressForEdit(int id);
+
+        void UpdateAddress(AddressForListVM address);
+
+        CustomerContactInformactionForListVm GetCustContactForEdit(int id);
+
+        void UpdateCustContact(CustomerContactInformactionForListVm model);
     }
 }

@@ -38,8 +38,6 @@ namespace WebAppMVC
 
             var app = builder.Build();
 
-            //ILoggerFactory loggerFactory = new LoggerFactory();
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

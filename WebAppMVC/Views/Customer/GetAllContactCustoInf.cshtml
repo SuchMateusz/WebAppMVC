@@ -1,0 +1,96 @@
+﻿@model WebAppMVC.Application.ViewModel.Customer.ListCustomerContactInformactionForListVm
+
+@{
+    ViewData["Title"] = "GetAllContactCustoInf";
+}
+
+<h1>GetAllContactCustoInf</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="GetAllContactCustoInf" asp-controller="Customer" method="post">
+    <div class="row">
+    </div>
+    <div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Last name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Direct person address email
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.ContactCustomerInfo) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastNameUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectPersonAddressEmail)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i < Math.Ceiling(Model.TotalCount / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.CurrentPage)
+                        {
+                            <a href="javascript:PagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" name="pageNo" id="pageNo" />
+        <input type="hidden" name="pageSize" id="pageSize" value="2" />
+    </div>
+</form>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

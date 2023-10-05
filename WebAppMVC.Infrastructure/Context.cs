@@ -40,8 +40,9 @@ namespace WebAppMVC.Infrastructure
             base.OnModelCreating(builder);
 
             builder.Entity<Customer>()
-                .HasOne(a => a.CustomerContactInformaction).WithOne(b => b.Customer)
-                .HasForeignKey<CustomerContactInformaction>(e => e.CustomerRef);
+                .HasMany <CustomerContactInformaction>(it => it.CustomerContactInformaction)
+                .WithOne(b => b.Customer)
+                .HasForeignKey(e => e.CustomerRef);
 
             builder.Entity<Customer>()
                 .HasMany<Address>(it => it.AddressDetails)

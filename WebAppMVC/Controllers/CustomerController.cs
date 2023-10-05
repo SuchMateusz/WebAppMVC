@@ -9,10 +9,12 @@ namespace WebAppMVC.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
+        private readonly ILogger<CustomerController> _logger;
 
-        public CustomerController (ICustomerService customerService)
+        public CustomerController (ICustomerService customerService, ILogger<CustomerController> logger)
         {
             _customerService = customerService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -84,9 +86,39 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult GetAddressCustomerDetails(int customerId)
+        [HttpGet]
+        public IActionResult GetAddressCustomerDetails()
         {
-            var model = _customerService.GetAddressCustomerDetails(customerId);
+            var model = _customerService.GetAllAddressCustomer(10,1,0);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult GetAddressCustomerDetails(int pageSize, int? pageNo, int customerId)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            var model = _customerService.GetAllAddressCustomer(pageSize, pageNo.Value, customerId);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditAddressCustDetails(int id)
+        {
+            var model = _customerService.GetAddressForEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditAddressCustDetails(AddressForListVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _customerService.UpdateAddress(model);
+                return RedirectToAction("Index");
+            }
             return View(model);
         }
 
@@ -103,16 +135,40 @@ namespace WebAppMVC.Controllers
             return View(model);
         }
 
-        public IActionResult CustomerContactDetailsInformaction(int customerRef)
+        [HttpGet]
+        public IActionResult GetAllContactCustoInf()
         {
-            var model = _customerService.GetCustConDetails(customerRef);
+            var model = _customerService.GetCustConDetails(3, 1, 0);
             return View(model);
         }
 
-        public IActionResult ViewCustomer(int custmerId)
+        [HttpPost]
+        public IActionResult GetAllContactCustoInf(int pageSize, int? pageNo, int searchInt)
         {
-            var customerModel = _customerService.GetCustomerDetails(custmerId);
-            return View(customerModel);
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            var model = _customerService.GetCustConDetails(pageSize, pageNo.Value, searchInt);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditCustContactDetails(int id)
+        {
+            var model = _customerService.GetCustContactForEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditCustContactDetails(CustomerContactInformactionForListVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                _customerService.UpdateCustContact(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
     }
 }

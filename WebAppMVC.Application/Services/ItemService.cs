@@ -196,7 +196,6 @@ namespace WebAppMVC.Application.Services
         public TypeForListVM GetTypeToEdit(int id)
         {
             var type = _itemRepository.GetTypeById(id);
-                //.ProjectTo<TypeForListVM>(_mapper.ConfigurationProvider);
             var typeToEdit = _mapper.Map<TypeForListVM>(type);
             return typeToEdit;
         }
@@ -204,7 +203,6 @@ namespace WebAppMVC.Application.Services
         public CategoryForListVM EditCategory(int id)
         {
             var category = _itemRepository.GetCategoryById(id);
-           //     .ProjectTo<CategoryForListVM>(_mapper.ConfigurationProvider);
             var categoryToShow = _mapper.Map<CategoryForListVM>(category);
             return categoryToShow;
         }
@@ -242,8 +240,6 @@ namespace WebAppMVC.Application.Services
 
         public ListItemIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id)
         {
-            //if (id == 0)
-            //{
                 var item = _itemRepository.GetAllItemIngredients()
                 .ProjectTo<ItemIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
                 var itemIngredientsToShow = item.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
@@ -256,19 +252,6 @@ namespace WebAppMVC.Application.Services
 
                 };
                 return itemIngredientsList;
-            //}
-
-            //var itemIngredient = _itemRepository.GetAllItemIngredients().Where(p => p.ItemRef==id)
-            //    .ProjectTo<ItemIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
-            //var itemIngredientToShow = itemIngredient.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
-            //var itemIngredientList = new ListItemIngredientsForListVM()
-            //{
-            //    Ingredients = itemIngredientToShow,
-            //    PageSize = pageSize,
-            //    CurrentPage = pageNo,
-            //    SearchString = id,
-            //};
-            //return itemIngredientList;
         }
 
         public ItemIngredientsForListVM EditItemIngredients(int id)

@@ -7,6 +7,8 @@ namespace WebAppMVC.Application.ViewModel.Customer
 {
     public class CustomerContactInformactionForListVm : IMapFrom<CustomerContactInformaction>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string LastNameUser { get; set; }
@@ -24,6 +26,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
             profile.CreateMap<WebAppMVC.Domain.Model.CustomerContactInformaction, CustomerContactInformactionForListVm>()
                 .ForMember(s=>s.DirectPhoneNumber, opt => opt.MapFrom(s=> s.DirectPhoneNumber))
                 .ForMember(s => s.DirectPersonAddressEmail, opt => opt.MapFrom(s=>s.DirectPersonAddressEmail))
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(s => s.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(s => s.LastNameUser, opt => opt.MapFrom(s => s.LastNameUser))
                 .ForMember(s => s.Position, opt => opt.MapFrom(s => s.Position))
@@ -40,7 +43,6 @@ namespace WebAppMVC.Application.ViewModel.Customer
                 RuleFor(x => x.Position).NotEmpty();
                 RuleFor(x => x.DirectPersonAddressEmail).NotEmpty();
                 RuleFor(x => x.DirectPhoneNumber).NotEmpty();
-
             }
         }
     }
