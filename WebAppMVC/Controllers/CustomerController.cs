@@ -46,7 +46,8 @@ namespace WebAppMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCustomer(NewCustomerVM model)
         {
-            _customerService.AddCustomer(model);
+            int id = _customerService.AddCustomer(model);
+            _logger.LogInformation($"Dodano nowego użytkownika {id}");
             return RedirectToAction("Index");
         }
 
@@ -67,6 +68,7 @@ namespace WebAppMVC.Controllers
         public IActionResult Delete(int id)
         {
             _customerService.DeleteCustomer(id);
+            _logger.LogInformation($"Usunięto użytkownika o id: {id}");
             return RedirectToAction("Index");
         }
 
