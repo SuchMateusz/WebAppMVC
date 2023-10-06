@@ -294,6 +294,12 @@ namespace WebAppMVC.Controllers
                 return RedirectToAction("Index");
         }
 
+        public IActionResult DeleteItemIngredient(int id)
+        {
+            _itemService.DeleteItemIngredients(id);
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public IActionResult AddNewCategory()
         {

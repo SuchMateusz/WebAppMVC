@@ -12,9 +12,9 @@ namespace WebAppMVC.Application.ViewModel.Item
 {
     public class ItemIngredientsForListVM : IMapFrom<ItemIngredient>
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
         public IngredientForListVM Ingredient { get; set; }
 
