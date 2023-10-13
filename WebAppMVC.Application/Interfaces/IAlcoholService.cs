@@ -7,19 +7,19 @@ using WebAppMVC.Application.ViewModel.Item;
 
 namespace WebAppMVC.Application.Interfaces
 {
-    public interface IItemService
+    public interface IAlcoholService
     {
-        int AddItem(NewItemForListVM model);
+        int AddItem(NewAlcoholForListVM model);
 
-        ListItemForListVM GetAllItems(int pageSize, int pageNo, string searchStrin);
+        AlcoholsItemForListVM GetAllItems(int pageSize, int pageNo, string searchStrin);
 
-        ItemForListVM GetItemToEditItem(int id);
+        AlcoholForListVM GetItemToEditItem(int id);
 
-        void UpdateItem(ItemForListVM model);
+        void UpdateItem(AlcoholForListVM model);
 
         void DeleteItem(int id);
 
-        ItemForListVM GetItemDetails(int id);
+        AlcoholForListVM GetItemDetails(int id);
 
         int AddNewIngredient(IngredientForListVM model);
 
@@ -57,15 +57,15 @@ namespace WebAppMVC.Application.Interfaces
 
         TypeForListVM GetTypeDetails(int id);
 
-        int AddItemIngredients (ItemIngredientsForListVM model);
+        int AddItemIngredients (AlcoholIngredientsForListVM model);
 
-        ListItemIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id);
+        ListAlcoholsIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id);
 
-        ItemIngredientsForListVM EditItemIngredients(int id);
+        AlcoholIngredientsForListVM EditItemIngredients(int id);
 
         void DeleteItemIngredients(int id);
 
-        void UpdateItemIngredient(ItemIngredientsForListVM model);
+        void UpdateItemIngredient(AlcoholIngredientsForListVM model);
 
         int AddNewCategory(CategoryForListVM model);
 

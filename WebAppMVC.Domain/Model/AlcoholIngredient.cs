@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {
-    public class ItemIngredient : EntityModel
+    public class AlcoholIngredient : EntityModel
     {
-        public int ItemRef { get; set; }
+        public int AlcoholRef { get; set; }
 
         public int IngredientId { get; set; }
 
@@ -18,6 +19,6 @@ namespace WebAppMVC.Domain.Model
 
         public Ingredient Ingredients { get; set; }
 
-        public Item Item { get; set; }
+        public Alcohol Alcohol { get; set; }
     }
 }

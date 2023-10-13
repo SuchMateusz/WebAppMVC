@@ -9,9 +9,9 @@ using WebAppMVC.Application.Mapping;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class DescriptionForListVM : IMapFrom<Domain.Model.ItemDescription>
+    public class DescriptionForListVM : IMapFrom<Domain.Model.AlcoholDescription>
     {
-        public int id {  get; set; }
+        public int Id {  get; set; }
 
         public string Name { get; set; }
 
@@ -19,7 +19,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public void Mapping (Profile profile)
         {
-            profile.CreateMap<DescriptionForListVM, Domain.Model.ItemDescription>().ReverseMap();
+            profile.CreateMap<DescriptionForListVM, Domain.Model.AlcoholDescription>().ReverseMap();
         }
     }
 

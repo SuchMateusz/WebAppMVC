@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {
@@ -10,6 +11,6 @@ namespace WebAppMVC.Domain.Model
     {
         public decimal Price { get; set; }
 
-        public ICollection<ItemIngredient> ItemIngredients { get; set; }
+        public ICollection<AlcoholIngredient> AlcoholIngredients { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using WebAppMVC.Infrastructure;
 namespace WebAppMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231003085633_InitialTest2")]
-    partial class InitialTest2
+    [Migration("20231013190825_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -283,7 +283,7 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNubmer")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("REGON")
@@ -325,8 +325,7 @@ namespace WebAppMVC.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerRef")
-                        .IsUnique();
+                    b.HasIndex("CustomerRef");
 
                     b.ToTable("CustomerContactInformactions");
                 });
@@ -576,8 +575,8 @@ namespace WebAppMVC.Infrastructure.Migrations
             modelBuilder.Entity("WebAppMVC.Domain.Model.CustomerContactInformaction", b =>
                 {
                     b.HasOne("WebAppMVC.Domain.Model.Customer", "Customer")
-                        .WithOne("CustomerContactInformaction")
-                        .HasForeignKey("WebAppMVC.Domain.Model.CustomerContactInformaction", "CustomerRef")
+                        .WithMany("CustomerContactInformaction")
+                        .HasForeignKey("CustomerRef")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

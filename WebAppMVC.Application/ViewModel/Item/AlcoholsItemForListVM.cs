@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class ListItemIngredientsForListVM
+    public class AlcoholsItemForListVM
     {
-        public List<ItemIngredientsForListVM> Ingredients { get; set; }
+        public List<AlcoholForListVM> Alcohols { get;set;}
 
         public int CurrentPage { get; set; }
 
         public int PageSize { get; set; }
 
-        public int SearchString { get; set; }
+        public string SearchString { get; set; }
 
         public int TotalCount { get; set; }
     }

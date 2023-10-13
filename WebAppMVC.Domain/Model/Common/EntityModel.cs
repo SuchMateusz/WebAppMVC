@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAppMVC.Domain.Model
+namespace WebAppMVC.Domain.Model.Common
 {
     public class EntityModel
     {

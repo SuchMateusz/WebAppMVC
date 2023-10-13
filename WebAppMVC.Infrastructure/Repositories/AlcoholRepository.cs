@@ -9,22 +9,22 @@ using Type = WebAppMVC.Domain.Model.Type;
 
 namespace WebAppMVC.Infrastructure.Repositories
 {
-    public class ItemRepository : IItemRepository
+    public class AlcoholRepository : IAlcoholRepository
     {
         private readonly Context _context;
-        public ItemRepository(Context context)
+        public AlcoholRepository(Context context)
         {
             _context = context;
         }
 
-        public int AddItem(Item item)
+        public int AddItem(Alcohol item)
         {
-            _context.Items.Add(item);
+            _context.Alcohols.Add(item);
             _context.SaveChanges();
             return item.Id;
         }
 
-        public void EditItem(Item item)
+        public void EditItem(Alcohol item)
         {
             _context.Attach(item);
             _context.Entry(item).Property("Name").IsModified = true;
@@ -37,78 +37,78 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public void DeleteItem(int itemId)
         {
-            var item = _context.Items.Find(itemId);
+            var item = _context.Alcohols.Find(itemId);
             if(item != null)
             {
-                _context.Items.Remove(item);
+                _context.Alcohols.Remove(item);
                 _context.SaveChanges();
             }
         }
 
-        public Item GetItemById(int itemId)
+        public Alcohol GetItemById(int itemId)
         {
-            var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
+            var item = _context.Alcohols.FirstOrDefault(i => i.Id == itemId);
             return item;
         }
 
-        public IQueryable<Item> GetAllItems()
+        public IQueryable<Alcohol> GetAllItems()
         {
-            var items = _context.Items;
-            return items;
+            var alcohols = _context.Alcohols;
+            return alcohols;
         }
 
-        public IQueryable<ItemDescription> GetAllDescriptions()
+        public IQueryable<AlcoholDescription> GetAllDescriptions()
         {
-            var recipes = _context.ItemDescriptions;
+            var recipes = _context.AlcoholDescriptions;
             return recipes;
         }
 
-        public int AddItemCategory(ItemCategory itemCategory)
+        public int AddItemCategory(AlcoholCategory itemCategory)
         {
-            _context.ItemCategories.Add(itemCategory);
+            _context.AlcoholCategorys.Add(itemCategory);
             _context.SaveChanges();
             return itemCategory.Id;
         }
 
-        public int AddItemDescription(ItemDescription itemDescription)
+        public int AddItemDescription(AlcoholDescription itemDescription)
         {
-            _context.ItemDescriptions.Add(itemDescription);
+            _context.AlcoholDescriptions.Add(itemDescription);
             _context.SaveChanges();
             return itemDescription.Id;
         }
 
-        public IQueryable<ItemCategory> GetAllCategories()
+        public IQueryable<AlcoholCategory> GetAllCategories()
         {
-            var categories = _context.ItemCategories;
+            var categories = _context.AlcoholCategorys;
             return categories;
         }
 
-        public int AddItemIngredients(ItemIngredient ingredients)
+        public int AddItemIngredients(AlcoholIngredient ingredients)
         {
-            _context.ItemIngredients.Add(ingredients);
+            _context.AlcoholIngredients.Add(ingredients);
             _context.SaveChanges();
             return ingredients.Id;
         }
 
         public void DeleteItemIngredients(int itemId)
         {
-            var item = _context.ItemIngredients.Find(itemId);
+            var item = _context.AlcoholIngredients.Find(itemId);
             if (item != null)
             {
-                _context.ItemIngredients.Remove(item);
+                _context.AlcoholIngredients.Remove(item);
                 _context.SaveChanges();
             }
         }
 
-        public IQueryable<ItemIngredient> GetAllItemIngredients()
+        public IQueryable<AlcoholIngredient> GetAllItemIngredients()
         {
-            var ingredients = _context.ItemIngredients;
+            var ingredients = _context.AlcoholIngredients;
             return ingredients;
         }
 
-        public ItemIngredient GetItemIngredientsById(int itemId)
+        public AlcoholIngredient GetItemIngredientsById(int itemId)
         {
-            var ingredients = _context.ItemIngredients.FirstOrDefault(p=>p.Id == itemId);
+            var ingredients = _context.AlcoholIngredients.FirstOrDefault(p=>p.Id == itemId);
             return ingredients;
         }
 
@@ -216,7 +216,7 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public void EditItemIngredient(ItemIngredient itemingredient)
+        public void EditItemIngredient(AlcoholIngredient itemingredient)
         {
             _context.Attach(itemingredient);
             _context.Entry(itemingredient).Property("Name").IsModified = true;
@@ -234,23 +234,23 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public void DeleteItemCategory(int categoryId)
         {
-            var category = _context.ItemCategories.FirstOrDefault(p => p.Id == categoryId);
+            var category = _context.AlcoholCategorys.FirstOrDefault(p => p.Id == categoryId);
             if (category != null)
             {
-                _context.ItemCategories.Remove(category);
+                _context.AlcoholCategorys.Remove(category);
                 _context.SaveChanges();
             }
         }
 
-        public void EditItemCategory(ItemCategory category)
+        public void EditItemCategory(AlcoholCategory category)
         {
             _context.Attach(category);
             _context.Entry(category).Property("Name").IsModified = true;
         }
 
-        public ItemCategory GetCategoryById(int id)
+        public AlcoholCategory GetCategoryById(int id)
         {
-            var category = _context.ItemCategories.FirstOrDefault(p => p.Id == id);
+            var category = _context.AlcoholCategorys.FirstOrDefault(p => p.Id == id);
             return category;
         }
     }

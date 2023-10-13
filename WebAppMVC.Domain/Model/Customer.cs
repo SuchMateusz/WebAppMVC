@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {

@@ -7,7 +7,7 @@ using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class ItemDetailsListForVM
+    public class AlcoholDetailsListForVM
     {
         public int TypeId { get; set; }
 
@@ -19,12 +19,12 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public int Quantity { get; set; }
 
-        public int ItemCategoryId { get; set; }
+        public int AlcoholCategoryId { get; set; }
 
         public Domain.Model.Type Type { get; set; }
 
-        public List<IngredientForListVM> ItemIngredients { get; set; }
+        public List<IngredientForListVM> AlcoholIngredients { get; set; }
 
-        public List<ItemTag> ItemTags { get; set; }
+        public List<AlcoholTag> AlcoholTags { get; set; }
     }
 }

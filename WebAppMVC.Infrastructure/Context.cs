@@ -15,17 +15,17 @@ namespace WebAppMVC.Infrastructure
 
         public DbSet<CustomerContactInformaction> CustomerContactInformactions { get; set; }
 
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Alcohol> Alcohols { get; set; }
 
-        public DbSet<ItemIngredient> ItemIngredients { get; set; }
+        public DbSet<AlcoholIngredient> AlcoholIngredients { get; set; }
 
         public DbSet<Ingredient>  Ingredients { get; set; }
 
-        public DbSet<ItemDescription> ItemDescriptions { get; set; }
+        public DbSet<AlcoholDescription> AlcoholDescriptions { get; set; }
 
-        public DbSet<ItemTag> ItemTags { get; set; }
+        public DbSet<AlcoholTag> AlcoholTag { get; set; }
 
-        public DbSet<ItemCategory> ItemCategories { get; set; }
+        public DbSet<AlcoholCategory> AlcoholCategorys { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
 
@@ -49,45 +49,45 @@ namespace WebAppMVC.Infrastructure
                 .WithOne(b => b.Customer)
                 .HasForeignKey(e => e.CustomerId);
 
-            builder.Entity<ItemTag>()
-                .HasKey(it => new { it.ItemId, it.TagId });
+            builder.Entity<AlcoholTag>()
+                .HasKey(it => new { it.AlcoholId, it.TagId });
 
-            builder.Entity<ItemTag>()
-                .HasOne<Item>(it => it.Item)
-                .WithMany(i => i.ItemTags)
-                .HasForeignKey(it => it.ItemId);
+            builder.Entity<AlcoholTag>()
+                .HasOne<Alcohol>(it => it.Alcohol)
+                .WithMany(i => i.AlcoholTags)
+                .HasForeignKey(it => it.AlcoholId);
 
-            builder.Entity<ItemTag>()
+            builder.Entity<AlcoholTag>()
                 .HasOne<Tag> (it => it.Tag)
-                .WithMany(t=>t.ItemTags)
+                .WithMany(t=>t.AlcoholTags)
                 .HasForeignKey(it => it.TagId);
 
-            builder.Entity<Item>()
-                .HasOne(a => a.ItemDescription)
-                .WithOne(b => b.Item)
-                .HasForeignKey<ItemDescription>(it => it.ItemRef);
+            builder.Entity<Alcohol>()
+                .HasOne(a => a.AlcoholDescription)
+                .WithOne(b => b.Alcohol)
+                .HasForeignKey<AlcoholDescription>(it => it.AlcoholRef);
             
-            builder.Entity<Item>()
+            builder.Entity<Alcohol>()
                 .HasOne<Domain.Model.Type>(it => it.Type)
-                .WithMany(it => it.Items)
+                .WithMany(it => it.Alcohols)
                 .HasForeignKey(it => it.TypeId);
 
-            builder.Entity<ItemCategory>()
-                .HasMany<Item>(it => it.Items)
-                .WithOne(b => b.ItemCategory)
-                .HasForeignKey(e => e.ItemCategoryId);
+            builder.Entity<AlcoholCategory>()
+                .HasMany<Alcohol>(it => it.Alcohols)
+                .WithOne(b => b.AlcoholCategory)
+                .HasForeignKey(e => e.AlcoholCategoryId);
 
-            builder.Entity<ItemIngredient>()
-                .HasKey(it => new { it.Id, it.ItemRef });
+            builder.Entity<AlcoholIngredient>()
+                .HasKey(it => new { it.Id, it.AlcoholRef });
 
-            builder.Entity<ItemIngredient>()
-                .HasOne<Item>(it => it.Item)
-                .WithMany(i => i.ItemIngredients)
-                .HasForeignKey(it => it.ItemRef);
+            builder.Entity<AlcoholIngredient>()
+                .HasOne<Alcohol>(it => it.Alcohol)
+                .WithMany(i => i.AlcoholIngredients)
+                .HasForeignKey(it => it.AlcoholRef);
 
-            builder.Entity<ItemIngredient>()
+            builder.Entity<AlcoholIngredient>()
                 .HasOne<Ingredient>(it => it.Ingredients)
-                .WithMany(t => t.ItemIngredients)
+                .WithMany(t => t.AlcoholIngredients)
                 .HasForeignKey(i => i.IngredientId);
         }
     }

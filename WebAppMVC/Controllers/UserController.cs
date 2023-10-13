@@ -12,14 +12,9 @@ namespace WebAppMVC.Controllers
             _context = context;
         }
 
-        //public async Task<ActionResult> Index()
-        //{
-        //    List<User> users = await _userManager
-        //}
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

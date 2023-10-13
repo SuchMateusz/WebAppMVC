@@ -9,7 +9,7 @@ using WebAppMVC.Application.Mapping;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class ItemForListVM : IMapFrom<WebAppMVC.Domain.Model.Item>
+    public class AlcoholForListVM : IMapFrom<WebAppMVC.Domain.Model.Alcohol>
     {
         public int Id {  get; set; }
 
@@ -25,11 +25,11 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public int Quantity { get; set; }
 
-        public int ItemCategoryId { get; set; }
+        public int AlcoholCategoryId { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ItemForListVM, WebAppMVC.Domain.Model.Item>()
+            profile.CreateMap<AlcoholForListVM, WebAppMVC.Domain.Model.Alcohol>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.TypeId, opt => opt.MapFrom(s => s.TypeId))
@@ -37,19 +37,19 @@ namespace WebAppMVC.Application.ViewModel.Item
                 .ForMember(x => x.YearProduction, opt => opt.MapFrom(s => s.YearProduction))
                 .ForMember(x => x.SugarContent, opt => opt.MapFrom(s => SugarContent))
                 .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity))
-                .ForMember(x => x.ItemCategoryId, opt => opt.MapFrom(s => s.ItemCategoryId))
+                .ForMember(x => x.AlcoholCategoryId, opt => opt.MapFrom(s => s.AlcoholCategoryId))
                 .ReverseMap();
         }
     }
 
-    public class ItemValidation : AbstractValidator<ItemForListVM>
+    public class ItemValidation : AbstractValidator<AlcoholForListVM>
     {
         public ItemValidation() 
         {
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.TypeId).NotEmpty();
-            RuleFor(x => x.ItemCategoryId).NotEmpty();
-            RuleFor(x => x.ItemCategoryId).NotNull();
+            RuleFor(x => x.AlcoholCategoryId).NotEmpty();
+            RuleFor(x => x.AlcoholCategoryId).NotNull();
             RuleFor(x => x.Price).NotEmpty(); 
             RuleFor(x => x.Price).GreaterThan(0);
             RuleFor(x => x.YearProduction).NotEmpty();

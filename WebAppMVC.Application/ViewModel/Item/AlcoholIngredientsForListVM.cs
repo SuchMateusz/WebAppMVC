@@ -10,7 +10,7 @@ using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class ItemIngredientsForListVM : IMapFrom<ItemIngredient>
+    public class AlcoholIngredientsForListVM : IMapFrom<AlcoholIngredient>
     {
         public int Id { get; set; }
 
@@ -18,11 +18,11 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public IngredientForListVM Ingredient { get; set; }
 
-        public ItemForListVM Item { get; set; }
+        public AlcoholForListVM Item { get; set; }
 
-        public int ItemRef { get; set; }
+        public int AlcoholRef { get; set; }
 
-        public int ItemIngredientsId { get; set; }
+        public int AlcoholIngredientsId { get; set; }
 
         public string NumberOfPiece { get; set; }
 
@@ -32,7 +32,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ItemIngredient, ItemIngredientsForListVM>()
+            profile.CreateMap<AlcoholIngredient, AlcoholIngredientsForListVM>()
                 //.ForMember(x => x.Ingredient, opt => opt.MapFrom(s => s.Ingredients))
                 //.ForMember(x => x.Item, opt => opt.MapFrom(s => s.Item))
                 //.ForMember(x => x.ItemRef, opt => opt.MapFrom(s => s.ItemRef))
@@ -46,13 +46,13 @@ namespace WebAppMVC.Application.ViewModel.Item
         }
     }
 
-    public class ItemIngredientsValidation : AbstractValidator<ItemIngredientsForListVM>
+    public class ItemIngredientsValidation : AbstractValidator<AlcoholIngredientsForListVM>
     {
         public ItemIngredientsValidation()
         {
             RuleFor(x => x.Ingredient).NotEmpty();
             RuleFor(x => x.Item).NotEmpty();
-            RuleFor(x => x.ItemRef).NotNull();
+            RuleFor(x => x.AlcoholRef).NotNull();
         }
     }
 }

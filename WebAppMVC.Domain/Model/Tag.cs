@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {
     public class Tag : EntityModel
     {
-        public ICollection<ItemTag> ItemTags { get; set; }
+        public ICollection<AlcoholTag> AlcoholTags { get; set; }
     }
 }

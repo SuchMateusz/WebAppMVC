@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {

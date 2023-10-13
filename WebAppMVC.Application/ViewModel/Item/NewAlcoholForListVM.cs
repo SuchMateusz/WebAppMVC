@@ -10,7 +10,7 @@ using WebAppMVC.Application.ViewModel.Customer;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class NewItemForListVM : IMapFrom<WebAppMVC.Domain.Model.Item>
+    public class NewAlcoholForListVM : IMapFrom<WebAppMVC.Domain.Model.Alcohol>
     {
         public int Id { get; set; }
 
@@ -31,11 +31,11 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<WebAppMVC.Domain.Model.Item, NewItemForListVM>().ReverseMap();
+            profile.CreateMap<WebAppMVC.Domain.Model.Alcohol, NewAlcoholForListVM>().ReverseMap();
         }
     }
 
-    public class NewItemValidation : AbstractValidator<NewItemForListVM>
+    public class NewItemValidation : AbstractValidator<NewAlcoholForListVM>
     {
         public NewItemValidation()
         {

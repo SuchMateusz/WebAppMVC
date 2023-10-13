@@ -10,7 +10,7 @@ using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.ViewModel.Item
 {
-    public class CategoryForListVM : IMapFrom<Domain.Model.ItemCategory>
+    public class CategoryForListVM : IMapFrom<Domain.Model.AlcoholCategory>
     {
         public int Id { get; set; }
 
@@ -18,7 +18,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CategoryForListVM, ItemCategory>().ReverseMap();
+            profile.CreateMap<CategoryForListVM, AlcoholCategory>().ReverseMap();
         }
     }
 

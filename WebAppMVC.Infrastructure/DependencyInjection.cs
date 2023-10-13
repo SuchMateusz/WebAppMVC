@@ -14,7 +14,7 @@ namespace WebAppMVC.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<IAlcoholRepository, AlcoholRepository>();
             return services;
         }
     }

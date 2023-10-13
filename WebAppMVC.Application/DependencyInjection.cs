@@ -19,7 +19,7 @@ namespace WebAppMVC.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddTransient<ICustomerService, CustomerService>();
-            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IAlcoholService, AlcoholService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             
             services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
@@ -27,9 +27,9 @@ namespace WebAppMVC.Application
             services.AddTransient<IValidator<CustomerContactInformactionForListVm>, NewCustomerContactInformactionValidation>();
 
             services.AddTransient<IValidator<IngredientForListVM>, NewIngredientValidation>();
-            services.AddTransient<IValidator<ItemIngredientsForListVM>, ItemIngredientsValidation>();
-            services.AddTransient<IValidator<NewItemForListVM>, NewItemValidation>();
-            services.AddTransient<IValidator<ItemForListVM>, ItemValidation>();
+            services.AddTransient<IValidator<AlcoholIngredientsForListVM>, ItemIngredientsValidation>();
+            services.AddTransient<IValidator<NewAlcoholForListVM>, NewItemValidation>();
+            services.AddTransient<IValidator<AlcoholForListVM>, ItemValidation>();
             services.AddTransient<IValidator<TypeForListVM>, NewTypeValidation>();
             services.AddTransient<IValidator<TagForListVM>, NewTagValidation>();
             services.AddTransient<IValidator<CategoryForListVM>, NewCategoryValidation>();

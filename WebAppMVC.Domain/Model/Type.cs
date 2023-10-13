@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Domain.Model
 {
     public class Type : EntityModel
     {
-        public int ItemId { get; set; }
-
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<Alcohol> Alcohols { get; set; }
     }
 }

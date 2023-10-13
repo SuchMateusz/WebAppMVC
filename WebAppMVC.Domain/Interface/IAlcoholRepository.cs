@@ -7,33 +7,33 @@ using Type = WebAppMVC.Domain.Model.Type;
 
 namespace WebAppMVC.Application.Interfaces
 {
-    public interface IItemRepository
+    public interface IAlcoholRepository
     {
-        public int AddItem(Item item);
+        public int AddItem(Alcohol Alcohol);
 
         public void DeleteItem(int itemId);
 
-        public Item GetItemById(int itemId);
+        public Alcohol GetItemById(int itemId);
 
-        public IQueryable<Item> GetAllItems();
+        public IQueryable<Alcohol> GetAllItems();
 
-        public int AddItemIngredients(ItemIngredient ingredients);
+        public int AddItemIngredients(AlcoholIngredient ingredients);
         
         public void DeleteItemIngredients(int itemId);
 
-        public ItemIngredient GetItemIngredientsById(int itemId);
+        public AlcoholIngredient GetItemIngredientsById(int itemId);
 
-        public IQueryable<ItemIngredient> GetAllItemIngredients();
+        public IQueryable<AlcoholIngredient> GetAllItemIngredients();
 
-        public int AddItemDescription(ItemDescription itemDescription);
+        public int AddItemDescription(AlcoholDescription itemDescription);
 
-        public IQueryable<ItemDescription> GetAllDescriptions();
+        public IQueryable<AlcoholDescription> GetAllDescriptions();
 
-        public int AddItemCategory(ItemCategory itemCategory);
+        public int AddItemCategory(AlcoholCategory itemCategory);
 
-        public IQueryable<ItemCategory> GetAllCategories();
+        public IQueryable<AlcoholCategory> GetAllCategories();
 
-        public ItemCategory GetCategoryById(int id);
+        public AlcoholCategory GetCategoryById(int id);
 
         public void DeleteItemCategory(int categoryId);
 
@@ -61,7 +61,7 @@ namespace WebAppMVC.Application.Interfaces
 
         public IQueryable<Type> GetAllTypes();
 
-        void EditItem(Item item);
+        void EditItem(Alcohol item);
 
         void EditIngredient(Ingredient ingredient);
 
@@ -69,8 +69,8 @@ namespace WebAppMVC.Application.Interfaces
 
         void EditType(Type type);
 
-        void EditItemIngredient(ItemIngredient itemingredient);
+        void EditItemIngredient(AlcoholIngredient itemingredient);
 
-        void EditItemCategory(ItemCategory category);
+        void EditItemCategory(AlcoholCategory category);
     }
 }
