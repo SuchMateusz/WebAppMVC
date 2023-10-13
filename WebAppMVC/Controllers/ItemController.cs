@@ -5,10 +5,12 @@ using WebAppMVC.Application.Interfaces;
 using AutoMapper;
 using WebAppMVC.Application.ViewModel.Item;
 using System.Drawing.Printing;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAppMVC.Controllers
 {
+    [Authorize]
+
     public class ItemController : Controller
     {
         private readonly IItemService _itemService;

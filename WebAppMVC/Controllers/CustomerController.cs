@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Printing;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.Services;
@@ -6,6 +7,8 @@ using WebAppMVC.Application.ViewModel.Customer;
 
 namespace WebAppMVC.Controllers
 {
+    [Authorize]
+
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
