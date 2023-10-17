@@ -11,12 +11,12 @@ namespace WebAppMVC.Controllers
 {
     [Authorize]
 
-    public class ItemController : Controller
+    public class AlcoholController : Controller
     {
-        private readonly IItemService _itemService;
-        private readonly ILogger<ItemController> _logger;
+        private readonly IAlcoholService _itemService;
+        private readonly ILogger<AlcoholController> _logger;
 
-        public ItemController (IItemService itemService, ILogger<ItemController> logger)
+        public AlcoholController (IAlcoholService itemService, ILogger<AlcoholController> logger)
         {
             _itemService = itemService;
             _logger = logger;
@@ -29,31 +29,31 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddNewItem()
+        public IActionResult AddNewAlcohol()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddNewItem(NewItemForListVM newItemForListVM)
+        public IActionResult AddNewAlcohol(NewAlcoholForListVM newItemForListVM)
         {
-            int id = _itemService.AddItem(newItemForListVM);
+            int id = _itemService.AddAlcohol(newItemForListVM);
             if (id >0)
             {
                 _logger.LogInformation("Create new Item success");
             }
-            return RedirectToAction("GetAllItems");
+            return RedirectToAction("GetAllAlcohols");
         }
 
         [HttpGet]
-        public IActionResult GetAllItems()
+        public IActionResult GetAllAlcohols()
         {
-            var model = _itemService.GetAllItems(5, 1, "");
+            var model = _itemService.GetAllAlcohols(5, 1, "");
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult GetAllItems(int paigeSize, int? paigeNo, string searchString) 
+        public IActionResult GetAllAlcohols(int paigeSize, int? paigeNo, string searchString) 
         { 
             if (!paigeNo.HasValue)
             {
@@ -61,33 +61,33 @@ namespace WebAppMVC.Controllers
             }
 
             searchString ??= string.Empty;
-            var model = _itemService.GetAllItems(paigeSize, paigeNo.Value, searchString);
+            var model = _itemService.GetAllAlcohols(paigeSize, paigeNo.Value, searchString);
             return View(model); 
         }
 
         [HttpGet]
-        public IActionResult EditItem (int id)
+        public IActionResult EditAlcohol(int id)
         {
-            var model = _itemService.GetItemToEditItem(id);
+            var model = _itemService.GetAlcoholToEditItem(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult EditItem(ItemForListVM item)
+        public IActionResult EditAlcohol(AlcoholForListVM item)
         {
-                _itemService.UpdateItem(item);
+                _itemService.UpdateAlcohol(item);
                 return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteItem(int id)
+        public IActionResult DeleteAlcohol(int id)
         {
-            _itemService.DeleteItem(id);
+            _itemService.DeleteAlcohol(id);
             return RedirectToAction("Index");
         }
 
-        public IActionResult GetItemDetails(int id)
+        public IActionResult GetAlcoholDetails(int id)
         {
-            var model = _itemService.GetItemDetails(id);
+            var model = _itemService.GetAlcoholDetails(id);
             return View(model);
         }
 
@@ -127,7 +127,7 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult IngredientToEdit(int id)
         {
-            var model = _itemService.GetItemToEditItem(id);
+            var model = _itemService.GetAlcoholToEditItem(id);
             return View(model);
         }
 
@@ -258,47 +258,47 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewItemIngredient(ItemIngredientsForListVM model)
+        public IActionResult AddNewAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-            int id = _itemService.AddItemIngredients(model);
+            int id = _itemService.AddAlcoholIngredients(model);
             return View();
         }
 
         [HttpGet]
-        public IActionResult GetAllItemIngredientByItem()
+        public IActionResult GetAllAlcoholIngredientByItem()
         {
-            var model = _itemService.GetAllItemIngredientsByIdItem(5, 1, 2);
+            var model = _itemService.GetAllAlcoholIngredientsByIdItem(5, 1, 2);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult GetAllItemIngredientByItem(int pageSize, int? pageNo, int itemId)
+        public IActionResult GetAllAlcoholIngredientByItem(int pageSize, int? pageNo, int itemId)
         {
             if (!pageNo.HasValue)
             {
                 pageNo = 1;
             }
-            var model = _itemService.GetAllItemIngredientsByIdItem(pageSize, pageNo.Value, itemId);
+            var model = _itemService.GetAllAlcoholIngredientsByIdItem(pageSize, pageNo.Value, itemId);
             return View(model);
         }
 
         [HttpGet]
-        public IActionResult EditItemIngredient(int id)
+        public IActionResult EditAlcoholIngredient(int id)
         {
-            var model = _itemService.EditItemIngredients(id);
+            var model = _itemService.EditAlcoholIngredients(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult EditItemIngredient(ItemIngredientsForListVM model)
+        public IActionResult EditAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-                _itemService.UpdateItemIngredient(model);
+                _itemService.UpdateAlcoholIngredient(model);
                 return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteItemIngredient(int id)
+        public IActionResult DeleteAlcoholIngredient(int id)
         {
-            _itemService.DeleteItemIngredients(id);
+            _itemService.DeleteAlcoholIngredients(id);
             return RedirectToAction("Index");
         }
 

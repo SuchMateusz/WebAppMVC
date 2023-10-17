@@ -1,19 +1,21 @@
-﻿@model WebAppMVC.Application.ViewModel.Item.NewAlcoholForListVM
+﻿@model WebAppMVC.Application.ViewModel.Item.AlcoholForListVM
 
 @{
-    ViewData["Title"] = "AddNewItem";
+    ViewData["Title"] = "EditAlcohol";
 }
 
-<h1>AddNewItem</h1>
+<h1>EditAlcohol</h1>
 
-<h4>NewItemForListVM</h4>
+<h4>AlcoholForListVM</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddNewItem">
+        <form asp-action="EditAlcohol">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
             <div class="form-group">
-                <input  type ="hidden" asp-for="Id"/>
+                <input type ="hidden" asp-for="Id"/>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -46,12 +48,12 @@
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ItemCategoryId" class="control-label"></label>
-                <input asp-for="ItemCategoryId" class="form-control" />
-                <span asp-validation-for="ItemCategoryId" class="text-danger"></span>
+                <label asp-for="AlcoholCategoryId" class="control-label"></label>
+                <input asp-for="AlcoholCategoryId" class="form-control" />
+                <span asp-validation-for="AlcoholCategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

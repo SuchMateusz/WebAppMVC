@@ -26,7 +26,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public int Quantity { get; set; }
 
-        public int ItemCategoryId { get; set; }
+        public int AlcoholCategoryId { get; set; }
 
 
         public void Mapping(Profile profile)
@@ -35,9 +35,9 @@ namespace WebAppMVC.Application.ViewModel.Item
         }
     }
 
-    public class NewItemValidation : AbstractValidator<NewAlcoholForListVM>
+    public class NewAlcoholValidation : AbstractValidator<NewAlcoholForListVM>
     {
-        public NewItemValidation()
+        public NewAlcoholValidation()
         {
             RuleFor(x => x.Id).NotNull();
             RuleFor(x => x.Name).Length(3,30);
@@ -48,7 +48,7 @@ namespace WebAppMVC.Application.ViewModel.Item
             RuleFor(x => x.YearProduction).GreaterThan(1000);
             RuleFor(x => x.SugarContent).NotNull();
             RuleFor(x => x.Quantity).NotNull();
-            RuleFor(x => x.ItemCategoryId).NotNull();
+            RuleFor(x => x.AlcoholCategoryId).NotNull();
         }
     }
 }

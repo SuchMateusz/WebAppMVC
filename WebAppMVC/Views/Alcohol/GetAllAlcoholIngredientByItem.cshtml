@@ -1,15 +1,15 @@
 ﻿@model WebAppMVC.Application.ViewModel.Item.ListAlcoholsIngredientsForListVM
 
 @{
-    ViewData["Title"] = "GetAllItemIngredientByItem";
+    ViewData["Title"] = "GetAllAlcoholIngredientByItem";
 }
 
-<h1>GetAllItemIngredientByItem</h1>
+<h1>GetAllAlcoholIngredientByItem</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-action="GetAllItemIngredientByItem" asp-controller="Item" method="post">
+<form asp-action="GetAllAlcoholIngredientByItem" asp-controller="Item" method="post">
 <div class="row">
     <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
     <input type="submit" value="Wyszukaj po item ID"/>

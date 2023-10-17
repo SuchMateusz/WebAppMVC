@@ -1,26 +1,26 @@
 ﻿@model WebAppMVC.Application.ViewModel.Item.AlcoholIngredientsForListVM
 
 @{
-    ViewData["Title"] = "EditItemIngredient";
+    ViewData["Title"] = "EditAlcoholIngredient";
 }
 
-<h1>EditItemIngredient</h1>
+<h1>EditAlcoholIngredient</h1>
 
-<h4>ItemIngredientsForListVM</h4>
+<h4>AlcoholIngredientsForListVM</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditItemIngredient">
+        <form asp-action="EditAlcoholIngredient">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ItemRef" class="control-label"></label>
-                <input asp-for="ItemRef" class="form-control" />
-                <span asp-validation-for="ItemRef" class="text-danger"></span>
+                <label asp-for="AlcoholRef" class="control-label"></label>
+                <input asp-for="AlcoholRef" class="form-control" />
+                <span asp-validation-for="AlcoholRef" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ItemIngredientsId" class="control-label"></label>
-                <input asp-for="ItemIngredientsId" class="form-control" />
-                <span asp-validation-for="ItemIngredientsId" class="text-danger"></span>
+                <label asp-for="AlcoholIngredientsId" class="control-label"></label>
+                <input asp-for="AlcoholIngredientsId" class="form-control" />
+                <span asp-validation-for="AlcoholIngredientsId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumberOfPiece" class="control-label"></label>

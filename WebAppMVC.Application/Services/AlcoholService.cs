@@ -10,79 +10,94 @@ using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Customer;
 using WebAppMVC.Application.ViewModel.Item;
+using WebAppMVC.Domain.Interface;
 using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Services
 {
     public class AlcoholService : IAlcoholService
     {
-        private readonly IAlcoholRepository _itemRepository;
+        private readonly IAlcoholRepository _alcoRepository;
+        private readonly IAlcoCategorysRepository _alcoCategoryRepository;
+        private readonly IAlcoDescriptionsRepository _alcoDescriptionsRepository;
+        private readonly IAlcoIngredientRepository _alcoIngredientRepository;
+        private readonly IIngredientRepository _ingredientRepository;
+        private readonly ITagsRepository _tagsRepository;
+        private readonly ITypesRepository _typesRepository;
+
         private readonly IMapper _mapper;
 
-        public AlcoholService(IAlcoholRepository itemRepository, IMapper mapper)
+        public AlcoholService(IAlcoholRepository alcoRepository, IAlcoCategorysRepository alcoCategorysRepository, IAlcoDescriptionsRepository alcoDescriptionsRepository, IAlcoIngredientRepository alcoIngredientRepository, IIngredientRepository ingredientRepository, ITagsRepository tagsRepository, ITypesRepository typesRepository, IMapper mapper)
+
         {
-            _itemRepository = itemRepository;
+            _alcoRepository = alcoRepository;
+            _alcoCategoryRepository = alcoCategorysRepository;
+            _alcoDescriptionsRepository = alcoDescriptionsRepository;
+            _alcoIngredientRepository = alcoIngredientRepository;
+            _ingredientRepository = ingredientRepository;
+            _tagsRepository = tagsRepository;
+            _typesRepository = typesRepository;
             _mapper = mapper;
         }
 
-        public int AddItem(NewAlcoholForListVM model)
+        public int AddAlcohol(NewAlcoholForListVM model)
         {
             var item = _mapper.Map<Alcohol>(model);
-            int returnedId = _itemRepository.AddItem(item);
+            int returnedId = _alcoRepository.AddNewAlcohol(item);
             return returnedId;
         }
 
         public int AddNewIngredient(IngredientForListVM model)
         {
             var ingredient = _mapper.Map<Ingredient>(model);
-            int id = _itemRepository.AddIngredients(ingredient);
+            int id = _ingredientRepository.AddIngredients(ingredient);
             return id;
         }
 
         public int AddTag(TagForListVM model)
         {
             var tag = _mapper.Map<Tag>(model);
-            int id = _itemRepository.AddTag(tag);
+            int id = _tagsRepository.AddTag(tag);
             return id;
         }
 
         public int AddType(TypeForListVM model)
         {
             var type = _mapper.Map<Domain.Model.Type>(model);
-            int id = _itemRepository.AddType(type);
+            int id = _typesRepository.AddType(type);
             return id;
         }
 
         public int AddNewCategory(CategoryForListVM model)
         {
             var category = _mapper.Map<Domain.Model.AlcoholCategory>(model);
-            int id = _itemRepository.AddItemCategory(category);
+            int id = _alcoCategoryRepository.AddAlcoholCategory(category);
             return id;
         }
 
         public void DeleteIngredient(int id)
         {
-            _itemRepository.DeleteIngredients(id);
+            _ingredientRepository.DeleteIngredients(id);
         }
 
-        public void DeleteItem(int id)
+        public void DeleteAlcohol(int id)
         {
-            _itemRepository.DeleteItem(id);
+            _alcoRepository.DeleteAlcohol(id);
         }
 
         public void DeleteTag(int id)
         {
-            _itemRepository.DeleteTag(id);
+            _tagsRepository.DeleteTag(id);
         }
 
         public void DeleteType(int id)
         {
-            _itemRepository.DeleteType(id);
+            _typesRepository.DeleteType(id);
         }
 
         public ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchString)
         {
-            var ingredients = _itemRepository.GetAllIngredients().Where(p => p.Name.StartsWith(searchString))
+            var ingredients = _ingredientRepository.GetAllIngredients().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<IngredientForListVM>(_mapper.ConfigurationProvider).ToList();
             var ingredientsToShow = ingredients.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var ingredientsList = new ListIngredientsForListVM()
@@ -96,9 +111,9 @@ namespace WebAppMVC.Application.Services
             return ingredientsList;
         }
 
-        public AlcoholsItemForListVM GetAllItems(int pageSize, int pageNo, string searchString)
+        public AlcoholsItemForListVM GetAllAlcohols(int pageSize, int pageNo, string searchString)
         {
-            var items = _itemRepository.GetAllItems().Where(p=>p.Name.StartsWith(searchString))
+            var items = _alcoRepository.GetAllAlcohols().Where(p=>p.Name.StartsWith(searchString))
                 .ProjectTo<AlcoholForListVM>(_mapper.ConfigurationProvider).ToList();
             var itemsToShow = items.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var itemsList = new AlcoholsItemForListVM()
@@ -114,7 +129,7 @@ namespace WebAppMVC.Application.Services
 
         public ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchString)
         {
-            var tags = _itemRepository.GetAllTags().Where(p => p.Name.StartsWith(searchString))
+            var tags = _tagsRepository.GetAllTags().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<TagForListVM>(_mapper.ConfigurationProvider).ToList();
             var tagsToShow = tags.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var tagsList = new ListTagsForListVM()
@@ -130,7 +145,7 @@ namespace WebAppMVC.Application.Services
 
         public ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchString)
         {
-            var type = _itemRepository.GetAllTypes().Where(p => p.Name.StartsWith(searchString))
+            var type = _typesRepository.GetAllTypes().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<TypeForListVM>(_mapper.ConfigurationProvider).ToList();
             var typeToShow = type.Skip(pageSize * (pageNo -1)).Take(pageSize).ToList();
             var typesList = new ListTypeForListVM()
@@ -146,63 +161,63 @@ namespace WebAppMVC.Application.Services
 
         public IngredientForListVM GetIngredientDetails(int id)
         {
-            var ingredient = _itemRepository.GetIngredientById(id);
+            var ingredient = _ingredientRepository.GetIngredientById(id);
             var ingredientToShow = _mapper.Map<IngredientForListVM>(ingredient);
             return ingredientToShow;
         }
 
         public IngredientForListVM GetIngredientToEditItem(int id)
         {
-            var ingredientEdit = _itemRepository.GetIngredientById(id);
+            var ingredientEdit = _ingredientRepository.GetIngredientById(id);
             var ingredientToEdit = _mapper.Map<IngredientForListVM>(ingredientEdit);
             return ingredientToEdit;
         }
 
-        public AlcoholForListVM GetItemDetails(int id)
+        public AlcoholForListVM GetAlcoholDetails(int id)
         {
-            var item = _itemRepository.GetItemById(id);
+            var item = _alcoRepository.GetAlcoholById(id);
             var itemToShow = _mapper.Map<AlcoholForListVM>(item);
             return itemToShow;
         }
 
-        public AlcoholForListVM GetItemToEditItem(int id)
+        public AlcoholForListVM GetAlcoholToEditItem(int id)
         {
-            var item = _itemRepository.GetItemById(id);
+            var item = _alcoRepository.GetAlcoholById(id);
             var itemToEdit = _mapper.Map<AlcoholForListVM>(item);
             return itemToEdit;
         }
 
         public TagForListVM GetTagDetails(int id)
         {
-            var tag = _itemRepository.GetTagById(id);
+            var tag = _tagsRepository.GetTagById(id);
             var tagToShow = _mapper.Map<TagForListVM>(tag);
             return tagToShow;
         }
 
         public TagForListVM GetTagToEdit(int id)
         {
-            var tag = _itemRepository.GetTagById(id);
+            var tag = _tagsRepository.GetTagById(id);
             var tagToEdit = _mapper.Map<TagForListVM>(tag);
             return tagToEdit;
         }
 
         public TypeForListVM GetTypeDetails(int id)
         {
-            var type = _itemRepository.GetTypeById(id);
+            var type = _typesRepository.GetTypeById(id);
             var typeToShow = _mapper.Map<TypeForListVM>(type);
             return typeToShow;
         }
 
         public TypeForListVM GetTypeToEdit(int id)
         {
-            var type = _itemRepository.GetTypeById(id);
+            var type = _typesRepository.GetTypeById(id);
             var typeToEdit = _mapper.Map<TypeForListVM>(type);
             return typeToEdit;
         }
 
         public CategoryForListVM EditCategory(int id)
         {
-            var category = _itemRepository.GetCategoryById(id);
+            var category = _alcoCategoryRepository.GetCategoryById(id);
             var categoryToShow = _mapper.Map<CategoryForListVM>(category);
             return categoryToShow;
         }
@@ -210,37 +225,37 @@ namespace WebAppMVC.Application.Services
         public void UpdateIngredient(IngredientForListVM model)
         {
             var ingredient = _mapper.Map<Ingredient>(model);
-            _itemRepository.EditIngredient(ingredient);
+            _ingredientRepository.EditIngredient(ingredient);
         }
 
-        public void UpdateItem(AlcoholForListVM model)
+        public void UpdateAlcohol(AlcoholForListVM model)
         {
             var item = _mapper.Map<Alcohol>(model);
-            _itemRepository.EditItem(item);
+            _alcoRepository.EditAlcohol(item);
         }
 
         public void UpdateTag(TagForListVM model)
         {
             var tag = _mapper.Map<Tag>(model);
-            _itemRepository.EditTag(tag);
+            _tagsRepository.EditTag(tag);
         }
 
         public void UpdateType(TypeForListVM model)
         {
             var type = _mapper.Map<WebAppMVC.Domain.Model.Type>(model);
-            _itemRepository.EditType(type);
+            _typesRepository.EditType(type);
         }
 
-        public int AddItemIngredients(AlcoholIngredientsForListVM model)
+        public int AddAlcoholIngredients(AlcoholIngredientsForListVM model)
         {
             var itemIngredient = _mapper.Map<AlcoholIngredient>(model);
-            itemIngredient.Id = _itemRepository.AddItemIngredients(itemIngredient);
+            itemIngredient.Id = _alcoIngredientRepository.AddAlcoholIngredients(itemIngredient);
             return itemIngredient.Id;
         }
 
-        public ListAlcoholsIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id)
+        public ListAlcoholsIngredientsForListVM GetAllAlcoholIngredientsByIdItem(int pageSize, int pageNo, int id)
         {
-                var item = _itemRepository.GetAllItemIngredients()
+                var item = _alcoIngredientRepository.GetAllAlcoholIngredients()
                 .ProjectTo<AlcoholIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
                 var itemIngredientsToShow = item.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
                 var itemIngredientsList = new ListAlcoholsIngredientsForListVM()
@@ -254,39 +269,39 @@ namespace WebAppMVC.Application.Services
                 return itemIngredientsList;
         }
 
-        public AlcoholIngredientsForListVM EditItemIngredients(int id)
+        public AlcoholIngredientsForListVM EditAlcoholIngredients(int id)
         {
-            var itemIngredients = _itemRepository.GetItemIngredientsById(id);
+            var itemIngredients = _alcoIngredientRepository.GetAlcoholIngredientsById(id);
             var itemIngredientToShow = _mapper.Map<AlcoholIngredientsForListVM>(itemIngredients);
             return itemIngredientToShow;
         }
 
-        public void DeleteItemIngredients(int id)
+        public void DeleteAlcoholIngredients(int id)
         {
-            _itemRepository.DeleteItemIngredients(id);
+            _alcoIngredientRepository.DeleteAlcoholIngredients(id);
         }
 
-        public void UpdateItemIngredient(AlcoholIngredientsForListVM model)
+        public void UpdateAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
             var itemIngredient = _mapper.Map<AlcoholIngredient>(model);
-            _itemRepository.EditItemIngredient(itemIngredient);
+            _alcoIngredientRepository.EditAlcoholIngredient(itemIngredient);
         }
 
 
         public void UpdateCategory(CategoryForListVM model)
         {
             var category = _mapper.Map<AlcoholCategory>(model);
-            _itemRepository.EditItemCategory(category);
+            _alcoCategoryRepository.EditAlcoholCategory(category);
         }
 
         public void DeleteCategory(int id)
         {
-            _itemRepository.DeleteItemCategory(id);
+            _alcoCategoryRepository.DeleteAlcoholCategory(id);
         }
 
         public ListCategoryForVM GetCategoryForListVM(int pageSize, int pageNo, string searchString)
         {
-            var category = _itemRepository.GetAllCategories().Where(p => p.Name.StartsWith(searchString))
+            var category = _alcoCategoryRepository.GetAllCategories().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<CategoryForListVM>(_mapper.ConfigurationProvider).ToList();
             var categoryToShow = category.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var categoryToList = new ListCategoryForVM()

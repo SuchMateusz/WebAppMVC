@@ -9,17 +9,17 @@ namespace WebAppMVC.Application.Interfaces
 {
     public interface IAlcoholService
     {
-        int AddItem(NewAlcoholForListVM model);
+        int AddAlcohol(NewAlcoholForListVM model);
 
-        AlcoholsItemForListVM GetAllItems(int pageSize, int pageNo, string searchStrin);
+        AlcoholsItemForListVM GetAllAlcohols(int pageSize, int pageNo, string searchStrin);
 
-        AlcoholForListVM GetItemToEditItem(int id);
+        AlcoholForListVM GetAlcoholToEditItem(int id);
 
-        void UpdateItem(AlcoholForListVM model);
+        void UpdateAlcohol(AlcoholForListVM model);
 
-        void DeleteItem(int id);
+        void DeleteAlcohol(int id);
 
-        AlcoholForListVM GetItemDetails(int id);
+        AlcoholForListVM GetAlcoholDetails(int id);
 
         int AddNewIngredient(IngredientForListVM model);
 
@@ -57,15 +57,15 @@ namespace WebAppMVC.Application.Interfaces
 
         TypeForListVM GetTypeDetails(int id);
 
-        int AddItemIngredients (AlcoholIngredientsForListVM model);
+        int AddAlcoholIngredients(AlcoholIngredientsForListVM model);
 
-        ListAlcoholsIngredientsForListVM GetAllItemIngredientsByIdItem(int pageSize, int pageNo, int id);
+        ListAlcoholsIngredientsForListVM GetAllAlcoholIngredientsByIdItem(int pageSize, int pageNo, int id);
 
-        AlcoholIngredientsForListVM EditItemIngredients(int id);
+        AlcoholIngredientsForListVM EditAlcoholIngredients(int id);
 
-        void DeleteItemIngredients(int id);
+        void DeleteAlcoholIngredients(int id);
 
-        void UpdateItemIngredient(AlcoholIngredientsForListVM model);
+        void UpdateAlcoholIngredient(AlcoholIngredientsForListVM model);
 
         int AddNewCategory(CategoryForListVM model);
 

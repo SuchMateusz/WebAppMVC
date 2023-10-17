@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Customer;
+using WebAppMVC.Domain.Interface;
 using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Services
@@ -17,18 +18,22 @@ namespace WebAppMVC.Application.Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepo;
+        private readonly IAddressesRepository _addressesRepo;
+        private readonly ICustContInfoRepository _custContInfoRepo;
         private readonly IMapper _mapper;
 
-        public CustomerService(ICustomerRepository customerRepo, IMapper mapper)
+        public CustomerService(ICustomerRepository customerRepo, IAddressesRepository addressesRepo, ICustContInfoRepository custContInfoRepo, IMapper mapper)
         {
             _customerRepo = customerRepo;
+            _addressesRepo = addressesRepo;
+            _custContInfoRepo = custContInfoRepo;
             _mapper = mapper;
         }
 
         public int AddAddressModel(AddressForListVM address)
         {
             var adress = _mapper.Map<Address>(address);
-            int id = _customerRepo.AddAddresses(adress);
+            int id = _addressesRepo.AddAddresses(adress);
             return id;
         }
 
@@ -48,7 +53,7 @@ namespace WebAppMVC.Application.Services
 
         public AddressForListVM GetAddressForEdit(int id)
         {
-            var address = _customerRepo.GetAddressById(id);
+            var address = _addressesRepo.GetAddressById(id);
             var addressForEdit = _mapper.Map<AddressForListVM>(address);
             return addressForEdit;
 
@@ -63,19 +68,19 @@ namespace WebAppMVC.Application.Services
         public void UpdateAddress(AddressForListVM model)
         {
             var address = _mapper.Map<Address>(model);
-            _customerRepo.UpdateAddress(address);
+            _addressesRepo.UpdateAddress(address);
         }
 
         public int AddCustomerContactInformaction(CustomerContactInformactionForListVm custContactDetail)
         {
             var custContactInforma = _mapper.Map<CustomerContactInformaction>(custContactDetail);
-            int id = _customerRepo.AddCustomerContactInformaction(custContactInforma);
+            int id = _custContInfoRepo.AddCustomerContactInformaction(custContactInforma);
             return id;
         }
 
         public ListCustomerContactInformactionForListVm GetCustConDetails(int pageSize, int pageNo, int customerContactDetail)
         {
-            var custContDetail = _customerRepo.GetCustomerContactInformactions().Where(p => p.CustomerRef == customerContactDetail)
+            var custContDetail = _custContInfoRepo.GetCustomerContactInformactions().Where(p => p.CustomerRef == customerContactDetail)
                 .ProjectTo<CustomerContactInformactionForListVm>(_mapper.ConfigurationProvider).ToList();
             var custContactToShow = custContDetail.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var custoContactList = new ListCustomerContactInformactionForListVm()
@@ -91,7 +96,7 @@ namespace WebAppMVC.Application.Services
 
         public ListAddressForListVM GetAllAddressCustomer(int pageSize, int pageNo, int customerId)
         {
-            var address = _customerRepo.GetAddresses().Where(p => p.CustomerId == customerId)
+            var address = _addressesRepo.GetAddresses().Where(p => p.CustomerId == customerId)
                 .ProjectTo<AddressForListVM>(_mapper.ConfigurationProvider).ToList();
             var addressToShow = address.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var addressList = new ListAddressForListVM()
@@ -128,7 +133,7 @@ namespace WebAppMVC.Application.Services
 
         public CustomerContactInformactionForListVm GetCustContactForEdit(int id)
         {
-            var custContact = _customerRepo.GetCustContactById(id);
+            var custContact = _custContInfoRepo.GetCustContactById(id);
             var contactForEdit = _mapper.Map<CustomerContactInformactionForListVm>(custContact);
             return contactForEdit;
         }
@@ -136,7 +141,7 @@ namespace WebAppMVC.Application.Services
         public void UpdateCustContact(CustomerContactInformactionForListVm model)
         {
             var custContact = _mapper.Map<CustomerContactInformaction>(model);
-            _customerRepo.UpdateCustContact(custContact);
+            _custContInfoRepo.UpdateCustContact(custContact);
         }
     }
 }

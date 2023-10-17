@@ -19,7 +19,7 @@ namespace WebAppMVC.Infrastructure
 
         public DbSet<AlcoholIngredient> AlcoholIngredients { get; set; }
 
-        public DbSet<Ingredient>  Ingredients { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
 
         public DbSet<AlcoholDescription> AlcoholDescriptions { get; set; }
 
@@ -70,7 +70,7 @@ namespace WebAppMVC.Infrastructure
             builder.Entity<Alcohol>()
                 .HasOne<Domain.Model.Type>(it => it.Type)
                 .WithMany(it => it.Alcohols)
-                .HasForeignKey(it => it.TypeId);
+                .HasForeignKey(e => e.TypeId);
 
             builder.Entity<AlcoholCategory>()
                 .HasMany<Alcohol>(it => it.Alcohols)

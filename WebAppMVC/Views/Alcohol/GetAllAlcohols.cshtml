@@ -1,16 +1,16 @@
 ﻿@model WebAppMVC.Application.ViewModel.Item.AlcoholsItemForListVM
 
 @{
-    ViewData["Title"] = "GetAllItems";
+    ViewData["Title"] = "GetAllAlcohols";
 }
 
-<h1>GetAllItems</h1>
+<h1>GetAllAlcohols</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-action="GetAllItems" asp-controller="Item" method="post">
+<form asp-action="GetAllAlcohols" asp-controller="Item" method="post">
     <div class="row">
         <input type = "text" asp-for="SearchString" name ="searchString" id ="searchString"/>
         <input type = "submit" value="Wyszukaj"/>
@@ -47,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model.Items) {
+    @foreach (var item in Model.Alcohols) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
@@ -68,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.SugarContent)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ItemCategoryId)
+                    @Html.DisplayFor(modelItem => item.AlcoholCategoryId)
                 </td>
                  <td>
                     @Html.DisplayFor(modelItem => item.TypeId)
