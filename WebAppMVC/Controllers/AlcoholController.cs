@@ -10,15 +10,18 @@ using Microsoft.AspNetCore.Authorization;
 namespace WebAppMVC.Controllers
 {
     [Authorize]
-
     public class AlcoholController : Controller
     {
         private readonly IAlcoholService _itemService;
+        private readonly IIngredientsService _ingredientsService;
+        private readonly IMarkAlcoholService _markAlcoService;
         private readonly ILogger<AlcoholController> _logger;
 
-        public AlcoholController (IAlcoholService itemService, ILogger<AlcoholController> logger)
+        public AlcoholController (IAlcoholService itemService, IIngredientsService ingredientsService, IMarkAlcoholService markAlcoholService,ILogger<AlcoholController> logger)
         {
             _itemService = itemService;
+            _ingredientsService = ingredientsService;
+            _markAlcoService = markAlcoholService;
             _logger = logger;
         }
 
@@ -100,14 +103,15 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewIngredients(IngredientForListVM ingredientForListVM)
         {
-                _itemService.AddNewIngredient(ingredientForListVM);
-                return RedirectToAction("Index");
+
+            _ingredientsService.AddNewIngredient(ingredientForListVM);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult GetAllIngredients()
         {
-            var model = _itemService.GetAllIngredient(10, 1, "");
+            var model = _ingredientsService.GetAllIngredient(10, 1, "");
             return View(model);
         }
 
@@ -120,7 +124,7 @@ namespace WebAppMVC.Controllers
             {
                 pageNo = 0;
             }
-            var model = _itemService.GetAllIngredient(pageSize, pageNo.Value, searchString);
+            var model = _ingredientsService.GetAllIngredient(pageSize, pageNo.Value, searchString);
             return View(model);
         }
 
@@ -134,13 +138,13 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult IngredientToEdit(IngredientForListVM model)
         {
-            _itemService.UpdateIngredient(model);
+            _ingredientsService.UpdateIngredient(model);
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteIngredients(int id)
         {
-            _itemService.DeleteIngredient(id);
+            _ingredientsService.DeleteIngredient(id);
             return RedirectToAction("Index");
         }
 
@@ -153,14 +157,14 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewTag(TagForListVM model)
         {
-            int id = _itemService.AddTag(model);
+            _markAlcoService.AddTag(model);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult GetAllTags()
         {
-            var model = _itemService.GetAllTags(10, 1, "");
+            var model = _markAlcoService.GetAllTags(10, 1, "");
             return View(model);
         }
 
@@ -173,27 +177,27 @@ namespace WebAppMVC.Controllers
             }
 
             searchstring ??= string.Empty;
-            var model = _itemService.GetAllTags(pageSize, pageNo.Value, searchstring);
+            var model = _markAlcoService.GetAllTags(pageSize, pageNo.Value, searchstring);
             return View(model);
         }
 
         [HttpGet]
         public IActionResult EditTag(int id)
         {
-            var model = _itemService.GetTagToEdit(id);
+            var model = _markAlcoService.GetTagToEdit(id);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult EditTag(TagForListVM model)
         {
-                _itemService.UpdateTag(model);
-                return RedirectToAction("Index");
+            _markAlcoService.UpdateTag(model);
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeleteTag(int id)
         {
-            _itemService.DeleteTag(id);
+            _markAlcoService.DeleteTag(id);
             return RedirectToAction("Index");
         }
 
@@ -206,15 +210,15 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewType(TypeForListVM model)
         {
-            var id = _itemService.AddType(model);
+            _markAlcoService.AddType(model);
             return View();
         }
 
         [HttpGet]
         public IActionResult GetAllType()
         {
-            var model = _itemService.GetAllType(10, 1, "");
-            return View();
+            var model = _markAlcoService.GetAllType(10, 1, "");
+            return View(model);
         }
 
         [HttpPost]
@@ -226,28 +230,28 @@ namespace WebAppMVC.Controllers
             }
             searchString ??= string.Empty;
 
-            var model = _itemService.GetAllType(pageSize, pageNo.Value, searchString);
+            var model = _markAlcoService.GetAllType(pageSize, pageNo.Value, searchString);
             return View(model);
         }
 
         [HttpGet]
         public IActionResult EditType(int id)
         {
-            var model = _itemService.GetTypeToEdit(id);
+            var model = _markAlcoService.GetTypeToEdit(id);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult EditType(TypeForListVM model)
         {
-            _itemService.UpdateType(model);
+            _markAlcoService.UpdateType(model);
             return RedirectToAction("Index");
 
         }
 
         public IActionResult DeleteType(int id)
         {
-            _itemService.DeleteType(id);
+            _markAlcoService.DeleteType(id);
             return RedirectToAction("index");
         }
 
@@ -260,7 +264,7 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-            int id = _itemService.AddAlcoholIngredients(model);
+            _itemService.AddAlcoholIngredients(model);
             return View();
         }
 
@@ -311,7 +315,7 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewCategory(CategoryForListVM model)
         {
-            int id = _itemService.AddNewCategory(model);
+            _itemService.AddNewCategory(model);
             return View();
         }
 

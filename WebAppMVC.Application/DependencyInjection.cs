@@ -20,12 +20,14 @@ namespace WebAppMVC.Application
         {
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IAlcoholService, AlcoholService>();
+            services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<IMarkAlcoholService, MarkAlcoholService>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            
+
             services.AddTransient<IValidator<NewCustomerVM>, NewCustomerValidation>();
             services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
             services.AddTransient<IValidator<CustomerContactInformactionForListVm>, NewCustomerContactInformactionValidation>();
-
             services.AddTransient<IValidator<IngredientForListVM>, NewIngredientValidation>();
             services.AddTransient<IValidator<AlcoholIngredientsForListVM>, ItemIngredientsValidation>();
             services.AddTransient<IValidator<NewAlcoholForListVM>, NewAlcoholValidation>();

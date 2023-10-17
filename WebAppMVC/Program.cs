@@ -33,7 +33,6 @@ namespace WebAppMVC
                 .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddRazorPages();
-
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
             builder.Services.AddControllersWithViews().AddFluentValidation(fv => fv.DisableDataAnnotationsValidation = true);

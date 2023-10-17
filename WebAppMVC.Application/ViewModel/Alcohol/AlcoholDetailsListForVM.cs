@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Model;
 
-namespace WebAppMVC.Application.ViewModel.Item
+namespace WebAppMVC.Application.ViewModel.Alcohol
 {
     public class AlcoholDetailsListForVM
     {

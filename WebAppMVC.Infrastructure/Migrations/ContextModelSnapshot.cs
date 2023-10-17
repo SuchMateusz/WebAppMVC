@@ -260,6 +260,132 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("WebAppMVC.Domain.Model.Alcohol", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AlcoholCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("SugarContent")
+                        .HasColumnType("real");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YearProduction")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlcoholCategoryId");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("Alcohols");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AlcoholCategorys");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholDescription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AlcoholRef")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlcoholRef")
+                        .IsUnique();
+
+                    b.ToTable("AlcoholDescriptions");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholIngredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AlcoholRef")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfLiters")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NumberOfPiece")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id", "AlcoholRef");
+
+                    b.HasIndex("AlcoholRef");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("AlcoholIngredients");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholTag", b =>
+                {
+                    b.Property<int>("AlcoholId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AlcoholId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("AlcoholTag");
+                });
+
             modelBuilder.Entity("WebAppMVC.Domain.Model.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -346,132 +472,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("WebAppMVC.Domain.Model.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ItemCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<float>("SugarContent")
-                        .HasColumnType("real");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("YearProduction")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemCategoryId");
-
-                    b.HasIndex("TypeId");
-
-                    b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemCategories");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemDescription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ItemRef")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemRef")
-                        .IsUnique();
-
-                    b.ToTable("ItemDescriptions");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemIngredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemRef")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumberOfLiters")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NumberOfPiece")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id", "ItemRef");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("ItemRef");
-
-                    b.ToTable("ItemIngredients");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemTag", b =>
-                {
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("ItemTags");
-                });
-
             modelBuilder.Entity("WebAppMVC.Domain.Model.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -495,9 +495,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -569,6 +566,74 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("WebAppMVC.Domain.Model.Alcohol", b =>
+                {
+                    b.HasOne("WebAppMVC.Domain.Model.AlcoholCategory", "AlcoholCategory")
+                        .WithMany("Alcohols")
+                        .HasForeignKey("AlcoholCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAppMVC.Domain.Model.Type", "Type")
+                        .WithMany("Alcohols")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AlcoholCategory");
+
+                    b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholDescription", b =>
+                {
+                    b.HasOne("WebAppMVC.Domain.Model.Alcohol", "Alcohol")
+                        .WithOne("AlcoholDescription")
+                        .HasForeignKey("WebAppMVC.Domain.Model.AlcoholDescription", "AlcoholRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Alcohol");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholIngredient", b =>
+                {
+                    b.HasOne("WebAppMVC.Domain.Model.Alcohol", "Alcohol")
+                        .WithMany("AlcoholIngredients")
+                        .HasForeignKey("AlcoholRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAppMVC.Domain.Model.Ingredient", "Ingredients")
+                        .WithMany("AlcoholIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Alcohol");
+
+                    b.Navigation("Ingredients");
+                });
+
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholTag", b =>
+                {
+                    b.HasOne("WebAppMVC.Domain.Model.Alcohol", "Alcohol")
+                        .WithMany("AlcoholTags")
+                        .HasForeignKey("AlcoholId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAppMVC.Domain.Model.Tag", "Tag")
+                        .WithMany("AlcoholTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Alcohol");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("WebAppMVC.Domain.Model.CustomerContactInformaction", b =>
                 {
                     b.HasOne("WebAppMVC.Domain.Model.Customer", "Customer")
@@ -580,72 +645,18 @@ namespace WebAppMVC.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("WebAppMVC.Domain.Model.Item", b =>
+            modelBuilder.Entity("WebAppMVC.Domain.Model.Alcohol", b =>
                 {
-                    b.HasOne("WebAppMVC.Domain.Model.ItemCategory", "ItemCategory")
-                        .WithMany("Items")
-                        .HasForeignKey("ItemCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AlcoholDescription");
 
-                    b.HasOne("WebAppMVC.Domain.Model.Type", "Type")
-                        .WithMany("Items")
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AlcoholIngredients");
 
-                    b.Navigation("ItemCategory");
-
-                    b.Navigation("Type");
+                    b.Navigation("AlcoholTags");
                 });
 
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemDescription", b =>
+            modelBuilder.Entity("WebAppMVC.Domain.Model.AlcoholCategory", b =>
                 {
-                    b.HasOne("WebAppMVC.Domain.Model.Item", "Item")
-                        .WithOne("ItemDescription")
-                        .HasForeignKey("WebAppMVC.Domain.Model.ItemDescription", "ItemRef")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemIngredient", b =>
-                {
-                    b.HasOne("WebAppMVC.Domain.Model.Ingredient", "Ingredients")
-                        .WithMany("ItemIngredients")
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebAppMVC.Domain.Model.Item", "Item")
-                        .WithMany("ItemIngredients")
-                        .HasForeignKey("ItemRef")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ingredients");
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemTag", b =>
-                {
-                    b.HasOne("WebAppMVC.Domain.Model.Item", "Item")
-                        .WithMany("ItemTags")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebAppMVC.Domain.Model.Tag", "Tag")
-                        .WithMany("ItemTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Tag");
+                    b.Navigation("Alcohols");
                 });
 
             modelBuilder.Entity("WebAppMVC.Domain.Model.Customer", b =>
@@ -657,31 +668,17 @@ namespace WebAppMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("WebAppMVC.Domain.Model.Ingredient", b =>
                 {
-                    b.Navigation("ItemIngredients");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.Item", b =>
-                {
-                    b.Navigation("ItemDescription");
-
-                    b.Navigation("ItemIngredients");
-
-                    b.Navigation("ItemTags");
-                });
-
-            modelBuilder.Entity("WebAppMVC.Domain.Model.ItemCategory", b =>
-                {
-                    b.Navigation("Items");
+                    b.Navigation("AlcoholIngredients");
                 });
 
             modelBuilder.Entity("WebAppMVC.Domain.Model.Tag", b =>
                 {
-                    b.Navigation("ItemTags");
+                    b.Navigation("AlcoholTags");
                 });
 
             modelBuilder.Entity("WebAppMVC.Domain.Model.Type", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("Alcohols");
                 });
 #pragma warning restore 612, 618
         }

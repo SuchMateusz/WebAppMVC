@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
+using WebAppMVC.Domain.Interface;
 using WebAppMVC.Infrastructure.Repositories;
 
 namespace WebAppMVC.Infrastructure
@@ -15,6 +16,14 @@ namespace WebAppMVC.Infrastructure
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IAlcoholRepository, AlcoholRepository>();
+            services.AddTransient<IAddressesRepository, AddressesRepository>();
+            services.AddTransient<IAlcoCategorysRepository, AlcoCategorysRepository>(); 
+            services.AddTransient<IAlcoDescriptionsRepository, AlcoDescriptionsRepository>();
+            services.AddTransient<IAlcoIngredientRepository, AlcoIngredientRepository>(); 
+            services.AddTransient<ICustContInfoRepository, CustContInfoRepository>();
+            services.AddTransient<IIngredientRepository, IngredientRepository>(); 
+            services.AddTransient<ITagsRepository, TagsRepository>();
+            services.AddTransient<ITypesRepository, TypesRepository>();
             return services;
         }
     }

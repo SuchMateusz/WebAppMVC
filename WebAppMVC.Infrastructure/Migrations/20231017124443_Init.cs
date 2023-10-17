@@ -12,6 +12,19 @@ namespace WebAppMVC.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AlcoholCategorys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlcoholCategorys", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -84,19 +97,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemCategories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ItemCategories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
@@ -115,7 +115,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ItemId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -279,7 +278,7 @@ namespace WebAppMVC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Items",
+                name: "Alcohols",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -289,20 +288,20 @@ namespace WebAppMVC.Infrastructure.Migrations
                     YearProduction = table.Column<int>(type: "int", nullable: false),
                     SugarContent = table.Column<float>(type: "real", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    ItemCategoryId = table.Column<int>(type: "int", nullable: false),
+                    AlcoholCategoryId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Items", x => x.Id);
+                    table.PrimaryKey("PK_Alcohols", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_ItemCategories_ItemCategoryId",
-                        column: x => x.ItemCategoryId,
-                        principalTable: "ItemCategories",
+                        name: "FK_Alcohols_AlcoholCategorys_AlcoholCategoryId",
+                        column: x => x.AlcoholCategoryId,
+                        principalTable: "AlcoholCategorys",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Items_Types_TypeId",
+                        name: "FK_Alcohols_Types_TypeId",
                         column: x => x.TypeId,
                         principalTable: "Types",
                         principalColumn: "Id",
@@ -310,32 +309,32 @@ namespace WebAppMVC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemDescriptions",
+                name: "AlcoholDescriptions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ItemRef = table.Column<int>(type: "int", nullable: false),
+                    AlcoholRef = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemDescriptions", x => x.Id);
+                    table.PrimaryKey("PK_AlcoholDescriptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ItemDescriptions_Items_ItemRef",
-                        column: x => x.ItemRef,
-                        principalTable: "Items",
+                        name: "FK_AlcoholDescriptions_Alcohols_AlcoholRef",
+                        column: x => x.AlcoholRef,
+                        principalTable: "Alcohols",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemIngredients",
+                name: "AlcoholIngredients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    ItemRef = table.Column<int>(type: "int", nullable: false),
+                    AlcoholRef = table.Column<int>(type: "int", nullable: false),
                     IngredientId = table.Column<int>(type: "int", nullable: false),
                     NumberOfPiece = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOfLiters = table.Column<int>(type: "int", nullable: false),
@@ -344,39 +343,39 @@ namespace WebAppMVC.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemIngredients", x => new { x.Id, x.ItemRef });
+                    table.PrimaryKey("PK_AlcoholIngredients", x => new { x.Id, x.AlcoholRef });
                     table.ForeignKey(
-                        name: "FK_ItemIngredients_Ingredients_IngredientId",
-                        column: x => x.IngredientId,
-                        principalTable: "Ingredients",
+                        name: "FK_AlcoholIngredients_Alcohols_AlcoholRef",
+                        column: x => x.AlcoholRef,
+                        principalTable: "Alcohols",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ItemIngredients_Items_ItemRef",
-                        column: x => x.ItemRef,
-                        principalTable: "Items",
+                        name: "FK_AlcoholIngredients_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemTags",
+                name: "AlcoholTag",
                 columns: table => new
                 {
-                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    AlcoholId = table.Column<int>(type: "int", nullable: false),
                     TagId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemTags", x => new { x.ItemId, x.TagId });
+                    table.PrimaryKey("PK_AlcoholTag", x => new { x.AlcoholId, x.TagId });
                     table.ForeignKey(
-                        name: "FK_ItemTags_Items_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Items",
+                        name: "FK_AlcoholTag_Alcohols_AlcoholId",
+                        column: x => x.AlcoholId,
+                        principalTable: "Alcohols",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ItemTags_Tags_TagId",
+                        name: "FK_AlcoholTag_Tags_TagId",
                         column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "Id",
@@ -387,6 +386,37 @@ namespace WebAppMVC.Infrastructure.Migrations
                 name: "IX_Addresses_CustomerId",
                 table: "Addresses",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AlcoholDescriptions_AlcoholRef",
+                table: "AlcoholDescriptions",
+                column: "AlcoholRef",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AlcoholIngredients_AlcoholRef",
+                table: "AlcoholIngredients",
+                column: "AlcoholRef");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AlcoholIngredients_IngredientId",
+                table: "AlcoholIngredients",
+                column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alcohols_AlcoholCategoryId",
+                table: "Alcohols",
+                column: "AlcoholCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alcohols_TypeId",
+                table: "Alcohols",
+                column: "TypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AlcoholTag_TagId",
+                table: "AlcoholTag",
+                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -431,37 +461,6 @@ namespace WebAppMVC.Infrastructure.Migrations
                 name: "IX_CustomerContactInformactions_CustomerRef",
                 table: "CustomerContactInformactions",
                 column: "CustomerRef");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemDescriptions_ItemRef",
-                table: "ItemDescriptions",
-                column: "ItemRef",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemIngredients_IngredientId",
-                table: "ItemIngredients",
-                column: "IngredientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemIngredients_ItemRef",
-                table: "ItemIngredients",
-                column: "ItemRef");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_ItemCategoryId",
-                table: "Items",
-                column: "ItemCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_TypeId",
-                table: "Items",
-                column: "TypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemTags_TagId",
-                table: "ItemTags",
-                column: "TagId");
         }
 
         /// <inheritdoc />
@@ -469,6 +468,15 @@ namespace WebAppMVC.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "AlcoholDescriptions");
+
+            migrationBuilder.DropTable(
+                name: "AlcoholIngredients");
+
+            migrationBuilder.DropTable(
+                name: "AlcoholTag");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -489,13 +497,13 @@ namespace WebAppMVC.Infrastructure.Migrations
                 name: "CustomerContactInformactions");
 
             migrationBuilder.DropTable(
-                name: "ItemDescriptions");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
-                name: "ItemIngredients");
+                name: "Alcohols");
 
             migrationBuilder.DropTable(
-                name: "ItemTags");
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -507,16 +515,7 @@ namespace WebAppMVC.Infrastructure.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
-
-            migrationBuilder.DropTable(
-                name: "Items");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
-
-            migrationBuilder.DropTable(
-                name: "ItemCategories");
+                name: "AlcoholCategorys");
 
             migrationBuilder.DropTable(
                 name: "Types");

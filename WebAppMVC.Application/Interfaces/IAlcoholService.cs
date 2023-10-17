@@ -21,42 +21,6 @@ namespace WebAppMVC.Application.Interfaces
 
         AlcoholForListVM GetAlcoholDetails(int id);
 
-        int AddNewIngredient(IngredientForListVM model);
-
-        ListIngredientsForListVM GetAllIngredient(int pageSize, int pageNo, string searchStrin);
-
-        IngredientForListVM GetIngredientToEditItem(int id);
-
-        void UpdateIngredient (IngredientForListVM model);
-
-        void DeleteIngredient(int id);
-        
-        IngredientForListVM GetIngredientDetails(int id);
-
-        int AddTag(TagForListVM model);
-
-        ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchStrin);
-
-        TagForListVM GetTagToEdit(int id);
-
-        void UpdateTag(TagForListVM model);
-
-        void DeleteTag(int id);
-
-        TagForListVM GetTagDetails(int id);
-
-        int AddType(TypeForListVM model);
-
-        ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin);
-
-        TypeForListVM GetTypeToEdit(int id);
-
-        void UpdateType(TypeForListVM model);
-
-        void DeleteType(int id);
-
-        TypeForListVM GetTypeDetails(int id);
-
         int AddAlcoholIngredients(AlcoholIngredientsForListVM model);
 
         ListAlcoholsIngredientsForListVM GetAllAlcoholIngredientsByIdItem(int pageSize, int pageNo, int id);
