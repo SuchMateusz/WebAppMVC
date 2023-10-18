@@ -8,7 +8,6 @@ using WebAppMVC.Application.ViewModel.Customer;
 namespace WebAppMVC.Controllers
 {
     [Authorize]
-
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;

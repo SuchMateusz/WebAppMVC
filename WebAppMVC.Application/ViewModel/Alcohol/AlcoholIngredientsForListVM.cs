@@ -33,16 +33,7 @@ namespace WebAppMVC.Application.ViewModel.Item
         public void Mapping(Profile profile)
         {
             profile.CreateMap<AlcoholIngredient, AlcoholIngredientsForListVM>()
-                //.ForMember(x => x.Ingredient, opt => opt.MapFrom(s => s.Ingredients))
-                //.ForMember(x => x.Item, opt => opt.MapFrom(s => s.Item))
-                //.ForMember(x => x.ItemRef, opt => opt.MapFrom(s => s.ItemRef))
-                //.ForMember(x => x.ItemIngredientsId, opt => opt.MapFrom(s => s.ItemIngredientsId))
-                //.ForMember(x => x.NumberOfPiece, opt => opt.MapFrom(s => s.NumberOfPiece))
-                //.ForMember(x => x.NumberOfLiters, opt => opt.MapFrom(s => NumberOfLiters))
-                //.ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
                 .ReverseMap();
-            //profile.CreateMap<Ingredient,IngredientForListVM>().ReverseMap();
-            //profile.CreateMap<Domain.Model.Item,ItemForListVM>().ReverseMap();
         }
     }
 

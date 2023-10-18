@@ -20,6 +20,5 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteIngredient(int id);
 
         IngredientForListVM GetIngredientDetails(int id);
-
     }
 }

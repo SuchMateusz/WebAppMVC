@@ -21,7 +21,7 @@ namespace WebAppMVC.Application.Interfaces
 
         TagForListVM GetTagDetails(int id);
 
-        int AddType(TypeForListVM model);
+         int AddType(TypeForListVM model);
 
         ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchStrin);
 
