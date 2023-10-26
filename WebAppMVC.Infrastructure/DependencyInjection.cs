@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Domain.Interface;
+using WebAppMVC.Domain.Interfaces.Users_Roles;
 using WebAppMVC.Infrastructure.Repositories;
+using WebAppMVC.Infrastructure.Repositories.Users_Roles;
 
 namespace WebAppMVC.Infrastructure
 {
@@ -24,6 +26,9 @@ namespace WebAppMVC.Infrastructure
             services.AddTransient<IIngredientRepository, IngredientRepository>(); 
             services.AddTransient<ITagsRepository, TagsRepository>();
             services.AddTransient<ITypesRepository, TypesRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

@@ -24,7 +24,6 @@ namespace WebAppMVC.Application.Services
         private readonly IMapper _mapper;
 
         public AlcoholService(IAlcoholRepository alcoRepository, IAlcoCategorysRepository alcoCategorysRepository, IAlcoDescriptionsRepository alcoDescriptionsRepository, IAlcoIngredientRepository alcoIngredientRepository, IMapper mapper)
-
         {
             _alcoRepository = alcoRepository;
             _alcoCategoryRepository = alcoCategorysRepository;

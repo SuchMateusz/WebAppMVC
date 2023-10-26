@@ -12,6 +12,7 @@ using WebAppMVC.Application.ViewModel.Item;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Configuration;
 using Microsoft.Extensions.Options;
+using WebAppMVC.Domain.Models.Common;
 
 namespace WebAppMVC
 {
@@ -28,8 +29,8 @@ namespace WebAppMVC
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>()
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddRazorPages();
@@ -91,9 +92,8 @@ namespace WebAppMVC
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-
-
             app.Run();
+
         }
     }
 }

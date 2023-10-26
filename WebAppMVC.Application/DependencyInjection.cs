@@ -10,6 +10,8 @@ using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.Services;
 using WebAppMVC.Application.ViewModel.Customer;
 using WebAppMVC.Application.ViewModel.Item;
+using WebAppMVC.Domain.Interfaces.Users_Roles;
+using WebAppMVC.Infrastructure.Repositories.Users_Roles;
 using static WebAppMVC.Application.ViewModel.Customer.CustomerContactInformactionForListVm;
 
 namespace WebAppMVC.Application
@@ -22,6 +24,7 @@ namespace WebAppMVC.Application
             services.AddTransient<IAlcoholService, AlcoholService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IMarkAlcoholService, MarkAlcoholService>();
+            services.AddScoped<IRoleUserService, RoleUserService>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

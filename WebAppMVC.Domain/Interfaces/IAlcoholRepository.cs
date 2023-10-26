@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WebAppMVC.Domain.Model;
+using WebAppMVC.Domain.Model.Common;
 
 namespace WebAppMVC.Application.Interfaces
 {

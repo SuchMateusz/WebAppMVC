@@ -28,7 +28,5 @@ namespace WebAppMVC.Infrastructure.Repositories
             var recipes = _context.AlcoholDescriptions;
             return recipes;
         }
-
-
     }
 }

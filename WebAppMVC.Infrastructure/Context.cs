@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using WebAppMVC.Domain.Model;
+using WebAppMVC.Domain.Models.Common;
 
 namespace WebAppMVC.Infrastructure
 {
-    public class Context : IdentityDbContext
-    {
+    public class Context : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    { 
         public DbSet<Address> Addresses { get; set; }
 
         public DbSet<Customer> Customers { get; set; }
@@ -28,6 +31,10 @@ namespace WebAppMVC.Infrastructure
         public DbSet<AlcoholCategory> AlcoholCategorys { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        //public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
         public DbSet<Domain.Model.Type> Types { get; set; }
 
@@ -89,6 +96,17 @@ namespace WebAppMVC.Infrastructure
                 .HasOne<Ingredient>(it => it.Ingredients)
                 .WithMany(t => t.AlcoholIngredients)
                 .HasForeignKey(i => i.IngredientId);
+
+            builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
+        }
+    }
+
+    public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    {
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        {
+            builder.Property(u => u.FirstName).HasMaxLength(255);
+            builder.Property(u => u.LastName).HasMaxLength(255);
         }
     }
 }
