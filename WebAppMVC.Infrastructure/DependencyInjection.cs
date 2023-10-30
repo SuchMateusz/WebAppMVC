@@ -28,7 +28,6 @@ namespace WebAppMVC.Infrastructure
             services.AddTransient<ITypesRepository, TypesRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

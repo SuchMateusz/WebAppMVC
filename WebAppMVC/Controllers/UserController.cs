@@ -91,6 +91,7 @@ namespace WebAppMVC.Controllers
                 }
             }
 
+
             if (rolesToAdd.Any())
             {
                 await _signInManager.UserManager.AddToRolesAsync(user, rolesToAdd);

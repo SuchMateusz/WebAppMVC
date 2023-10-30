@@ -9,7 +9,7 @@ using WebAppMVC.Infrastructure;
 
 namespace WebAppMVC.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class RolesController : Controller
     {
         private readonly IRoleUserService _roleUserService;
