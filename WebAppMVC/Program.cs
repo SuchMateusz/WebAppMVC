@@ -93,7 +93,6 @@ namespace WebAppMVC
             app.MapRazorPages();
 
             app.Run();
-
         }
     }
 }

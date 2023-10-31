@@ -134,7 +134,6 @@ namespace WebAppMVC.Areas.Identity.Pages.Account
 
                     if (roles.Any())
                     {
-                        //"Manager,User"
                         var roleClaim = string.Join(",", roles);
                         claims.Add(new Claim("Roles", roleClaim));
                     }
@@ -164,8 +163,6 @@ namespace WebAppMVC.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

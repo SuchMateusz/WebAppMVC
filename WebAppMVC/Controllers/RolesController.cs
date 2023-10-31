@@ -45,7 +45,7 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Admin, SuperUser")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteRole(ApplicationRole model)
         {
             var model2 = _roleManager.FindByNameAsync(model.Name).GetAwaiter().GetResult();

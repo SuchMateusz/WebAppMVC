@@ -30,7 +30,7 @@ namespace WebAppMVC.Controllers
             return View(users);
         }
 
-        //[Authorize(Roles = "Admin, SuperUser")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _roleUserService.User.GetUser(id);

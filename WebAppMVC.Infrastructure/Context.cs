@@ -32,10 +32,6 @@ namespace WebAppMVC.Infrastructure
 
         public DbSet<Tag> Tags { get; set; }
 
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
-        //public DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
         public DbSet<Domain.Model.Type> Types { get; set; }
 
         public Context(DbContextOptions options) : base(options) 
