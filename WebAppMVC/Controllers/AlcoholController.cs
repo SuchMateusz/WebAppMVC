@@ -32,6 +32,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Admin, SuperUser")]
         public IActionResult AddNewAlcohol()
         {
             return View();
@@ -69,6 +70,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcohol(int id)
         {
             var model = _itemService.GetAlcoholToEditItem(id);
@@ -76,12 +78,14 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcohol(AlcoholForListVM item)
         {
                 _itemService.UpdateAlcohol(item);
                 return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteAlcohol(int id)
         {
             _itemService.DeleteAlcohol(id);
@@ -95,6 +99,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewIngredients()
         {
             return View();
@@ -129,6 +134,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult IngredientToEdit(int id)
         {
             var model = _itemService.GetAlcoholToEditItem(id);
@@ -142,6 +148,7 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteIngredients(int id)
         {
             _ingredientsService.DeleteIngredient(id);
@@ -149,6 +156,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewtag()
         {
             return View();
@@ -182,6 +190,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditTag(int id)
         {
             var model = _markAlcoService.GetTagToEdit(id);
@@ -195,6 +204,7 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteTag(int id)
         {
             _markAlcoService.DeleteTag(id);
@@ -202,6 +212,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewType()
         {
             return View();
@@ -235,6 +246,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditType(int id)
         {
             var model = _markAlcoService.GetTypeToEdit(id);
@@ -249,6 +261,7 @@ namespace WebAppMVC.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteType(int id)
         {
             _markAlcoService.DeleteType(id);
@@ -256,6 +269,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewItemIngredient()
         {
             return View();

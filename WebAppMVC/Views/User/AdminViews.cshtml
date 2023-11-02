@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "AdminViews";
+}
+
+<h1>Hello Admin</h1>
+
+<div class="row">
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="User" , asp-action="Index">View all users</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="Roles" , asp-action="Index">View all roles</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="Roles" , asp-action="CreateRole">Create new role</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="Customer" , asp-action="Index">Show all customer</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="Customer" , asp-action="AddCustomer">Add new customer</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" asp-controller="Home" , asp-action="Index">Back to home</a>
+    </li>
+</div>

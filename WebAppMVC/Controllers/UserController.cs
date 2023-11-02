@@ -12,6 +12,7 @@ using WebAppMVC.Infrastructure;
 
 namespace WebAppMVC.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IRoleUserService _roleUserService;
@@ -23,14 +24,14 @@ namespace WebAppMVC.Controllers
             _signInManager = signInManager;
         }
 
-        //[Authorize(Roles = "User")]
+        [Authorize(Roles = "SuperUser")]
         public IActionResult Index()
         {
             var users = _roleUserService.User.GetUsers();
             return View(users);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _roleUserService.User.GetUser(id);
@@ -63,11 +64,6 @@ namespace WebAppMVC.Controllers
             }
 
             var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
-
-            //Loop through the roles in ViewModel
-            //Check if the Role is Assigned In DB
-            //If Assigned -> Do Nothing
-            //If Not Assigned -> Add Role
 
             var rolesToAdd = new List<string>();
             var rolesToDelete = new List<string>();
@@ -109,6 +105,24 @@ namespace WebAppMVC.Controllers
             _roleUserService.User.UpdateUser(user);
 
             return RedirectToAction("Edit", new { id = user.Id });
+        }
+
+        [Authorize(Roles = "User")]
+        public IActionResult UserViews()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "SuperUser")]
+        public IActionResult SuperUserViews()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminViews()
+        {
+            return View();
         }
     }
 }

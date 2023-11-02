@@ -9,7 +9,7 @@ using WebAppMVC.Infrastructure;
 
 namespace WebAppMVC.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class RolesController : Controller
     {
         private readonly IRoleUserService _roleUserService;
@@ -21,6 +21,7 @@ namespace WebAppMVC.Controllers
             _roleManager = roleManager;
         }
 
+        [Authorize(Roles="User")]
         public IActionResult Index()
         {
             var roles = _roleManager.Roles.ToList();
@@ -28,7 +29,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult CreateRole()
         {
             return View();
@@ -45,7 +46,7 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, SuperUser")]
         public async Task<IActionResult> DeleteRole(ApplicationRole model)
         {
             var model2 = _roleManager.FindByNameAsync(model.Name).GetAwaiter().GetResult();
