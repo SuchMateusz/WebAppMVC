@@ -106,6 +106,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewIngredients(IngredientForListVM ingredientForListVM)
         {
 
@@ -114,6 +115,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult GetAllIngredients()
         {
             var model = _ingredientsService.GetAllIngredient(10, 1, "");
@@ -301,6 +303,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcoholIngredient(int id)
         {
             var model = _itemService.EditAlcoholIngredients(id);
@@ -321,6 +324,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult AddNewCategory()
         {
             return View();
@@ -333,6 +337,7 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteCategory(int id) 
         { 
             _itemService.DeleteCategory(id);
@@ -340,6 +345,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditCategory(int id)
         {
             var model = _itemService.EditCategory(id);

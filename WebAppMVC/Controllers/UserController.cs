@@ -113,7 +113,7 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "SuperUser")]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult SuperUserViews()
         {
             return View();

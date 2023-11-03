@@ -50,7 +50,7 @@ namespace WebAppMVC.Controllers
         public IActionResult AddCustomer(NewCustomerVM model)
         {
             int id = _customerService.AddCustomer(model);
-            _logger.LogInformation($"Dodano nowego użytkownika {id}");
+            _logger.LogInformation("Dodano nowego użytkownika {id}", id);
             return RedirectToAction("Index");
         }
 
@@ -68,10 +68,11 @@ namespace WebAppMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult Delete(int id)
         {
             _customerService.DeleteCustomer(id);
-            _logger.LogInformation($"Usunięto użytkownika o id: {id}");
+            _logger.LogInformation("Usunięto użytkownika o id: {id}", id);
             return RedirectToAction("Index");
         }
 
@@ -85,7 +86,7 @@ namespace WebAppMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddNewAddressForCustomer(AddressForListVM model)
         {
-            var id = _customerService.AddAddressModel(model);
+            _customerService.AddAddressModel(model);
             return RedirectToAction("Index");
         }
 
@@ -131,7 +132,7 @@ namespace WebAppMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCustomerContactInformaction(CustomerContactInformactionForListVm model)
         {
-            var id = _customerService.AddCustomerContactInformaction(model);
+            _customerService.AddCustomerContactInformaction(model);
             return View(model);
         }
 

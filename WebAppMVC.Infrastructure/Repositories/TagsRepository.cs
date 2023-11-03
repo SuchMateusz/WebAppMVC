@@ -48,8 +48,8 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public void EditTag(Tag tag)
         {
-            _context.Attach(tag);
-            _context.Entry(tag).Property("Name").IsModified = true;
+            _context.Tags.Attach(tag);
+            _context.Tags.Entry(tag).Property("Name").IsModified = true;
             _context.SaveChanges();
         }
     }

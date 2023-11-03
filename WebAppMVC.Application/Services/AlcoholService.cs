@@ -11,6 +11,7 @@ using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Customer;
 using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Interface;
+using WebAppMVC.Domain.Interfaces;
 using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Services
