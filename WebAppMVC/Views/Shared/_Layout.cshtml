@@ -31,23 +31,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">ViewAllAccounts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="RecipeToCreateTheItem">RecipeToCreateTheItem</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Alcohol options
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllAlcohols">Show alcohols</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllAlcoholIngredientByItem">Show alcohol ingredients</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllCategory">View category</a>
+                                </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Role Access
                             </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="nav-item">
-                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="UserViews">User</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="SuperUserViews">Super User</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="AdminViews">Admin</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="UserViews">User</a>
+                                </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="SuperUserViews">Super User</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="AdminViews">Admin</a>
+                            </li>
                         </ul>
                         </li>
                     </ul>

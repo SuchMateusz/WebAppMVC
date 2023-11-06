@@ -24,7 +24,7 @@ namespace WebAppMVC.Controllers
             _signInManager = signInManager;
         }
 
-        [Authorize(Roles = "SuperUser")]
+        [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult Index()
         {
             var users = _roleUserService.User.GetUsers();
@@ -86,7 +86,6 @@ namespace WebAppMVC.Controllers
                     }
                 }
             }
-
 
             if (rolesToAdd.Any())
             {

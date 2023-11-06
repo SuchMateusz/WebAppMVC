@@ -12,12 +12,10 @@ namespace WebAppMVC.Controllers
     [Authorize]
     public class RolesController : Controller
     {
-        private readonly IRoleUserService _roleUserService;
         private readonly RoleManager<ApplicationRole> _roleManager;
 
-        public RolesController(IRoleUserService unitOfWork, RoleManager<ApplicationRole> roleManager)
+        public RolesController(RoleManager<ApplicationRole> roleManager)
         {
-            _roleUserService = unitOfWork;
             _roleManager = roleManager;
         }
 
