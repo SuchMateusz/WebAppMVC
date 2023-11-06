@@ -21,7 +21,8 @@ namespace WebAppMVC.Infrastructure.Repositories.Users_Roles
         public ICollection<ApplicationUser> GetUsers()
         {
             var users = new List<ApplicationUser>();
-            return _context.Users.ToList();
+            users = _context.Users.ToList();
+            return users;
         }
 
         public ApplicationUser GetUser(string id)
