@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMVC.Application", "We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AF91E04A-57DC-4ECC-B9D9-00A929ED8445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC.Infrastructure", "WebAppMVC.Infrastructure\WebAppMVC.Infrastructure.csproj", "{37B8F31F-B6DA-4E3C-9239-01215CE411F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMVC.Infrastructure", "WebAppMVC.Infrastructure\WebAppMVC.Infrastructure.csproj", "{37B8F31F-B6DA-4E3C-9239-01215CE411F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppApi", "WebAppApplication\WebAppApi.csproj", "{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{37B8F31F-B6DA-4E3C-9239-01215CE411F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37B8F31F-B6DA-4E3C-9239-01215CE411F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37B8F31F-B6DA-4E3C-9239-01215CE411F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{343CB8C7-09B0-43AE-9EBB-DCBEB995CBA0} = {6F3ED90D-1E47-429F-B6EC-39F0096D14B9}
 		{52280B4C-7770-4F2C-9D64-A742A4326511} = {48AFEA57-5C0E-4FF3-B17E-D4D4948E2A3A}
 		{37B8F31F-B6DA-4E3C-9239-01215CE411F2} = {AF91E04A-57DC-4ECC-B9D9-00A929ED8445}
+		{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238} = {37B4237B-164A-46DB-A0A4-0EF4B1CC6CBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {180B0808-A75C-4BD9-93D9-57FAB9393242}

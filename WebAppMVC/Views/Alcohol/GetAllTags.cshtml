@@ -7,9 +7,9 @@
 <h1>GetAllTags</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AddNewtag" asp-controller="Alcohol">Create New</a>
 </p>
-<form asp-action="GetAllTags" asp-controller="Item" method="post">
+<form asp-action="GetAllTags" asp-controller="Alcohol" method="post">
 <div class="row"/>
     <input type="text" asp-for = "SearchString" name="searchString" id="searchString"/>
     <input type="submit" value="Wyszukaj"/>

@@ -19,7 +19,7 @@ namespace WebAppMVC.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
         public IActionResult Index()
         {
