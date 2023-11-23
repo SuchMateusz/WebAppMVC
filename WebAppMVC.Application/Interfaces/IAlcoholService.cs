@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.ViewModel.Item;
+using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Interfaces
 {
@@ -40,5 +41,7 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteCategory(int id);
 
         ListCategoryForVM GetCategoryForListVM(int pageSize, int pageNo, string searchString);
+
+        List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3);
     }
 }

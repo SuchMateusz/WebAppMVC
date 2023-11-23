@@ -20,7 +20,7 @@ namespace WebAppMVC.Application.Services
         private readonly ITagsRepository _tagsRepo;
         private readonly ITypesRepository _typesRepo;
 
-        public MarkAlcoholService(IIngredientRepository ingredientRepository, ITagsRepository tagsRepository, ITypesRepository typesRepository, IMapper mapper)
+        public MarkAlcoholService(ITagsRepository tagsRepository, ITypesRepository typesRepository, IMapper mapper)
         {
             _tagsRepo = tagsRepository;
             _typesRepo = typesRepository;

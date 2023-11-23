@@ -3,28 +3,41 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Item;
+using WebAppMVC.Domain.Model;
 
 namespace WebAppApi.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ListAlcoholController : ControllerBase
     {
-        private readonly ILogger<ListAlcoholController> _logger;
         private readonly IAlcoholService _alcoholService;
 
-        public ListAlcoholController(IAlcoholService alcoService, ILogger<ListAlcoholController> logger)
+        public ListAlcoholController(IAlcoholService alcoService)
         {
-            _logger = logger;
             _alcoholService = alcoService;
         }
 
         [HttpGet(Name = "GetListAlcohol")]
-        public AlcoholForListVM GetALcohol(int id)
+        public List<AlcoholForListVM> GetALcohol()
         {
-            id = 1;
+            var model = _alcoholService.GetAllAlcohols(10000,1,"");
+            var list = model.Alcohols.ToList();
+            return list;
+        }
+
+        [HttpGet(Name = "GetAlcoholDetails")]
+        public AlcoholForListVM GetALcoholDetails([FromBody] int id)
+        {
             var model = _alcoholService.GetAlcoholDetails(id);
+            return model;
+        }
+
+        [HttpGet(Name = "GetOfferAlcohol")]
+        public List<Alcohol> GetOfferALcohols([FromBody] string name1, string name2, string name3)
+        {
+            var model = _alcoholService.GetAlcoholProposal(name1, name2, name3);
             return model;
         }
     }

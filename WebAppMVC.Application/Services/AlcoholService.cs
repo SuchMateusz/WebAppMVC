@@ -113,7 +113,6 @@ namespace WebAppMVC.Application.Services
                     PageSize = pageSize,
                     CurrentPage = pageNo,
                     SearchString = id,
-
                 };
                 return itemIngredientsList;
         }
@@ -162,6 +161,48 @@ namespace WebAppMVC.Application.Services
                 TotalCount = category.Count,
             };
             return categoryToList;
+        }
+
+        public List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3)
+        {
+            ingredient1 ??= string.Empty;
+            ingredient2 ??= string.Empty;
+            ingredient3 ??= string.Empty;
+            var model1 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient1)).ToList();
+            var model2 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient2)).ToList();
+            var model3 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient3)).ToList();
+
+            List<int> ints = new();
+
+            for (int i = 0; i <= model1.Count; i++)
+            {
+                for (int j = 0; j<= model2.Count; j++)
+                {
+                    for(int k = 0; k <=model3.Count; k++)
+                    {
+                        if (model1[i].AlcoholRef == model3[k].AlcoholRef && model2[j].AlcoholRef == model3[k].AlcoholRef && model1[i].AlcoholRef == model2[j].AlcoholRef)
+                        {
+                            if (ints.Contains(model1[i].AlcoholRef))
+                            {
+
+                            }
+                            else
+                            {
+                                ints.Add(model1[i].AlcoholRef);
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<Alcohol> listAlcoholsToShow = new();
+            for(int i = 0; i<=ints.Count; i++)
+            {
+                var model = _alcoRepository.GetAlcoholById(ints[i]);
+                listAlcoholsToShow.Add(model);
+            }
+
+            return listAlcoholsToShow;
         }
     }
 }
