@@ -20,9 +20,9 @@ namespace WebAppApi.Controllers
         }
 
         [HttpGet(Name = "GetListAlcohol")]
-        public List<AlcoholForListVM> GetALcohol()
+        public List<AlcoholForListVM> GetAlcohol()
         {
-            var model = _alcoholService.GetAllAlcohols(10000,1,"");
+            var model = _alcoholService.GetAllAlcohols(Int32.MaxValue,1,"");
             var list = model.Alcohols.ToList();
             return list;
         }
@@ -34,7 +34,7 @@ namespace WebAppApi.Controllers
             return model;
         }
 
-        [HttpGet(Name = "GetOfferAlcohol")]
+        [HttpGet(Name = "GetOfferAlcohols")]
         public List<Alcohol> GetOfferALcohols([FromBody] string name1, string name2, string name3)
         {
             var model = _alcoholService.GetAlcoholProposal(name1, name2, name3);
