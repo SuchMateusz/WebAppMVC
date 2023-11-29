@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMVC.Infrastructure", "WebAppMVC.Infrastructure\WebAppMVC.Infrastructure.csproj", "{37B8F31F-B6DA-4E3C-9239-01215CE411F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppApi", "WebAppApplication\WebAppApi.csproj", "{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppApi", "WebAppAPI\WebAppApi.csproj", "{6CA837C0-E7A6-4DC2-BE0E-29B9AC428238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
