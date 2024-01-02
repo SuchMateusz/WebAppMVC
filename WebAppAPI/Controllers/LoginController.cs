@@ -9,8 +9,8 @@ using WebAppMVC.Domain.Models.Common;
 
 namespace WebAppApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

@@ -32,7 +32,7 @@ namespace WebAppMVC.Application
             services.AddTransient<IValidator<AddressForListVM>, NewAddressValidation>();
             services.AddTransient<IValidator<CustomerContactInformactionForListVm>, NewCustomerContactInformactionValidation>();
             services.AddTransient<IValidator<IngredientForListVM>, NewIngredientValidation>();
-            services.AddTransient<IValidator<AlcoholIngredientsForListVM>, ItemIngredientsValidation>();
+            services.AddTransient<IValidator<AlcoholIngredientsForListVM>, AlcoholIngredientsValidation>();
             services.AddTransient<IValidator<NewAlcoholForListVM>, NewAlcoholValidation>();
             services.AddTransient<IValidator<AlcoholForListVM>, AlcoholValidation>();
             services.AddTransient<IValidator<TypeForListVM>, NewTypeValidation>();

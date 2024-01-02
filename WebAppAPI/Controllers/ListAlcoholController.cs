@@ -9,7 +9,7 @@ namespace WebAppApi.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/alcohols/")]
     public class ListAlcoholController : ControllerBase
     {
         private readonly IAlcoholService _alcoholService;

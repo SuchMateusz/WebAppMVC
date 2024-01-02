@@ -11,7 +11,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 {
     public class AlcoholForListVM : IMapFrom<WebAppMVC.Domain.Model.Alcohol>
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -44,13 +44,13 @@ namespace WebAppMVC.Application.ViewModel.Item
 
     public class AlcoholValidation : AbstractValidator<AlcoholForListVM>
     {
-        public AlcoholValidation() 
+        public AlcoholValidation()
         {
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.TypeId).NotEmpty();
             RuleFor(x => x.AlcoholCategoryId).NotEmpty();
             RuleFor(x => x.AlcoholCategoryId).NotNull();
-            RuleFor(x => x.Price).NotEmpty(); 
+            RuleFor(x => x.Price).NotEmpty();
             RuleFor(x => x.Price).GreaterThan(0);
             RuleFor(x => x.YearProduction).NotEmpty();
             RuleFor(x => x.YearProduction).GreaterThan(1000);

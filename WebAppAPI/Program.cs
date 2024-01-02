@@ -32,14 +32,6 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<Context>();
 
-
-
-//builder.Services.AddDbContext<Context>(options =>
-//    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-//    .AddRoles<ApplicationRole>()
-//    .AddEntityFrameworkStores<Context>();
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

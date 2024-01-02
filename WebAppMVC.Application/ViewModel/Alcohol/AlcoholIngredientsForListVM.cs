@@ -37,9 +37,9 @@ namespace WebAppMVC.Application.ViewModel.Item
         }
     }
 
-    public class ItemIngredientsValidation : AbstractValidator<AlcoholIngredientsForListVM>
+    public class AlcoholIngredientsValidation : AbstractValidator<AlcoholIngredientsForListVM>
     {
-        public ItemIngredientsValidation()
+        public AlcoholIngredientsValidation()
         {
             RuleFor(x => x.Ingredient).NotEmpty();
             RuleFor(x => x.Item).NotEmpty();
