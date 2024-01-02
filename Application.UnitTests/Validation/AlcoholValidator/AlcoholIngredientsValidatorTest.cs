@@ -29,6 +29,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
                 AlcoholRef = 1,
             };
 
+
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
     }
