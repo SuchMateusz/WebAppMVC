@@ -47,11 +47,12 @@ namespace WebAppMVC.Application.ViewModel.Item
         public AlcoholValidation()
         {
             RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).Length(3, 100);
             RuleFor(x => x.TypeId).NotEmpty();
             RuleFor(x => x.AlcoholCategoryId).NotEmpty();
             RuleFor(x => x.AlcoholCategoryId).NotNull();
             RuleFor(x => x.Price).NotEmpty();
-            RuleFor(x => x.Price).GreaterThan(0);
+            RuleFor(x => x.Price).GreaterThan(1);
             RuleFor(x => x.YearProduction).NotEmpty();
             RuleFor(x => x.YearProduction).GreaterThan(1000);
             RuleFor(x => x.Quantity).NotEmpty();

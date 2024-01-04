@@ -44,6 +44,8 @@ namespace WebAppMVC.Application.ViewModel.Item
             RuleFor(x => x.Ingredient).NotEmpty();
             RuleFor(x => x.Item).NotEmpty();
             RuleFor(x => x.AlcoholRef).NotNull();
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).Length(2, 100);
         }
     }
 }

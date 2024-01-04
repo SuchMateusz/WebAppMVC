@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,21 @@ namespace Application.UnitTests.Common
 {
     public class DbContextFactory
     {
-        //public static Mock<Context> Create()
-        //{
-        //    var options = new Context
+        public static Mock<Context> Create()
+        {
+            //var options = new DbContextOptionsBuilder<Context>().UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var mock = new Mock<Context>();
+            var context = mock.Object;
+            context.Database.EnsureCreated();
+            context.SaveChanges();
 
-        //    return mock;
-        //}
+            return mock;
+        }
+
+        public static void Destroy(Context context)
+        {
+            context.Database.EnsureDeleted();
+            context.Dispose();
+        }
     }
 }

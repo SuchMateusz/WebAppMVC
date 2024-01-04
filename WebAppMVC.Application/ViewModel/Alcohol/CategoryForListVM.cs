@@ -26,8 +26,9 @@ namespace WebAppMVC.Application.ViewModel.Item
     {
         public NewCategoryValidation()
         {
+            RuleFor(x => x.Id).NotEmpty();
             RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Name).Length(1, 100);
+            RuleFor(x => x.Name).Length(3, 100);
         }
     }
 }
