@@ -37,7 +37,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
     {
         public NewCustomerValidation()
         {
-            RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.NIP).Length(10);
             RuleFor(x => x.REGON).Length(9,14);
             RuleFor(x => x.Name).NotEmpty();

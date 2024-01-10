@@ -48,7 +48,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_ProperRequest_WrongId_ShouldReturnValidationsErrorForAlcoholIngredientId()
+        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongId_ShouldReturnValidationsErrorForAlcoholIngredientId()
         {
             var validator = new AlcoholIngredientsValidation();
             var command = new AlcoholIngredientsForListVM()
@@ -64,7 +64,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_ProperRequest_WrongAlcoholRef_ShouldReturnValidationsErrorForAlcoholRef()
+        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongAlcoholRef_ShouldReturnValidationsErrorForAlcoholRef()
         {
             var validator = new AlcoholIngredientsValidation();
             var command = new AlcoholIngredientsForListVM()
@@ -80,7 +80,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_ProperRequest_WrongName_ShouldReturnValidationsErrorForAlcoholIngredientName()
+        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongName_ShouldReturnValidationsErrorForAlcoholIngredientName()
         {
             var validator = new AlcoholIngredientsValidation();
             var command = new AlcoholIngredientsForListVM()
@@ -96,7 +96,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_ProperRequest_EmpyIngredient_ShouldReturnValidationsErrorForEmptyIngredient()
+        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_EmptyIngredient_ShouldReturnValidationsErrorForEmptyIngredient()
         {
             var validator = new AlcoholIngredientsValidation();
             var command = new AlcoholIngredientsForListVM()
@@ -111,7 +111,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_ProperRequest_EmpyAlcohol_ShouldReturnValidationsErrorForEmptyAlcohol()
+        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_EmpyAlcohol_ShouldReturnValidationsErrorForEmptyAlcohol()
         {
             var validator = new AlcoholIngredientsValidation();
             var command = new AlcoholIngredientsForListVM()

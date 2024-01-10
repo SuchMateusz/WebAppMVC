@@ -30,7 +30,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongId_ShouldReturnValidationErrorForWrongAlcoholId()
+        public void Add_AlcoholValidation_InvalidRequestRequest_WrongId_ShouldReturnValidationErrorForWrongAlcoholId()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -49,7 +49,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_EmptyName_ShouldReturnValidationErrorEmptyName()
+        public void Add_AlcoholValidation_InvalidRequestRequest_EmptyName_ShouldReturnValidationErrorEmptyName()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -67,7 +67,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_ToShortName_ShouldReturnValidationErrorShortName()
+        public void Add_AlcoholValidation_InvalidRequestRequest_ToShortName_ShouldReturnValidationErrorShortName()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -87,7 +87,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongTypeId_ShouldReturnValidationErrorWrongTypeId()
+        public void Add_AlcoholValidation_InvalidRequestRequest_WrongTypeId_ShouldReturnValidationErrorWrongTypeId()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -106,7 +106,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongAlcoholCategoryId_ShouldReturnValidationErrorWrongAlcoholCategoryId()
+        public void Add_AlcoholValidation_InvalidRequestRequest_WrongAlcoholCategoryId_ShouldReturnValidationErrorWrongAlcoholCategoryId()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -125,7 +125,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongPriceValue_ShouldReturnValidationErrorWrongPriceValue()
+        public void Add_AlcoholValidation_InvalidRequestRequest_WrongPriceValue_ShouldReturnValidationErrorWrongPriceValue()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -144,7 +144,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_EmptyValueYearProduction_ShouldReturnValidationErrorMissingYearProduction()
+        public void Add_AlcoholValidation_InvalidRequestRequest_EmptyValueYearProduction_ShouldReturnValidationErrorMissingYearProduction()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -162,7 +162,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongValueYearProduction_ShouldReturnValidationErrorYearProduction()
+        public void Add_AlcoholValidation_InvalidRequest_WrongValueYearProduction_ShouldReturnValidationErrorYearProduction()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -182,7 +182,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_EmptyValueQuantity_ShouldReturnValidationErrorMissingQuantity()
+        public void Add_AlcoholValidation_InvalidRequest_EmptyValueQuantity_ShouldReturnValidationErrorMissingQuantity()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()
@@ -199,7 +199,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholValidation_ProperRequest_WrongValueQuantity_ShouldReturnValidationErrorQuantity()
+        public void Add_AlcoholValidation_InvalidRequest_WrongValueQuantity_ShouldReturnValidationErrorQuantity()
         {
             var validator = new AlcoholValidation();
             var command = new AlcoholForListVM()

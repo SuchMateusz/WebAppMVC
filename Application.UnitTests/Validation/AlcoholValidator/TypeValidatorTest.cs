@@ -22,5 +22,43 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
+
+        [Fact]
+        public void Add_TypeValidation_ProperRequest_WrongId_ShouldReturnValidationErrorWrongId()
+        {
+            var validator = new NewTypeValidation();
+            var command = new TypeForListVM()
+            {
+                Name = "TypeName",
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Id));
+        }
+
+        [Fact]
+        public void Add_TypeValidation_ProperRequest__EmptyName_ShouldReturnValidationErrorForEmptyName()
+        {
+            var validator = new NewTypeValidation();
+            var command = new TypeForListVM()
+            {
+                Id = 1,
+                Name = "",
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));
+        }
+
+        [Fact]
+        public void Add_TypeValidation_ProperRequest_TooLongName_ShouldReturnValidationErrorForTooLongName()
+        {
+            var validator = new NewTypeValidation();
+            var command = new TypeForListVM()
+            {
+                Id = 1,
+                Name = "ThisTypeNameWasCreateToProofThatNameIsTooLongForTypeIQuess",
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));
+        }
     }
 }

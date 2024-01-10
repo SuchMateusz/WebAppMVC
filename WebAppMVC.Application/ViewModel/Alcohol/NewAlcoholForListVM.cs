@@ -39,16 +39,14 @@ namespace WebAppMVC.Application.ViewModel.Item
     {
         public NewAlcoholValidation()
         {
-            RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Name).Length(3,30);
-            RuleFor(x => x.TypeId).NotNull();
-            RuleFor(x => x.Price).NotNull();
-            RuleFor(x => x.Price).NotEmpty();
-            RuleFor(x => x.YearProduction).NotNull();
-            RuleFor(x => x.YearProduction).GreaterThan(1000);
-            RuleFor(x => x.SugarContent).NotNull();
-            RuleFor(x => x.Quantity).NotNull();
-            RuleFor(x => x.AlcoholCategoryId).NotNull();
+            RuleFor(x => x.TypeId).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.Price).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.YearProduction).NotEmpty().GreaterThan(1000);
+            RuleFor(x => x.SugarContent).NotEmpty();
+            RuleFor(x => x.Quantity).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.AlcoholCategoryId).NotEmpty().GreaterThan(0);
         }
     }
 }

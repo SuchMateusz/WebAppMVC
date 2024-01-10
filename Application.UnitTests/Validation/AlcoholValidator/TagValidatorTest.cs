@@ -10,6 +10,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class TagValidatorTest
     {
+
         [Fact]
         public void Add_TagValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
@@ -21,6 +22,44 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             };
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
+        }
+
+        [Fact]
+        public void Add_TagValidation_ProperRequest_WrongId_ShouldReturnValidationErrorForWrongId()
+        {
+            var validator = new NewTagValidation();
+            var command = new TagForListVM()
+            {
+                Id = 0,
+                Name = "TagName",
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Id));
+        }
+
+        [Fact]
+        public void Add_TagValidation_ProperRequest_EmptyName_ShouldReturnValidationErrorForWrongId()
+        {
+            var validator = new NewTagValidation();
+            var command = new TagForListVM()
+            {
+                Id = 1,
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Name));
+        }
+
+        [Fact]
+        public void Add_TagValidation_ProperRequest_TooLongName_ShouldReturnValidationErrorForTooLongName()
+        {
+            var validator = new NewTagValidation();
+            var command = new TagForListVM()
+            {
+                Id = 1,
+                Name = "ThisTagNameWasCreateToProofThatNameIsTooLongForTag",
+            };
+
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Name));
         }
     }
 }

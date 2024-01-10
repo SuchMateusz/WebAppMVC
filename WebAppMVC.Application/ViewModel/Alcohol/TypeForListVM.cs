@@ -25,8 +25,9 @@ namespace WebAppMVC.Application.ViewModel.Item
     {
         public NewTypeValidation()
         {
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Name).Length(1, 100);
+            RuleFor(x => x.Name).Length(1, 50);
         }
     }
 }

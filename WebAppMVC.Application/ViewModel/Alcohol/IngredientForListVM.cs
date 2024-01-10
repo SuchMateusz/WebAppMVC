@@ -27,10 +27,10 @@ namespace WebAppMVC.Application.ViewModel.Item
     {
         public NewIngredientValidation()
         {
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Name).Length(1, 40);
-            RuleFor(x => x.Price).NotEmpty();
-            RuleFor(x => x.Price).NotNull();
+            RuleFor(x => x.Name).Length(4, 40);
+            RuleFor(x => x.Price).NotEmpty().GreaterThan(0);
         }
     }
 }

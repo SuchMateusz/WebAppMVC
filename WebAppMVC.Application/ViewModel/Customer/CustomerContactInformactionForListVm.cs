@@ -38,6 +38,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
         {
             public NewCustomerContactInformactionValidation()
             {
+                RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
                 RuleFor(x => x.Name).NotEmpty();
                 RuleFor(x => x.Name).Length(2, 30);
                 RuleFor(x => x.LastNameUser).NotEmpty();
@@ -46,6 +47,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
                 RuleFor(x => x.DirectPersonAddressEmail).EmailAddress();
                 RuleFor(x => x.DirectPhoneNumber).NotEmpty();
                 RuleFor(x => x.DirectPhoneNumber).MinimumLength(5);
+                RuleFor(x => x.CustomerRef).NotEmpty().GreaterThan(0);
             }
         }
     }

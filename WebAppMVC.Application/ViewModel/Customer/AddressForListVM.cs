@@ -39,11 +39,13 @@ namespace WebAppMVC.Application.ViewModel.Customer
     {
         public NewAddressValidation()
         {
-            RuleFor(x => x.BuildingNumber).NotNull();
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.BuildingNumber).NotEmpty();
             RuleFor(x => x.BuildingNumber).MaximumLength(5);
-            RuleFor(x => x.Street).Length(2, 30);
+            RuleFor(x => x.Street).Length(3, 30);
             RuleFor(x => x.ZipCode).NotEmpty();
-            RuleFor(x => x.City).MaximumLength(150);
+            RuleFor(x => x.City).NotEmpty();
+            RuleFor(x => x.City).MaximumLength(70);
             RuleFor(x => x.Country).NotEmpty();
             RuleFor(x => x.CustomerId).NotEmpty();
         }
