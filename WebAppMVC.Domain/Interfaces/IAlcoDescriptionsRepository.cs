@@ -11,6 +11,10 @@ namespace WebAppMVC.Domain.Interface
     {
         public int AddAlcoholDescription(AlcoholDescription itemDescription);
 
+        public AlcoholDescription EditDescription(AlcoholDescription description);
+
+        public void DeleteDescription(int id);
+
         public IQueryable<AlcoholDescription> GetAllDescriptions();
     }
 }

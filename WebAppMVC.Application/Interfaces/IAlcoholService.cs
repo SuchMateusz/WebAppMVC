@@ -43,5 +43,11 @@ namespace WebAppMVC.Application.Interfaces
         ListCategoryForVM GetCategoryForListVM(int pageSize, int pageNo, string searchString);
 
         List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3);
+
+        int AddNewDescription(DescriptionForListVM description);
+
+        void DeleteDescription(int id);
+
+        DescriptionForListVM EditDescription(DescriptionForListVM model);
     }
 }

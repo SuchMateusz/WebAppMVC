@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
@@ -135,7 +136,6 @@ namespace WebAppMVC.Application.Services
             _alcoIngredientRepository.EditAlcoholIngredient(itemIngredient);
         }
 
-
         public void UpdateCategory(CategoryForListVM model)
         {
             var category = _mapper.Map<AlcoholCategory>(model);
@@ -203,6 +203,26 @@ namespace WebAppMVC.Application.Services
             }
 
             return listAlcoholsToShow;
+        }
+
+        public int AddNewDescription (DescriptionForListVM description)
+        {
+            var item = _mapper.Map<AlcoholDescription>(description);
+            int returnedId = _alcoDescriptionsRepository.AddAlcoholDescription(item);
+            return returnedId;
+        }
+
+        public void DeleteDescription (int id)
+        {
+            _alcoDescriptionsRepository.DeleteDescription(id);
+        }
+
+        public DescriptionForListVM EditDescription(DescriptionForListVM model)
+        {
+            var item = _mapper.Map<AlcoholDescription>(model);
+            var returnedModel = _alcoDescriptionsRepository.EditDescription(item);
+            var editedDescription = _mapper.Map<DescriptionForListVM>(returnedModel);
+            return editedDescription;
         }
     }
 }

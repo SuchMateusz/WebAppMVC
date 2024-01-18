@@ -23,6 +23,25 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.SaveChanges();
             return itemDescription.Id;
         }
+
+        public void DeleteDescription(int id)
+        {
+            var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == id);
+            if (desc != null)
+            {
+                _context.AlcoholDescriptions.Remove(desc);
+                _context.SaveChanges();
+            }
+        }
+
+        public AlcoholDescription EditDescription(AlcoholDescription description)
+        {
+            _context.Attach(description);
+            _context.Entry(description).Property("Name").IsModified = true;
+            var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == description.Id);
+            return desc;
+        }
+
         public IQueryable<AlcoholDescription> GetAllDescriptions()
         {
             var recipes = _context.AlcoholDescriptions;

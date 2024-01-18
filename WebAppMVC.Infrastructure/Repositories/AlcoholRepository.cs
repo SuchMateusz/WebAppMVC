@@ -25,7 +25,7 @@ namespace WebAppMVC.Infrastructure.Repositories
             return alcohol.Id;
         }
 
-        public void EditAlcohol(Alcohol alcohol)
+        public Alcohol EditAlcohol(Alcohol alcohol)
         {
             _context.Attach(alcohol);
             _context.Entry(alcohol).Property("Name").IsModified = true;
@@ -34,6 +34,7 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.Entry(alcohol).Property("Quantity").IsModified = true;
             _context.Entry(alcohol).Property("ItemCategoryId").IsModified = true;
             _context.SaveChanges();
+            return alcohol;
         }
 
         public void DeleteAlcohol(int itemId)
