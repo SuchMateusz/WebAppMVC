@@ -55,7 +55,6 @@ namespace WebAppMVC.Application.Services
             _typesRepo.DeleteType(id);
         }
 
-
         public ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchString)
         {
             var tags = _tagsRepo.GetAllTags().Where(p => p.Name.StartsWith(searchString))

@@ -40,11 +40,7 @@ namespace Application.UnitTests.Services
 
         //AlcoholsItemForListVM GetAllAlcohols(int pageSize, int pageNo, string searchStrin);
 
-        
-
         //List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3);
-
-
         //GetAllAlcohols??
 
         [Fact]
@@ -323,11 +319,30 @@ namespace Application.UnitTests.Services
             id.Should().Be(1);
         }
 
+        [Fact]
+        public void EditAlcoholDescription_ProperRequest__ProvidingEditAlcoholDescriptionWasSucced()
+        {
+            //Arrange 
+            var item = new AlcoholDescription()
+            {
+                Id = 1,
+                Name = "Wine strawberry",
+                AlcoholRef = 1,
+                Description = "agasyugeargbae aeyrgbaer aergbae"
+            };
 
-        //public DescriptionForListVM EditDescription(DescriptionForListVM model)
+            var model = _mapper.Map<DescriptionForListVM>(item);
+            var alcohol = new AlcoholDescription();
+            _alcoDescriptionsRepository.Setup(r => r.EditDescription(item)).Returns(item);
+            
+            //Act
+            var returnedModel = _alcoholService.EditDescription(model);
 
-
-
+            //Assert
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(item.Name);
+            returnedModel.Description.Should().Be(item.Description);
+        }
 
     }
 }
