@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using FluentAssertions;
 using Moq;
 using System;
@@ -75,18 +76,39 @@ namespace Application.UnitTests.Services
             id.Should().Be(1);
         }
 
-        //public void DeleteTag(int id)
-        //{
-        //    _tagsRepo.DeleteTag(id);
-        //    //var tag1 = GetTagDetails(id);
-        //    //var tag = _mapper.Map<Tag>(tag1);
-        //    //_tagsRepo.DeleteObject(tag);
-        //}
+        [Fact]
+        public void DeleteTag_ProperRequest_ProvidingDeletedTagWasSucced()
+        {
+            //Arrange
+            var tag = new Tag()
+            {
+                Id = 1,
+                Name = "Industrial Robotic",
+            };
 
-        //public void DeleteType(int id)
-        //{
-        //    _typesRepo.DeleteType(id);
-        //}
+            //Act
+            _markAlcoService.DeleteTag(tag.Id);
+
+            //Assert
+            _tagsRepo.Verify(r => r.DeleteTag(tag.Id), Times.Once());
+        }
+
+        [Fact]
+        public void DeleteType_ProperRequest_ProvidingDeletedTypeWasSucced()
+        {
+            //Arrange
+            var type = new WebAppMVC.Domain.Model.Type()
+            {
+                Id = 1,
+                Name = "Industrial Robotic",
+            };
+
+            //Act
+            _markAlcoService.DeleteType(type.Id);
+
+            //Assert
+            _typesRepo.Verify(r => r.DeleteType(type.Id), Times.Once());
+        }
 
         //public ListTagsForListVM GetAllTags(int pageSize, int pageNo, string searchString)
         //{
@@ -122,35 +144,94 @@ namespace Application.UnitTests.Services
         //    return typesList;
         //}
 
-        //public TagForListVM GetTagDetails(int id)
-        //{
-        //    var tag = _tagsRepo.GetTagById(id);
-        //    //var tag = _tagsRepo.GetById(id);
-        //    var tagToShow = _mapper.Map<TagForListVM>(tag);
-        //    return tagToShow;
-        //}
+        [Fact]
+        public void GetTagDetailsById_ProperRequest_ProvidingToGetTagDetailsByIdWasSucced()
+        {
+            //Arrange
+            var tag = new Tag()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
 
-        //public TagForListVM GetTagToEdit(int id)
-        //{
-        //    var tag = _tagsRepo.GetTagById(id);
-        //    //var tag = _tagsRepo.GetById(id);
-        //    var tagToEdit = _mapper.Map<TagForListVM>(tag);
-        //    return tagToEdit;
-        //}
+            var model = _mapper.Map<TagForListVM>(tag);
+            _tagsRepo.Setup(r => r.GetTagById(tag.Id)).Callback<Tag>(i => tag = i).Returns(tag);
 
-        //public TypeForListVM GetTypeDetails(int id)
-        //{
-        //    var type = _typesRepo.GetTypeById(id);
-        //    var typeToShow = _mapper.Map<TypeForListVM>(type);
-        //    return typeToShow;
-        //}
+            //Act
+            var returnedModel = _markAlcoService.GetTagDetails(model.Id);
 
-        //public TypeForListVM GetTypeToEdit(int id)
-        //{
-        //    var type = _typesRepo.GetTypeById(id);
-        //    var typeToEdit = _mapper.Map<TypeForListVM>(type);
-        //    return typeToEdit;
-        //}
+            //Assert
+            _tagsRepo.Verify(r => r.GetTagById(model.Id), Times.Once());
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(tag.Name);
+        }
+
+        [Fact]
+        public void GetTagDetailsByIdToEdit_ProperRequest_ProvidingToGetTagDetailsByIdToEditWasSucced()
+        {
+            //Arrange
+            var tag = new Tag()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
+
+            var model = _mapper.Map<TagForListVM>(tag);
+            _tagsRepo.Setup(r => r.GetTagById(tag.Id)).Callback<Tag>(i => tag = i).Returns(tag);
+
+            //Act
+            var returnedModel = _markAlcoService.GetTagToEdit(model.Id);
+
+            //Assert
+            _tagsRepo.Verify(r => r.GetTagById(model.Id), Times.Once());
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(tag.Name);
+        }
+
+        [Fact]
+        public void GetTypeDetailsById_ProperRequest_ProvidingToGetTypeDetailsByIdWasSucced()
+        {
+            //Arrange
+            var type = new WebAppMVC.Domain.Model.Type()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
+
+            var model = _mapper.Map<TagForListVM>(type);
+            _typesRepo.Setup(r => r.GetTypeById(type.Id)).Callback<Tag>(i => type = i).Returns(type);
+
+            //Act
+            var returnedModel = _markAlcoService.GetTypeDetails(model.Id);
+
+            //Assert
+            _tagsRepo.Verify(r => r.GetTagById(model.Id), Times.Once());
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(type.Name);
+        }
+
+        [Fact]
+        public void GetTypeDetailsByIdToEdit_ProperRequest_ProvidingToGetTypeDetailsByIdToEditWasSucced()
+        {
+            //Arrange
+            var type = new WebAppMVC.Domain.Model.Type()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
+
+            var model = _mapper.Map<TypeForListVM>(type);
+            _typesRepo.Setup(r => r.GetTypeById(type.Id)).Callback<WebAppMVC.Domain.Model.Type>(i => type = i).Returns(type);
+
+            //Act
+            var returnedModel = _markAlcoService.GetTypeToEdit(model.Id);
+
+            //Assert
+            _tagsRepo.Verify(r => r.GetTagById(model.Id), Times.Once());
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(type.Name);
+        }
+
         //public void UpdateTag(TagForListVM model)
         //{
         //    var tag = _mapper.Map<Tag>(model);
@@ -163,5 +244,45 @@ namespace Application.UnitTests.Services
         //    var type = _mapper.Map<WebAppMVC.Domain.Model.Type>(model);
         //    _typesRepo.EditType(type);
         //}
+
+        [Fact]
+        public void UpdateTag_ProperRequest__ProvidingToUpdatTagWasSucced()
+        {
+            //Arrange
+            var tag = new Tag()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
+
+            var model = _mapper.Map<TagForListVM>(tag);
+            _tagsRepo.Setup(r => r.EditTag(tag)).Callback<Tag>(i => tag = i);
+
+            //Act
+            _markAlcoService.UpdateTag(model);
+
+            //Assert
+            _tagsRepo.Verify(r => r.EditTag(tag), Times.Once());
+        }
+
+        [Fact]
+        public void UpdateType_ProperRequest__ProvidingToUpdateTypeWasSucced()
+        {
+            //Arrange
+            var type = new WebAppMVC.Domain.Model.Type()
+            {
+                Id = 1,
+                Name = "Beer",
+            };
+
+            var model = _mapper.Map<TypeForListVM>(type);
+            _typesRepo.Setup(r => r.EditType(type)).Callback<WebAppMVC.Domain.Model.Type>(i => type = i);
+
+            //Act
+            _markAlcoService.UpdateType(model);
+
+            //Assert
+            _typesRepo.Verify(r => r.EditType(type), Times.Once());
+        }
     }
 }

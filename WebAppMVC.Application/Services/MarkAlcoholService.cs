@@ -45,9 +45,6 @@ namespace WebAppMVC.Application.Services
         public void DeleteTag(int id)
         {
             _tagsRepo.DeleteTag(id);
-            //var tag1 = GetTagDetails(id);
-            //var tag = _mapper.Map<Tag>(tag1);
-            //_tagsRepo.DeleteObject(tag);
         }
 
         public void DeleteType(int id)
@@ -92,7 +89,6 @@ namespace WebAppMVC.Application.Services
         public TagForListVM GetTagDetails(int id)
         {
             var tag = _tagsRepo.GetTagById(id);
-            //var tag = _tagsRepo.GetById(id);
             var tagToShow = _mapper.Map<TagForListVM>(tag);
             return tagToShow;
         }
