@@ -11,12 +11,6 @@ namespace Application.UnitTests.Validation.CustomerValidation
 {
     public class CustContactInfoValidatorTest
     {
-        //RuleFor(x => x.LastNameUser).NotEmpty();
-        //RuleFor(x => x.Position).NotEmpty();
-        //RuleFor(x => x.DirectPersonAddressEmail).NotEmpty();
-        //RuleFor(x => x.DirectPersonAddressEmail).EmailAddress();
-        //RuleFor(x => x.DirectPhoneNumber).NotEmpty();
-        //RuleFor(x => x.DirectPhoneNumber).MinimumLength(5);
 
         [Fact]
         public void Add_CustContactInfoValidation_ProperRequest_ShouldNotReturnValidationsErrors()

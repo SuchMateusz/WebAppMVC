@@ -12,6 +12,7 @@ namespace WebAppMVC.Infrastructure.Repositories
     public class AlcoIngredientRepository : IAlcoIngredientRepository
     {
         private readonly Context _context;
+
         public AlcoIngredientRepository(Context context)
         {
             _context = context;
