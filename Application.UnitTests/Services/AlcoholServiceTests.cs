@@ -315,7 +315,7 @@ namespace Application.UnitTests.Services
             int id = _alcoholService.AddNewDescription(model);
 
             //Assert
-            _alcoIngredientRepository.Verify(r => r.AddAlcoholIngredients(It.IsAny<AlcoholIngredient>()), Times.Once());
+            _alcoDescriptionsRepository.Verify(r => r.AddAlcoholDescription(It.IsAny<AlcoholDescription>()), Times.Once());
             id.Should().Be(1);
         }
 
@@ -330,18 +330,12 @@ namespace Application.UnitTests.Services
                 AlcoholRef = 1,
                 Description = "agasyugeargbae aeyrgbaer aergbae"
             };
-
             var model = _mapper.Map<DescriptionForListVM>(item);
-            var alcohol = new AlcoholDescription();
-            _alcoDescriptionsRepository.Setup(r => r.EditDescription(item)).Returns(item);
-            
             //Act
-            var returnedModel = _alcoholService.EditDescription(model);
+            _alcoholService.EditDescription(model);
 
             //Assert
-            returnedModel.Id.Should().Be(1);
-            returnedModel.Name.Should().Be(item.Name);
-            returnedModel.Description.Should().Be(item.Description);
+            _alcoDescriptionsRepository.Verify(r => r.EditDescription(It.IsAny<AlcoholDescription>()), Times.Once());
         }
 
     }

@@ -34,12 +34,14 @@ namespace WebAppMVC.Infrastructure.Repositories
             }
         }
 
-        public AlcoholDescription EditDescription(AlcoholDescription description)
+        public void EditDescription(AlcoholDescription description)
         {
             _context.Attach(description);
             _context.Entry(description).Property("Name").IsModified = true;
-            var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == description.Id);
-            return desc;
+            _context.Entry(description).Property("Description").IsModified = true;
+            _context.SaveChanges();
+            //var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == description.Id);
+            //return desc;
         }
 
         public IQueryable<AlcoholDescription> GetAllDescriptions()

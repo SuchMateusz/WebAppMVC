@@ -48,6 +48,6 @@ namespace WebAppMVC.Application.Interfaces
 
         void DeleteDescription(int id);
 
-        DescriptionForListVM EditDescription(DescriptionForListVM model);
+        void EditDescription(DescriptionForListVM model);
     }
 }

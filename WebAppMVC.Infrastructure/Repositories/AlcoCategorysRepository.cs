@@ -44,6 +44,7 @@ namespace WebAppMVC.Infrastructure.Repositories
         {
             _context.Attach(category);
             _context.Entry(category).Property("Name").IsModified = true;
+            _context.SaveChanges();
         }
 
         public AlcoholCategory GetCategoryById(int id)

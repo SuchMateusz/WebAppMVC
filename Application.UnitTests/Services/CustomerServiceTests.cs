@@ -86,7 +86,6 @@ namespace Application.UnitTests.Services
             var returnedModel = _customerService.GetCustomerForEdit(model.Id);
 
             //Assert
-            _customerRepo.Verify(r => r.AddCustomer(It.IsAny<Customer>()), Times.Once());
             returnedModel.Id.Should().Be(1);
             returnedModel.Name.Should().Be(customer.Name);
         }
@@ -108,6 +107,7 @@ namespace Application.UnitTests.Services
             };
 
             var model = _mapper.Map<NewCustomerVM>(customer);
+            
             //Act
             _customerService.UpdateCustomer(model);
 
@@ -182,7 +182,7 @@ namespace Application.UnitTests.Services
             };
 
             var model = _mapper.Map<AddressForListVM>(address);
-            _addressesRepo.Setup(r => r.GetAddressById(address.Id)).Callback<Address>(i => address = i).Returns(address);
+            _addressesRepo.Setup(r => r.GetAddressById(address.Id)).Returns(address);
 
             //Act
             var returnedModel = _customerService.GetAddressForEdit(model.Id);
@@ -263,7 +263,7 @@ namespace Application.UnitTests.Services
                 CustomerRef = 1,
             };
             var model = _mapper.Map<CustomerContactInformactionForListVm>(contactCustomer);
-            _custContInfoRepo.Setup(r => r.GetCustContactById(contactCustomer.Id)).Callback<CustomerContactInformaction>(i => contactCustomer = i).Returns(contactCustomer);
+            _custContInfoRepo.Setup(r => r.GetCustContactById(contactCustomer.Id)).Returns(contactCustomer);
 
             //Act
             var returnedModel = _customerService.GetCustContactForEdit(model.Id);

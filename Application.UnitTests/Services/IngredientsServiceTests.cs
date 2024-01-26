@@ -134,7 +134,7 @@ namespace Application.UnitTests.Services
             _ingredientService.UpdateIngredient(model);
 
             //Assert
-            _ingredientRepo.Verify(r => r.EditIngredient(ingredient), Times.Once());
+            _ingredientRepo.Verify(r => r.EditIngredient(It.IsAny<Ingredient>()), Times.Once());
         }
 
     }
