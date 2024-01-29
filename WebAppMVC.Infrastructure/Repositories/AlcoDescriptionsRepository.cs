@@ -40,8 +40,12 @@ namespace WebAppMVC.Infrastructure.Repositories
             _context.Entry(description).Property("Name").IsModified = true;
             _context.Entry(description).Property("Description").IsModified = true;
             _context.SaveChanges();
-            //var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == description.Id);
-            //return desc;
+        }
+
+        public AlcoholDescription GetAlcoholDescriptionById(int id)
+        {
+            var desc = _context.AlcoholDescriptions.FirstOrDefault(p => p.Id == id);
+            return desc;
         }
 
         public IQueryable<AlcoholDescription> GetAllDescriptions()

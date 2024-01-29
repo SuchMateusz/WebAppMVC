@@ -46,6 +46,8 @@ namespace WebAppMVC.Application.Interfaces
 
         int AddNewDescription(DescriptionForListVM description);
 
+        DescriptionForListVM GetAlcoholDescription(int id);
+
         void DeleteDescription(int id);
 
         void EditDescription(DescriptionForListVM model);

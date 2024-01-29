@@ -12,14 +12,14 @@ namespace WebAppMVC.Controllers
     [Authorize]
     public class AlcoholController : Controller
     {
-        private readonly IAlcoholService _itemService;
+        private readonly IAlcoholService _alcoholService;
         private readonly IIngredientsService _ingredientsService;
         private readonly IMarkAlcoholService _markAlcoService;
         private readonly ILogger<AlcoholController> _logger;
 
-        public AlcoholController (IAlcoholService itemService, IIngredientsService ingredientsService, IMarkAlcoholService markAlcoholService,ILogger<AlcoholController> logger)
+        public AlcoholController (IAlcoholService alcoholService, IIngredientsService ingredientsService, IMarkAlcoholService markAlcoholService,ILogger<AlcoholController> logger)
         {
-            _itemService = itemService;
+            _alcoholService = alcoholService;
             _ingredientsService = ingredientsService;
             _markAlcoService = markAlcoholService;
             _logger = logger;
@@ -41,7 +41,7 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewAlcohol(NewAlcoholForListVM newItemForListVM)
         {
-            int id = _itemService.AddAlcohol(newItemForListVM);
+            int id = _alcoholService.AddAlcohol(newItemForListVM);
             if (id >0)
             {
                 _logger.LogInformation("Create new Item success");
@@ -52,7 +52,7 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult GetAllAlcohols()
         {
-            var model = _itemService.GetAllAlcohols(5, 1, "");
+            var model = _alcoholService.GetAllAlcohols(5, 1, "");
             return View(model);
         }
 
@@ -65,7 +65,7 @@ namespace WebAppMVC.Controllers
             }
 
             searchString ??= string.Empty;
-            var model = _itemService.GetAllAlcohols(paigeSize, paigeNo.Value, searchString);
+            var model = _alcoholService.GetAllAlcohols(paigeSize, paigeNo.Value, searchString);
             return View(model); 
         }
 
@@ -73,7 +73,7 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcohol(int id)
         {
-            var model = _itemService.GetAlcoholToEditItem(id);
+            var model = _alcoholService.GetAlcoholToEditItem(id);
             return View(model);
         }
 
@@ -81,20 +81,20 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcohol(AlcoholForListVM item)
         {
-                _itemService.UpdateAlcohol(item);
+                _alcoholService.UpdateAlcohol(item);
                 return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteAlcohol(int id)
         {
-            _itemService.DeleteAlcohol(id);
+            _alcoholService.DeleteAlcohol(id);
             return RedirectToAction("Index");
         }
 
         public IActionResult GetAlcoholDetails(int id)
         {
-            var model = _itemService.GetAlcoholDetails(id);
+            var model = _alcoholService.GetAlcoholDetails(id);
             return View(model);
         }
 
@@ -139,7 +139,7 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult IngredientToEdit(int id)
         {
-            var model = _itemService.GetAlcoholToEditItem(id);
+            var model = _alcoholService.GetAlcoholToEditItem(id);
             return View(model);
         }
 
@@ -280,14 +280,14 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-            _itemService.AddAlcoholIngredients(model);
+            _alcoholService.AddAlcoholIngredients(model);
             return View();
         }
 
         [HttpGet]
         public IActionResult GetAllAlcoholIngredientByItem()
         {
-            var model = _itemService.GetAllAlcoholIngredientsByIdItem(5, 1, 2);
+            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(5, 1, 2);
             return View(model);
         }
 
@@ -298,7 +298,7 @@ namespace WebAppMVC.Controllers
             {
                 pageNo = 1;
             }
-            var model = _itemService.GetAllAlcoholIngredientsByIdItem(pageSize, pageNo.Value, itemId);
+            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(pageSize, pageNo.Value, itemId);
             return View(model);
         }
 
@@ -306,20 +306,20 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditAlcoholIngredient(int id)
         {
-            var model = _itemService.EditAlcoholIngredients(id);
+            var model = _alcoholService.EditAlcoholIngredients(id);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult EditAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-                _itemService.UpdateAlcoholIngredient(model);
+                _alcoholService.UpdateAlcoholIngredient(model);
                 return RedirectToAction("Index");
         }
 
         public IActionResult DeleteAlcoholIngredient(int id)
         {
-            _itemService.DeleteAlcoholIngredients(id);
+            _alcoholService.DeleteAlcoholIngredients(id);
             return RedirectToAction("Index");
         }
 
@@ -333,14 +333,14 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewCategory(CategoryForListVM model)
         {
-            _itemService.AddNewCategory(model);
+            _alcoholService.AddNewCategory(model);
             return View();
         }
 
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult DeleteCategory(int id) 
         { 
-            _itemService.DeleteCategory(id);
+            _alcoholService.DeleteCategory(id);
             return RedirectToAction("Index");
         }
 
@@ -348,21 +348,21 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser")]
         public IActionResult EditCategory(int id)
         {
-            var model = _itemService.EditCategory(id);
+            var model = _alcoholService.EditCategory(id);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult EditCategory(CategoryForListVM model)
         {
-                _itemService.UpdateCategory(model);
+                _alcoholService.UpdateCategory(model);
                 return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult GetAllCategory()
         {
-            var model = _itemService.GetCategoryForListVM(10, 1, "");
+            var model = _alcoholService.GetCategoryForListVM(10, 1, "");
             return View(model);
         }
 
@@ -374,8 +374,41 @@ namespace WebAppMVC.Controllers
                 pageNo = 1;
             }
             searchString ??= string.Empty;
-            var model = _itemService.GetCategoryForListVM(pageSize, pageNo.Value, searchString);
+            var model = _alcoholService.GetCategoryForListVM(pageSize, pageNo.Value, searchString);
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser, User")]
+        public IActionResult AddNewDescription()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewDescription(DescriptionForListVM description)
+        {
+            int id = _alcoholService.AddNewDescription(description);
+            if (id > 0)
+            {
+                _logger.LogInformation("Create new Item success");
+            }
+            return RedirectToAction("GetAllAlcohols");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser")]
+        public IActionResult EditDescription(int id)
+        {
+            var model = _alcoholService.GetAlcoholDescription(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditDescription(DescriptionForListVM description)
+        {
+            _alcoholService.EditDescription(description);
+            return RedirectToAction("Index");
         }
     }
 }

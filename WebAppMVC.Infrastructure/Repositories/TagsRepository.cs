@@ -36,7 +36,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public Tag GetTagById(int tagId)
         {
-            var tagById = _context.Tags.Find(tagId);
+            var tagById = _context.Tags.FirstOrDefault(p => p.Id == tagId);
             return tagById;
         }
 

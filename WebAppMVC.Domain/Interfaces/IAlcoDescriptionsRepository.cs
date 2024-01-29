@@ -13,6 +13,8 @@ namespace WebAppMVC.Domain.Interface
 
         public void EditDescription(AlcoholDescription description);
 
+        public AlcoholDescription GetAlcoholDescriptionById (int id);
+
         public void DeleteDescription(int id);
 
         public IQueryable<AlcoholDescription> GetAllDescriptions();

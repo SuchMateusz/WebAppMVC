@@ -217,6 +217,13 @@ namespace WebAppMVC.Application.Services
             _alcoDescriptionsRepository.DeleteDescription(id);
         }
 
+        public DescriptionForListVM GetAlcoholDescription (int id)
+        {
+            var model = _alcoDescriptionsRepository.GetAlcoholDescriptionById(id);
+            var desc = _mapper.Map<DescriptionForListVM>(model);
+            return desc;
+        }
+
         public void EditDescription(DescriptionForListVM model)
         {
             var item = _mapper.Map<AlcoholDescription>(model);

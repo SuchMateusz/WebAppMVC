@@ -38,11 +38,6 @@ namespace Application.UnitTests.Services
             _alcoholService = new AlcoholService(_alcoRepository.Object, _alcoCategoryRepository.Object, _alcoDescriptionsRepository.Object, _alcoIngredientRepository.Object, _mapper);
         }
 
-        //AlcoholsItemForListVM GetAllAlcohols(int pageSize, int pageNo, string searchStrin);
-
-        //List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3);
-        //GetAllAlcohols??
-
         [Fact]
         public void AddAlcohol_ProperRequest_ProvidingAddNewAlcoholSucced()
         {
@@ -73,7 +68,7 @@ namespace Application.UnitTests.Services
         [Fact]
         public void GetAlcoholDetails_ProperRequest__ProvidingToGetAlcoholDetailsByIdIsSucced()
         {
-            //Arrange AlcoholForListVM
+            //Arrange
             var item = new Alcohol()
             {
                 Id = 1,
@@ -99,7 +94,7 @@ namespace Application.UnitTests.Services
         [Fact]
         public void GetAlcoholToEditItem_ProperRequest__ProvidingToGetAlcoholToEditItemIsSucced()
         {
-            //Arrange AlcoholForListVM
+            //Arrange
             var item = new Alcohol()
             {
                 Id = 1,
@@ -146,10 +141,6 @@ namespace Application.UnitTests.Services
             //Assert
             _alcoRepository.Verify(repo => repo.EditAlcohol(It.IsAny<Alcohol>()), Times.Once());
         }
-
-        //CategoryAlcohol
-
-        //GetCategoryForListVM
 
         [Fact]
         public void AddCategory_ProperRequest_ProvidingAddNewCategorySucced()
@@ -211,11 +202,6 @@ namespace Application.UnitTests.Services
             _alcoCategoryRepository.Verify(repo => repo.EditAlcoholCategory(It.IsAny<AlcoholCategory>()), Times.Once());
         }
 
-        //AlcoholIngredients
-
-        //ListAlcoholsIngredientsForListVM GetAllAlcoholIngredientsByIdItem(int pageSize, int pageNo, int id);
-
-
         [Fact]
         public void AddAlcoholIngredient_ProperRequest_ProvidingAddNewAlcoholIngredientSucced()
         {
@@ -246,7 +232,7 @@ namespace Application.UnitTests.Services
         [Fact]
         public void EditAlcoholIngredients_ProperRequest__ProvidingToGetAlcoholDetailsToEditWasSucced()
         {
-            //Arrange AlcoholForListVM
+            //Arrange
             var item = new AlcoholIngredient()
             {
                 Id = 1,
@@ -320,6 +306,28 @@ namespace Application.UnitTests.Services
         }
 
         [Fact]
+        public void GetAlcoholDescriptionById_ProperRequest__ProvidingToGetAlcoholDescriptionWasSucced()
+        {
+            //Arrange 
+            var item = new AlcoholDescription()
+            {
+                Id = 1,
+                Name = "Wine strawberry",
+                AlcoholRef = 1,
+                Description = "agasyugeargbae aeyrgbaer aergbae"
+            };
+            var model = _mapper.Map<DescriptionForListVM>(item);
+            _alcoDescriptionsRepository.Setup(r => r.GetAlcoholDescriptionById(item.Id)).Returns(item);
+            //Act
+
+            var returnedModel = _alcoholService.GetAlcoholDescription(model.Id);
+
+            //Assert
+            returnedModel.Id.Should().Be(1);
+            returnedModel.Name.Should().Be(item.Name);
+        }
+
+        [Fact]
         public void EditAlcoholDescription_ProperRequest__ProvidingEditAlcoholDescriptionWasSucced()
         {
             //Arrange 
@@ -337,6 +345,5 @@ namespace Application.UnitTests.Services
             //Assert
             _alcoDescriptionsRepository.Verify(r => r.EditDescription(It.IsAny<AlcoholDescription>()), Times.Once());
         }
-
     }
 }
