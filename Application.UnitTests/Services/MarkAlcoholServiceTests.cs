@@ -129,6 +129,7 @@ namespace Application.UnitTests.Services
         //    return tagsList;
         //}
 
+
         //public ListTypeForListVM GetAllType(int pageSize, int pageNo, string searchString)
         //{
         //    var type = _typesRepo.GetAllTypes().Where(p => p.Name.StartsWith(searchString))
@@ -230,19 +231,6 @@ namespace Application.UnitTests.Services
             returnedModel.Id.Should().Be(1);
             returnedModel.Name.Should().Be(type.Name);
         }
-
-        //public void UpdateTag(TagForListVM model)
-        //{
-        //    var tag = _mapper.Map<Tag>(model);
-        //    _tagsRepo.EditTag(tag);
-        //    //_tagsRepo.UpdateObject(tag);
-        //}
-
-        //public void UpdateType(TypeForListVM model)
-        //{
-        //    var type = _mapper.Map<WebAppMVC.Domain.Model.Type>(model);
-        //    _typesRepo.EditType(type);
-        //}
 
         [Fact]
         public void UpdateTag_ProperRequest__ProvidingToUpdatTagWasSucced()

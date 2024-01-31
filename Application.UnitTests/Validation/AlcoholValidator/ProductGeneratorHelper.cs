@@ -61,6 +61,17 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             return model;
         }
 
+        public DescriptionForListVM DescriptionGenerator()
+        {
+            var desc = new Faker<DescriptionForListVM>()
+                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
+                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
+                .RuleFor(o => o.Description, f => f.Random.Words(10))
+                ;
+                
+            var model = desc.Generate();
+            return model;
+        }
         public CategoryForListVM CategoryGenerator()
         {
             var category = new Faker<CategoryForListVM>()
@@ -75,7 +86,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         {
             var ingredient = new Faker<IngredientForListVM>()
                 .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10));
+                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
+                .RuleFor(o => o.Price, f => f.Random.Decimal(5, 100));
 
             var model = ingredient.Generate();
             return model;

@@ -12,16 +12,16 @@ namespace Application.UnitTests.Validation.AlcoholValidator
     {
         private readonly ProductGeneratorHelper _generatorHelper;
 
+        public DescriptionValidatorTest()
+        {
+            _generatorHelper = new ProductGeneratorHelper();
+        }
+
         [Fact]
         public void Add_DescriptionValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 1,
-                Description = "This is big description this product",
-                Name = "Description theme",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -30,12 +30,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_DescriptionValidation_InvalidRequest_WrongId_ShouldReturnValidationErrorWrongId()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 0,
-                Description = "This is big description this product",
-                Name = "Description theme",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
+            command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(DescriptionForListVM.Id));
         }
@@ -44,11 +40,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_DescriptionValidation_InvalidRequest_EmptyName_ShouldReturnValidationErrorEmptyName()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 1,
-                Description = "This is big description this product",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(DescriptionForListVM.Name));
         }
@@ -57,12 +50,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_DescriptionValidation_InvalidRequest_WrongName_ShouldReturnValidationErrorWrongName()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 1,
-                Description = "This is big description this product",
-                Name = "Fir",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
+            command.Name = "Fis";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(DescriptionForListVM.Name));
         }
@@ -71,12 +60,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_DescriptionValidation_InvalidRequest_WrongDescription_ShouldReturnValidationErrorWrongDescription()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 1,
-                Description = "This is",
-                Name = "Firsted",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
+            command.Description = "Short";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(DescriptionForListVM.Description));
         }
@@ -85,11 +70,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_DescriptionValidation_InvalidRequest_EmptyDescription_ShouldReturnValidationErrorEmptyDescription()
         {
             var validator = new NewDescriptionValidation();
-            var command = new DescriptionForListVM()
-            {
-                Id = 1,
-                Name = "Firsted",
-            };
+            var command = _generatorHelper.DescriptionGenerator();
+            command.Description = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(DescriptionForListVM.Description));
         }

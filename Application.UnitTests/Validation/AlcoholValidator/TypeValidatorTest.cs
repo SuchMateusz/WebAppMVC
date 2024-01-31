@@ -10,15 +10,17 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class TypeValidatorTest
     {
+        private readonly ProductGeneratorHelper _generatorHelper;
+        public TypeValidatorTest()
+        {
+            _generatorHelper = new ProductGeneratorHelper();
+        }
+
         [Fact]
         public void Add_TypeValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewTypeValidation();
-            var command = new TypeForListVM()
-            {
-                Id = 1,
-                Name = "TypeName",
-            };
+            var command = _generatorHelper.TypeGenerator();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -27,23 +29,18 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest_WrongId_ShouldReturnValidationErrorWrongId()
         {
             var validator = new NewTypeValidation();
-            var command = new TypeForListVM()
-            {
-                Name = "TypeName",
-            };
+            var command = _generatorHelper.TypeGenerator();
+            command.Id = 0;
 
-            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Id));
+        validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Id));
         }
 
         [Fact]
         public void Add_TypeValidation_ProperRequest__EmptyName_ShouldReturnValidationErrorForEmptyName()
         {
             var validator = new NewTypeValidation();
-            var command = new TypeForListVM()
-            {
-                Id = 1,
-                Name = "",
-            };
+            var command = _generatorHelper.TypeGenerator();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));
         }
@@ -52,12 +49,9 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest_TooLongName_ShouldReturnValidationErrorForTooLongName()
         {
             var validator = new NewTypeValidation();
-            var command = new TypeForListVM()
-            {
-                Id = 1,
-                Name = "ThisTypeNameWasCreateToProofThatNameIsTooLongForTypeIQuess",
-            };
-
+            var command = _generatorHelper.TypeGenerator();
+            command.Name = "ThisTypeNameWasCreateToProofThatNameIsTooLongForTypeIQuess";
+      
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));
         }
     }

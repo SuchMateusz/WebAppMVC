@@ -10,17 +10,18 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class IngredientValidatorTest
     {
+        private readonly ProductGeneratorHelper _generatorHelper;
+
+        public IngredientValidatorTest()
+        {
+            _generatorHelper = new ProductGeneratorHelper();
+        }
 
         [Fact]
         public void Add_IngredientValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 1,
-                Name = "Ingredient",
-                Price = 10,
-            };
+            var command = _generatorHelper.IngredientGenerator();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -29,12 +30,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_IngredientValidation_InvalidRequest_WrongId_ShouldReturnValidationErrorsWrongId()
         {
             var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 0,
-                Name = "Ingredient",
-                Price = 10,
-            };
+            var command = _generatorHelper.IngredientGenerator();
+            command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(IngredientForListVM.Id));
         }
@@ -43,12 +40,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_IngredientValidation_InvalidRequest_WrongName_ShouldReturnValidationErrorsWrongName()
         {
             var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 1,
-                Name = "In",
-                Price = 10,
-            };
+            var command = _generatorHelper.IngredientGenerator();
+            command.Name = "In";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(IngredientForListVM.Name));
         }
@@ -57,11 +50,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_IngredientValidation_InvalidRequest_EmptyName_ShouldReturnValidationErrorsEmptyName()
         {
             var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 1,
-                Price = 10,
-            };
+            var command = _generatorHelper.IngredientGenerator();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(IngredientForListVM.Name));
         }
@@ -70,28 +60,10 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_IngredientValidation_InvalidRequest_WrongPrice_ShouldReturnValidationErrorsWrongPrice()
         {
             var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 1,
-                Name = "Ingredient",
-                Price = 0,
-            };
+            var command = _generatorHelper.IngredientGenerator();
+            command.Price = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(IngredientForListVM.Price));
         }
-
-        [Fact]
-        public void Add_IngredientValidation_InvalidRequest_EmptyPrice_ShouldReturnValidationErrorsEmptyPrice()
-        {
-            var validator = new NewIngredientValidation();
-            var command = new IngredientForListVM()
-            {
-                Id = 1,
-                Name = "Ingredient",
-            };
-
-            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(IngredientForListVM.Price));
-        }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation.TestHelper;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,17 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class TagValidatorTest
     {
+        private readonly ProductGeneratorHelper _generatorHelper;
+        public TagValidatorTest()
+        {
+            _generatorHelper = new ProductGeneratorHelper();
+        }
 
         [Fact]
         public void Add_TagValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewTagValidation();
-            var command = new TagForListVM()
-            {
-                Id = 1,
-                Name = "TagName",
-            };
+            var command = _generatorHelper.TagGenerator();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -28,11 +30,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TagValidation_ProperRequest_WrongId_ShouldReturnValidationErrorForWrongId()
         {
             var validator = new NewTagValidation();
-            var command = new TagForListVM()
-            {
-                Id = 0,
-                Name = "TagName",
-            };
+            var command = _generatorHelper.TagGenerator();
+            command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Id));
         }
@@ -41,10 +40,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TagValidation_ProperRequest_EmptyName_ShouldReturnValidationErrorForWrongId()
         {
             var validator = new NewTagValidation();
-            var command = new TagForListVM()
-            {
-                Id = 1,
-            };
+            var command = _generatorHelper.TagGenerator();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Name));
         }
@@ -53,11 +50,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TagValidation_ProperRequest_TooLongName_ShouldReturnValidationErrorForTooLongName()
         {
             var validator = new NewTagValidation();
-            var command = new TagForListVM()
-            {
-                Id = 1,
-                Name = "ThisTagNameWasCreateToProofThatNameIsTooLongForTag",
-            };
+            var command = _generatorHelper.TagGenerator();
+            command.Name = "ThisTagNameWasCreateToProofThatNameIsTooLongForTag";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TagForListVM.Name));
         }
