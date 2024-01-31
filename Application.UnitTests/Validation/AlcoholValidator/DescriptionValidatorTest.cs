@@ -10,6 +10,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class DescriptionValidatorTest
     {
+        private readonly ProductGeneratorHelper _generatorHelper;
 
         [Fact]
         public void Add_DescriptionValidation_ProperRequest_ShouldNotReturnValidationErrors()

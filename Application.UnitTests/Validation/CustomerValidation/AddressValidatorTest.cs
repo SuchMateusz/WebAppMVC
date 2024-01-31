@@ -11,7 +11,6 @@ namespace Application.UnitTests.Validation.CustomerValidation
 {
     public class AddressValidatorTest
     {
-
         [Fact]
         public void Add_AddressValidation_ProperRequest_ShouldNotReturnValidationsErrors()
         {
@@ -117,7 +116,5 @@ namespace Application.UnitTests.Validation.CustomerValidation
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.City));
         }
-
-
     }
 }

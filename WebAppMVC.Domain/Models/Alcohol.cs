@@ -21,7 +21,7 @@ namespace WebAppMVC.Domain.Model
 
         public virtual Type Type { get; set; }
 
-        public  virtual ICollection<AlcoholIngredient> AlcoholIngredients { get; set; }
+        public virtual ICollection<AlcoholIngredient> AlcoholIngredients { get; set; }
 
         public virtual AlcoholDescription AlcoholDescription { get; set; }
 
