@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAppMVC.Domain.Model;
-using Bogus;
+﻿using Bogus;
 using WebAppMVC.Application.ViewModel.Item;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Bogus.DataSets;
 
 namespace Application.UnitTests.Validation.AlcoholValidator
 {
@@ -72,6 +64,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             var model = desc.Generate();
             return model;
         }
+
         public CategoryForListVM CategoryGenerator()
         {
             var category = new Faker<CategoryForListVM>()
