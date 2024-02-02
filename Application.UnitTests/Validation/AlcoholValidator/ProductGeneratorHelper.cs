@@ -7,7 +7,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
     {
         public AlcoholForListVM AlcoholGenerator()
         {
-            var alcohol = new Faker<AlcoholForListVM>()
+            return new Faker<AlcoholForListVM>()
                 .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
                 .RuleFor(o => o.Name, f => f.Random.String(5, 10))
                 .RuleFor(a => a.TypeId, f => f.Random.Int(1, 1))
@@ -15,11 +15,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
                 .RuleFor(a => a.YearProduction, f => f.Random.Int(1980, 2024))
                 .RuleFor(a => a.SugarContent, f => f.Random.Float(0, 30))
                 .RuleFor(a => a.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1))
-                ;
-
-            var model = alcohol.Generate();
-            return model;
+                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1));;
         }
         
         public NewAlcoholForListVM NewAlcoholGenerator()
@@ -32,8 +28,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
                 .RuleFor(a => a.YearProduction, f => f.Random.Int(1980, 2024))
                 .RuleFor(a => a.SugarContent, f => f.Random.Float(0, 30))
                 .RuleFor(a => a.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1))
-                ;
+                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1));
 
             var model = alcohol.Generate();
             return model;
@@ -44,8 +39,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             var alcohol = new Faker<AlcoholIngredientsForListVM>()
                 .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
                 .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(a => a.AlcoholRef, f => f.Random.Int(1, 1))
-                ;
+                .RuleFor(a => a.AlcoholRef, f => f.Random.Int(1, 1));
 
             var model = alcohol.Generate();
             model.Ingredient = IngredientGenerator();
@@ -58,8 +52,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             var desc = new Faker<DescriptionForListVM>()
                 .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
                 .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(o => o.Description, f => f.Random.Words(10))
-                ;
+                .RuleFor(o => o.Description, f => f.Random.Words(10));
                 
             var model = desc.Generate();
             return model;
