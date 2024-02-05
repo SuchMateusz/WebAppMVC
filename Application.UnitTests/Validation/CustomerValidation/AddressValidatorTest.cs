@@ -11,20 +11,19 @@ namespace Application.UnitTests.Validation.CustomerValidation
 {
     public class AddressValidatorTest
     {
+        private readonly CustomerGeneratorHelper _customerGeneratorHelper;
+
+        public AddressValidatorTest()
+        {
+            _customerGeneratorHelper = new CustomerGeneratorHelper();
+        }
+
         [Fact]
         public void Add_AddressValidation_ProperRequest_ShouldNotReturnValidationsErrors()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 1,
-                BuildingNumber = "10",
-                Street = "St. Luis",
-                ZipCode = "2",
-                City = "Rzeszów",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -33,86 +32,48 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_AddressValidation_InvalidRequest_WrongId_ShouldReturnValidationsErrorForWrongId()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 0,
-                BuildingNumber = "10",
-                Street = "St. Luis",
-                ZipCode = "2",
-                City = "Wrocław",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+            command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.Id));
         }
 
         [Fact]
-        public void Add_AddressValidation_InvalidRequest_EmptyBuildingNumber_ShouldNotReturnValidationsErrorForEmptyBuildingNumber()
+        public void Add_AddressValidation_InvalidRequest_EmptyBuildingNumber_ShouldReturnValidationsErrorForEmptyBuildingNumber()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 1,
-                Street = "St. Luis",
-                ZipCode = "2",
-                City = "Kraków",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+            command.BuildingNumber = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.BuildingNumber));
         }
 
         [Fact]
-        public void Add_AddressValidation_InvalidRequest_TooLongBuildingNumber_ShouldNotReturnValidationsErrorForEmptyTooLongBuildingNumber()
+        public void Add_AddressValidation_InvalidRequest_TooLongBuildingNumber_ShouldReturnValidationsErrorForEmptyTooLongBuildingNumber()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 1,
-                BuildingNumber = "10000A",
-                Street = "St. Luis",
-                ZipCode = "2",
-                City = "Warsaw",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+            command.BuildingNumber = "1000000A";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.BuildingNumber));
         }
 
         [Fact]
-        public void Add_AddressValidation_InvalidRequest_WrongNameStreet_ShouldNotReturnValidationsErrorForEmptyWrongStreetName()
+        public void Add_AddressValidation_InvalidRequest_WrongNameStreet_ShouldReturnValidationsErrorForWrongStreetName()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 1,
-                BuildingNumber = "127A",
-                Street = "As",
-                ZipCode = "2",
-                City = "Warsaw",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+            command.Street = "As";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.Street));
         }
 
         [Fact]
-        public void Add_AddressValidation_InvalidRequest_EmptyCityName_ShouldNotReturnValidationsErrorForEmptyWrongStreetName()
+        public void Add_AddressValidation_InvalidRequest_EmptyCityName_ShouldReturnValidationsErrorForEmptyWrongStreetName()
         {
             var validator = new NewAddressValidation();
-            var command = new AddressForListVM()
-            {
-                Id = 1,
-                BuildingNumber = "127A",
-                Street = "As",
-                ZipCode = "2",
-                Country = "2",
-                CustomerId = 1,
-            };
+            var command = _customerGeneratorHelper.GenerateAddressForListVM();
+            command.City = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AddressForListVM.City));
         }

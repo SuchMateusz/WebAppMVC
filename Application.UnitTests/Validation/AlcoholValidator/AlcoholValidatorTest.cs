@@ -22,7 +22,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
 
             validator.TestValidate(alcohol).ShouldNotHaveAnyValidationErrors();
         }
@@ -31,7 +31,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_WrongId_ShouldReturnValidationErrorForWrongAlcoholId()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.Id = 0;
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.Id));
@@ -41,7 +41,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_EmptyName_ShouldReturnValidationErrorEmptyName()
         {
             var validator = new AlcoholValidation();
-            var command = _generatorHelper.AlcoholGenerator();
+            var command = _generatorHelper.GenerateAlcoholForListVM();
             command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.Name));
@@ -51,7 +51,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_ToShortName_ShouldReturnValidationErrorShortName()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.Name = "M";
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.Name));
@@ -62,7 +62,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_WrongTypeId_ShouldReturnValidationErrorWrongTypeId()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.TypeId = 0;
 
 
@@ -73,7 +73,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_WrongAlcoholCategoryId_ShouldReturnValidationErrorWrongAlcoholCategoryId()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.AlcoholCategoryId = 0;
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.AlcoholCategoryId));
@@ -83,7 +83,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_WrongPriceValue_ShouldReturnValidationErrorWrongPriceValue()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.Price = 0;
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.Price));
@@ -93,7 +93,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequestRequest_EmptyValueYearProduction_ShouldReturnValidationErrorMissingYearProduction()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.YearProduction = 0;
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.YearProduction));
@@ -103,7 +103,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequest_WrongValueYearProduction_ShouldReturnValidationErrorYearProduction()
         {
             var validator = new AlcoholValidation();
-            var alcohol = _generatorHelper.AlcoholGenerator();
+            var alcohol = _generatorHelper.GenerateAlcoholForListVM();
             alcohol.YearProduction = 30;
 
             validator.TestValidate(alcohol).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.YearProduction));
@@ -130,19 +130,10 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholValidation_InvalidRequest_WrongValueQuantity_ShouldReturnValidationErrorQuantity()
         {
             var validator = new AlcoholValidation();
-            var command = new AlcoholForListVM()
-            {
-                Id = 1,
-                Name = "TestName",
-                TypeId = 1,
-                Price = 1,
-                YearProduction = 50,
-                SugarContent = 50,
-                Quantity = 0,
-                AlcoholCategoryId = 1,
-            };
+            var command = _generatorHelper.GenerateAlcoholForListVM();
+            command.Quantity = 0;
 
-            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.YearProduction));
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholForListVM.Quantity));
         }
     }
 }

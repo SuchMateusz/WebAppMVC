@@ -11,21 +11,18 @@ namespace Application.UnitTests.Validation.CustomerValidation
 {
     public class CustContactInfoValidatorTest
     {
+        private readonly CustomerGeneratorHelper _generatorHelper;
+
+        public CustContactInfoValidatorTest()
+        {
+            _generatorHelper = new CustomerGeneratorHelper();
+        }
 
         [Fact]
         public void Add_CustContactInfoValidation_ProperRequest_ShouldNotReturnValidationsErrors()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position ="CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -34,16 +31,9 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_WrongId_ShouldReturnValidationsErrorForWrongId()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 0,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.Id = 0;
+
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.Id));
         }
@@ -52,16 +42,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_EmptyName_ShouldReturnValidationsErrorForEmptyName()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.Name));
         }
@@ -70,16 +52,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_ShortName_ShouldReturnValidationsErrorForTooShortName()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "A",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.Name = "A";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.Name));
         }
@@ -88,15 +62,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_EmptyLastName_ShouldReturnValidationsErrorForEmptyLastName()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Adrian",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.LastNameUser = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.LastNameUser));
         }
@@ -105,15 +72,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_EmptyPosition_ShouldReturnValidationsErrorForEmptyPosition()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.Position = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.Position));
         }
@@ -122,15 +82,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_EmptyAddresEmail_ShouldReturnValidationsErrorForEmptyAddressEmail()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.DirectPersonAddressEmail = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.DirectPersonAddressEmail));
         }
@@ -139,16 +92,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_WrongAddresEmail_ShouldReturnValidationsErrorForWrongAddressEmail()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Alagmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.DirectPersonAddressEmail = "Alagmail.com";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.DirectPersonAddressEmail));
         }
@@ -157,15 +102,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_EmptyPhoneNumber_ShouldReturnValidationsErrorForEmptyPhoneNumber()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Alagmail.com",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.DirectPhoneNumber = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.DirectPhoneNumber));
         }
@@ -174,16 +112,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_WrongPhoneNumber_ShouldReturnValidationsErrorForWrongPhoneNumber()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Alagmail.com",
-                DirectPhoneNumber = "112",
-                CustomerRef = 1,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.DirectPhoneNumber = "112";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.DirectPhoneNumber));
         }
@@ -192,16 +122,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustContactInfoValidation_InvalidRequest_WrongCustomerRef_ShouldReturnValidationsErrorForWrongCustomerRef()
         {
             var validator = new NewCustomerContactInformactionValidation();
-            var command = new CustomerContactInformactionForListVm()
-            {
-                Id = 1,
-                Name = "Test",
-                LastNameUser = "LastName",
-                Position = "CEO",
-                DirectPersonAddressEmail = "Ala@gmail.com",
-                DirectPhoneNumber = "12413561",
-                CustomerRef = 0,
-            };
+            var command = _generatorHelper.GenerateCustomerContactInfForListVM();
+            command.CustomerRef = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CustomerContactInformactionForListVm.CustomerRef));
         }

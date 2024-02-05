@@ -21,7 +21,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_CategoryValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewCategoryValidation();
-            var command = _generatorHelper.CategoryGenerator();
+            var command = _generatorHelper.GenerateCategoryForListVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -30,7 +30,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_CategoryValidation_InvalidRequest_WrongId_ShouldReturnValidationErrorWrongId()
         {
             var validator = new NewCategoryValidation();
-            var command = _generatorHelper.CategoryGenerator();
+            var command = _generatorHelper.GenerateCategoryForListVM();
             command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CategoryForListVM.Id));
@@ -40,7 +40,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_CategoryValidation_InvalidRequest_EmptyName_ShouldReturnValidationErrorEmptyName()
         {
             var validator = new NewCategoryValidation();
-            var command = _generatorHelper.CategoryGenerator();
+            var command = _generatorHelper.GenerateCategoryForListVM();
             command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CategoryForListVM.Name));
@@ -50,7 +50,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_CategoryValidation_InvalidRequest_WrongName_ShouldReturnValidationErrorWrongName()
         {
             var validator = new NewCategoryValidation();
-            var command = _generatorHelper.CategoryGenerator();
+            var command = _generatorHelper.GenerateCategoryForListVM();
             command.Name = "T";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(CategoryForListVM.Name));

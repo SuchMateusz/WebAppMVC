@@ -17,7 +17,9 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_ProperRequest_ShouldNotReturnValidationsErrors()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
+            command.Ingredient = _generatorHelper.GenerateIngredientForListVM();
+            command.Item = _generatorHelper.GenerateAlcoholForListVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -26,7 +28,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongId_ShouldReturnValidationsErrorForAlcoholIngredientId()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Id));
@@ -36,7 +38,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongAlcoholRef_ShouldReturnValidationsErrorForAlcoholRef()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.AlcoholRef = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.AlcoholRef));
@@ -46,7 +48,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongName_ShouldReturnValidationsErrorForAlcoholIngredientName()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.Name = "T";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Name));
@@ -56,7 +58,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_EmptyIngredient_ShouldReturnValidationsErrorForEmptyIngredient()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.Ingredient = null;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Ingredient));
@@ -66,7 +68,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_EmpyAlcohol_ShouldReturnValidationsErrorForEmptyAlcohol()
         {
             var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.NewAlcoholIngredientGenerator();
+            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.Item = null;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Item));

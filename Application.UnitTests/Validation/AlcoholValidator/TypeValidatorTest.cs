@@ -20,7 +20,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest_ShouldNotReturnValidationErrors()
         {
             var validator = new NewTypeValidation();
-            var command = _generatorHelper.TypeGenerator();
+            var command = _generatorHelper.GenerateTypeForListVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -29,7 +29,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest_WrongId_ShouldReturnValidationErrorWrongId()
         {
             var validator = new NewTypeValidation();
-            var command = _generatorHelper.TypeGenerator();
+            var command = _generatorHelper.GenerateTypeForListVM();
             command.Id = 0;
 
         validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Id));
@@ -39,7 +39,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest__EmptyName_ShouldReturnValidationErrorForEmptyName()
         {
             var validator = new NewTypeValidation();
-            var command = _generatorHelper.TypeGenerator();
+            var command = _generatorHelper.GenerateTypeForListVM();
             command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));
@@ -49,7 +49,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         public void Add_TypeValidation_ProperRequest_TooLongName_ShouldReturnValidationErrorForTooLongName()
         {
             var validator = new NewTypeValidation();
-            var command = _generatorHelper.TypeGenerator();
+            var command = _generatorHelper.GenerateTypeForListVM();
             command.Name = "ThisTypeNameWasCreateToProofThatNameIsTooLongForTypeIQuess";
       
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(TypeForListVM.Name));

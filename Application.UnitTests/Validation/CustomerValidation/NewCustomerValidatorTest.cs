@@ -10,21 +10,18 @@ namespace Application.UnitTests.Validation.CustomerValidation
 {
     public class NewCustomerValidatorTest
     {
+        private readonly CustomerGeneratorHelper _generatorHelper;
+
+        public NewCustomerValidatorTest()
+        {
+            _generatorHelper = new CustomerGeneratorHelper();
+        }
 
         [Fact]
         public void Add_CustomerValidation_ProperRequest_ShouldNotReturnValidationsErrors()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 1,
-                Name = "Test",
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "123456789",
-                PhoneNumber = "1234567890",
-                AddressEmail = "address@gmail.com",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -33,16 +30,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_WrongId_ShouldReturnValidationsErrorWrongId()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 0,
-                Name = "Test",
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "123456789",
-                PhoneNumber = "1234567890",
-                AddressEmail = "address@gmail.com",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM();
+            command.Id = 0;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.Id));
         }
@@ -51,17 +40,9 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_WrongNIP_ShouldReturnValidationsErrorWrongNIP()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 0,
-                Name = "Test",
-                Password = "Password",
-                NIP = "12345678",
-                REGON = "123456789",
-                PhoneNumber = "1234567890",
-                AddressEmail = "address@gmail.com",
-            };
-
+            var command = _generatorHelper.GenerateNewCustomerVM();
+            command.NIP = "12345678";
+                
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.NIP));
         }
 
@@ -69,16 +50,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_WrongRegon_ShouldReturnValidationsErrorWrongRegon()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 0,
-                Name = "Test",
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "1234567",
-                PhoneNumber = "1234567890",
-                AddressEmail = "address@gmail.com",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM(); 
+            command.REGON = "1234567";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.REGON));
         }
@@ -87,15 +60,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_EmptyName_ShouldReturnValidationsErrorForNameIsEmpty()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 1,
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "123456789",
-                PhoneNumber = "1234567890",
-                AddressEmail = "address@gmail.com",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM();
+            command.Name = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.Name));
         }
@@ -104,16 +70,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_MissingEmailCharacter_ShouldReturnValidationsErrorMissingEmailCharacter()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 0,
-                Name = "Test",
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "12345678987",
-                PhoneNumber = "1234567890",
-                AddressEmail = "addressgmail.com",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM(); 
+            command.AddressEmail = "addressgmail.com";
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.AddressEmail));
         }
@@ -122,16 +80,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
         public void Add_CustomerValidation_InvalidRequest_EmptyAddressEmail_ShouldReturnValidationsErrorEmptyAddressEmail()
         {
             var validator = new NewCustomerValidation();
-            var command = new NewCustomerVM()
-            {
-                Id = 0,
-                Name = "Test",
-                Password = "Password",
-                NIP = "1234567890",
-                REGON = "12345678987",
-                PhoneNumber = "1234567890",
-                AddressEmail = "",
-            };
+            var command = _generatorHelper.GenerateNewCustomerVM();
+            command.AddressEmail = string.Empty;
 
             validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(NewCustomerVM.AddressEmail));
         }

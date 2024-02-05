@@ -41,7 +41,7 @@ namespace WebAppMVC.Application.ViewModel.Customer
         {
             RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.BuildingNumber).NotEmpty();
-            RuleFor(x => x.BuildingNumber).MaximumLength(5);
+            RuleFor(x => x.BuildingNumber).MaximumLength(7);
             RuleFor(x => x.Street).Length(3, 30);
             RuleFor(x => x.ZipCode).NotEmpty();
             RuleFor(x => x.City).NotEmpty();

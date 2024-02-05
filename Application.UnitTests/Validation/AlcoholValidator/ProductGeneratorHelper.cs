@@ -5,98 +5,75 @@ namespace Application.UnitTests.Validation.AlcoholValidator
 {
     public class ProductGeneratorHelper
     {
-        public AlcoholForListVM AlcoholGenerator()
+        public AlcoholForListVM GenerateAlcoholForListVM()
         {
             return new Faker<AlcoholForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(a => a.TypeId, f => f.Random.Int(1, 1))
-                .RuleFor(a => a.Price, f => f.Random.Decimal(1, 50))
-                .RuleFor(a => a.YearProduction, f => f.Random.Int(1980, 2024))
-                .RuleFor(a => a.SugarContent, f => f.Random.Float(0, 30))
-                .RuleFor(a => a.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1));;
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .RuleFor(x => x.TypeId, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Price, f => f.Random.Decimal(1, 50))
+                .RuleFor(x => x.YearProduction, f => f.Random.Int(1980, 2024))
+                .RuleFor(x => x.SugarContent, f => f.Random.Float(0, 30))
+                .RuleFor(x => x.Quantity, f => f.Random.Int(1, 50))
+                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1)); ;
         }
         
-        public NewAlcoholForListVM NewAlcoholGenerator()
+        public NewAlcoholForListVM GenerateNewAlcoholForListVM()
         {
-            var alcohol = new Faker<NewAlcoholForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(a => a.TypeId, f => f.Random.Int(1, 1))
-                .RuleFor(a => a.Price, f => f.Random.Decimal(1, 50))
-                .RuleFor(a => a.YearProduction, f => f.Random.Int(1980, 2024))
-                .RuleFor(a => a.SugarContent, f => f.Random.Float(0, 30))
-                .RuleFor(a => a.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(a => a.AlcoholCategoryId, f => f.Random.Int(1, 1));
-
-            var model = alcohol.Generate();
-            return model;
+            return new Faker<NewAlcoholForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .RuleFor(x => x.TypeId, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Price, f => f.Random.Decimal(1, 50))
+                .RuleFor(x => x.YearProduction, f => f.Random.Int(1980, 2024))
+                .RuleFor(x => x.SugarContent, f => f.Random.Float(0, 30))
+                .RuleFor(x => x.Quantity, f => f.Random.Int(1, 50))
+                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1)); ;
         }
 
-        public AlcoholIngredientsForListVM NewAlcoholIngredientGenerator()
+        public AlcoholIngredientsForListVM GenerateAlcoholIngredientsForListVM()
         {
-            var alcohol = new Faker<AlcoholIngredientsForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(a => a.AlcoholRef, f => f.Random.Int(1, 1));
-
-            var model = alcohol.Generate();
-            model.Ingredient = IngredientGenerator();
-            model.Item = AlcoholGenerator();
-            return model;
+            return new Faker<AlcoholIngredientsForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .RuleFor(x => x.AlcoholRef, f => f.Random.Int(1, 1));;
         }
 
-        public DescriptionForListVM DescriptionGenerator()
+        public DescriptionForListVM GenerateDescriptionForListVM()
         {
-            var desc = new Faker<DescriptionForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(o => o.Description, f => f.Random.Words(10));
-                
-            var model = desc.Generate();
-            return model;
+            return new Faker<DescriptionForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .RuleFor(x => x.Description, f => f.Random.Words(10)); ;
         }
 
-        public CategoryForListVM CategoryGenerator()
+        public CategoryForListVM GenerateCategoryForListVM()
         {
-            var category = new Faker<CategoryForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10));
-
-            var model = category.Generate();
-            return model;
+            return new Faker<CategoryForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
         }
 
-        public IngredientForListVM IngredientGenerator()
+        public IngredientForListVM GenerateIngredientForListVM()
         {
-            var ingredient = new Faker<IngredientForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10))
-                .RuleFor(o => o.Price, f => f.Random.Decimal(5, 100));
-
-            var model = ingredient.Generate();
-            return model;
+            return new Faker<IngredientForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .RuleFor(x => x.Price, f => f.Random.Decimal(5, 100)); ;
         }
 
-        public TagForListVM TagGenerator()
+        public TagForListVM GenerateTagForListVM()
         {
-            var tag = new Faker<TagForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10));
-
-            var model = tag.Generate();
-            return model;
+            return new Faker<TagForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
         }
 
-        public TypeForListVM TypeGenerator()
+        public TypeForListVM GenerateTypeForListVM()
         {
-            var type = new Faker<TypeForListVM>()
-                .RuleFor(o => o.Id, f => f.Random.Int(1, 1))
-                .RuleFor(o => o.Name, f => f.Random.String(5, 10));
-
-            var model = type.Generate();
-            return model;
+            return new Faker<TypeForListVM>()
+                .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
         }
     }
 }
