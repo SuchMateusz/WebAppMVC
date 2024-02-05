@@ -15,7 +15,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
                 .RuleFor(x => x.YearProduction, f => f.Random.Int(1980, 2024))
                 .RuleFor(x => x.SugarContent, f => f.Random.Float(0, 30))
                 .RuleFor(x => x.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1)); ;
+                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1))
+                .Generate();
         }
         
         public NewAlcoholForListVM GenerateNewAlcoholForListVM()
@@ -28,7 +29,8 @@ namespace Application.UnitTests.Validation.AlcoholValidator
                 .RuleFor(x => x.YearProduction, f => f.Random.Int(1980, 2024))
                 .RuleFor(x => x.SugarContent, f => f.Random.Float(0, 30))
                 .RuleFor(x => x.Quantity, f => f.Random.Int(1, 50))
-                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1)); ;
+                .RuleFor(x => x.AlcoholCategoryId, f => f.Random.Int(1, 1))
+                .Generate();
         }
 
         public AlcoholIngredientsForListVM GenerateAlcoholIngredientsForListVM()
@@ -36,7 +38,9 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             return new Faker<AlcoholIngredientsForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
                 .RuleFor(x => x.Name, f => f.Random.String(5, 10))
-                .RuleFor(x => x.AlcoholRef, f => f.Random.Int(1, 1));;
+                .RuleFor(x => x.AlcoholRef, f => f.Random.Int(1, 1))
+                .Generate();
+
         }
 
         public DescriptionForListVM GenerateDescriptionForListVM()
@@ -44,14 +48,16 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             return new Faker<DescriptionForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
                 .RuleFor(x => x.Name, f => f.Random.String(5, 10))
-                .RuleFor(x => x.Description, f => f.Random.Words(10)); ;
+                .RuleFor(x => x.Description, f => f.Random.Words(10))
+                .Generate();
         }
 
         public CategoryForListVM GenerateCategoryForListVM()
         {
             return new Faker<CategoryForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
-                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .Generate() ;
         }
 
         public IngredientForListVM GenerateIngredientForListVM()
@@ -59,21 +65,24 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             return new Faker<IngredientForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
                 .RuleFor(x => x.Name, f => f.Random.String(5, 10))
-                .RuleFor(x => x.Price, f => f.Random.Decimal(5, 100)); ;
+                .RuleFor(x => x.Price, f => f.Random.Decimal(5, 100))
+                .Generate();
         }
 
         public TagForListVM GenerateTagForListVM()
         {
             return new Faker<TagForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
-                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .Generate();
         }
 
         public TypeForListVM GenerateTypeForListVM()
         {
             return new Faker<TypeForListVM>()
                 .RuleFor(x => x.Id, f => f.Random.Int(1, 1))
-                .RuleFor(x => x.Name, f => f.Random.String(5, 10)); ;
+                .RuleFor(x => x.Name, f => f.Random.String(5, 10))
+                .Generate();
         }
     }
 }

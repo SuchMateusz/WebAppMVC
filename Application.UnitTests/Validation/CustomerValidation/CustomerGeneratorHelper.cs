@@ -20,7 +20,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
                 .RuleFor(x => x.ZipCode, f => f.Address.ZipCode())
                 .RuleFor(x => x.City, f => f.Address.City())
                 .RuleFor(x => x.Country, f => f.Address.Country())
-                .RuleFor(x => x.CustomerId, f => f.Random.Int(1, 1));
+                .RuleFor(x => x.CustomerId, f => f.Random.Int(1, 1))
+                .Generate();
         }
 
         public CustomerContactInformactionForListVm GenerateCustomerContactInfForListVM()
@@ -32,7 +33,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
                 .RuleFor(x => x.DirectPersonAddressEmail, f => f.Internet.Email())
                 .RuleFor(x => x.DirectPhoneNumber, f => f.Phone.PhoneNumber())
                 .RuleFor(x => x.Position, f => f.Name.JobTitle())
-                .RuleFor(x => x.CustomerRef, f => f.Random.Int(1,1));
+                .RuleFor(x => x.CustomerRef, f => f.Random.Int(1,1))
+                .Generate();
         }
 
         public NewCustomerVM GenerateNewCustomerVM()
@@ -44,7 +46,8 @@ namespace Application.UnitTests.Validation.CustomerValidation
                 .RuleFor(x => x.NIP, f => f.Random.String(length: 10))
                 .RuleFor(x => x.REGON, f => f.Random.String(9, 14))
                 .RuleFor(x => x.PhoneNumber, f => f.Phone.PhoneNumber())
-                .RuleFor(x => x.AddressEmail, f => f.Internet.Email()); ;
+                .RuleFor(x => x.AddressEmail, f => f.Internet.Email())
+                .Generate();
         }
     }
 }
