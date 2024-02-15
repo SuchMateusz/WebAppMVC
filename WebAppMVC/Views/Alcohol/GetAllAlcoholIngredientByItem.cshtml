@@ -3,25 +3,39 @@
 @{
     ViewData["Title"] = "GetAllAlcoholIngredientByItem";
 }
-
-<h1>GetAllAlcoholIngredientByItem</h1>
+<div style="text-align:center">
+    <h1>Get All Alcohol Ingredient By Alcohol Id</h1>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AddNewAlcoholIngredient">Create New</a>
 </p>
-<form asp-action="GetAllAlcoholIngredientByItem" asp-controller="Item" method="post">
-<div class="row">
+<form asp-action="GetAllAlcoholIngredientByItem" asp-controller="Alcohol" method="post">
+
+@* <div class="row">
     <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
     <input type="submit" value="Wyszukaj po item ID"/>
-    </div>
+</div> *@
+
+<p> 
+</p>
+<form class="d-flex">
+    <input class="form-control me-sm-2" type="text" asp-for="SearchString" name="searchString" id="searchString" />
+    <p>
+    </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj po alcohol id</button>
+        </div>
+</form>
+
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    ItemRef
+                    Alcohol Ref
                 </th>
                 <th>
-                    Item Name
+                    Alcohol Name
                 </th>
                 <th>
                     Ingredient Id
@@ -65,7 +79,7 @@
 
                 <td>
                     @Html.ActionLink("Edit", "EditItemIngredient", new {id=item.Id}) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @* @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | *@
                     @Html.ActionLink("Delete", "DeleteItemIngredient", new { id=item.Id })
                 </td>
             </tr>

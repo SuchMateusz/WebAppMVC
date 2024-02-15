@@ -3,18 +3,25 @@
 @{
     ViewData["Title"] = "GetAllAlcohols";
 }
-
-<h1>GetAllAlcohols</h1>
+<div style="text-align:center">
+    <h1>Get All Alcohols</h1>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AddNewAlcohol">Create New</a>
 </p>
 
-<form asp-action="GetAllAlcohols" asp-controller="Item" method="post">
-    <div class="row">
-        <input type = "text" asp-for="SearchString" name ="searchString" id ="searchString"/>
-        <input type = "submit" value="Wyszukaj"/>
-    </div>
+<form asp-action="GetAllAlcohols" asp-controller="Alcohol" method="post">
+    <p>
+    </p>
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <p>
+        </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj po alcohol id</button>
+        </div>
+    </form>
     <div class="row"/>
     <table class="table">
         <thead>

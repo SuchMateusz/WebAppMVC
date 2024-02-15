@@ -6,8 +6,8 @@
 
 <h1>GetAddressCustomerDetails</h1>
 
+
 <p>
-    <a asp-action="Create">Create New</a>
 </p>
 <form asp-action="GetAddressCustomerDetails" asp-controller="Customer" method="post">
     <div class="row">
@@ -17,7 +17,7 @@
     <div class="row">
         <table class="table">
             <thead>
-                <tr>
+                <tr class="table-primary">
                     <th>
                         Id
                     </th>
@@ -76,7 +76,7 @@
     </div>
     <div class="row">
         <table>
-            <tr>
+            <tr class="table-info">
                 @for (int i = 1; i < Math.Ceiling(Model.TotalCount / (double)Model.PageSize); i++)
                 {
                     <td>

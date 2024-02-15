@@ -58,3 +58,16 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+<div class="form-group has-success">
+    <label class="form-label mt-4" asp-for="Name" for="Name"> </label>
+    <input asp-for="Name" value="correct value" class="form-control is-valid" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="valid-feedback">Success! You've done it.</div>
+</div>
+<div class="form-group has-danger">
+    <label class="form-label mt-4" for="inputInvalid">Invalid input</label>
+    <input asp-for="Name" value="correct value" class="form-control is-valid" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="invalid-feedback">Sorry, that username's taken. Try another?</div>
+</div>

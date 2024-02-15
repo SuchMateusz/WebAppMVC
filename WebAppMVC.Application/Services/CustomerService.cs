@@ -56,7 +56,6 @@ namespace WebAppMVC.Application.Services
             var address = _addressesRepo.GetAddressById(id);
             var addressForEdit = _mapper.Map<AddressForListVM>(address);
             return addressForEdit;
-
         }
 
         public void UpdateCustomer(NewCustomerVM model)
