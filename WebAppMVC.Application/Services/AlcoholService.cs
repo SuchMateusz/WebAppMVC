@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration.Conventions;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using WebAppMVC.Application.Interfaces;
-using WebAppMVC.Application.ViewModel.Customer;
 using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Interface;
-using WebAppMVC.Domain.Interfaces;
 using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Application.Services

@@ -1,17 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Infrastructure;
 using WebAppMVC.Application;
 using FluentValidation.AspNetCore;
-using FluentValidation;
-using WebAppMVC.Application.ViewModel.Customer;
-using System.ComponentModel.DataAnnotations;
-using Serilog;
-using WebAppMVC.Application.ViewModel.Item;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System.Configuration;
-using Microsoft.Extensions.Options;
 using WebAppMVC.Domain.Models.Common;
 
 namespace WebAppMVC
