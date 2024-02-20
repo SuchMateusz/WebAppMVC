@@ -6,15 +6,17 @@
 <div style="text-align:center">
 <h1>Get All Category</h1>
 </div>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
 <form asp-action="GetAllCategory" asp-controller="Category" method="post">
-    <div class="row">
-        <input type="submit" asp-for="SearchString" name="searchString" id="searchString"/>
-        <input type ="text" value="Search category"/>
-    </div>
+
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <p>
+        </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
+        </div>
+    </form>
     <div>
         <table class="table">
             <thead>

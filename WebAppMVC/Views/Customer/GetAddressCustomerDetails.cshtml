@@ -4,15 +4,14 @@
     ViewData["Title"] = "GetAddressCustomerDetails";
 }
 
-<h1>GetAddressCustomerDetails</h1>
-
+<h1>Get customer address details</h1>
 
 <p>
 </p>
 <form asp-action="GetAddressCustomerDetails" asp-controller="Customer" method="post">
     <div class="row">
         <input type="text" asp-for="CustomerId" name="CustomerId" id="CustomerId" />
-        <input type="submit" value="Wyszukaj" />
+        <input type="submit" value="Search custoemr addres by customer ID" />
     </div>
     <div class="row">
         <table class="table">

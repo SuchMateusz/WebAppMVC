@@ -49,6 +49,7 @@ namespace WebAppMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCustomer(NewCustomerVM model)
         {
+            model.isActive = true;
             int id = _customerService.AddCustomer(model);
             _logger.LogInformation("Dodano nowego użytkownika {id}", id);
             return RedirectToAction("Index");

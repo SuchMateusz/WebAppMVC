@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Get all customer</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,7 +12,7 @@
 <form asp-action="Index" asp-controller="Customer" method="post">
     <div class="row">
         <input type = "text" asp-for="SearchString" name ="searchString" id ="searchString"/>
-        <input type = "submit" value="Wyszukaj"/>
+        <input type = "submit" value="Search"/>
     </div>
     <div class="row">
         <table class="table">
@@ -43,7 +43,7 @@
                         @Html.DisplayFor(modelItem => item.NIP)
                      </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Edit", "EditCustomer", new {id=item.Id}) |
                         @Html.ActionLink("Details", "ViewCustomer", new { id=item.Id}) |
                         @Html.ActionLink("Delete", "Delete", new {id=item.Id})
                     </td>

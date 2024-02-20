@@ -272,7 +272,7 @@ namespace WebAppMVC.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin, SuperUser")]
-        public IActionResult AddNewItemIngredient()
+        public IActionResult AddNewAlcoholIngredient()
         {
             return View();
         }

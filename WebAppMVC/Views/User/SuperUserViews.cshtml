@@ -7,90 +7,112 @@
 
 <h1>Hello Manager</h1>
 
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" data-bs-toggle="tab" href="#Role" aria-selected="true" role="tab">Role & Users</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#Customer" aria-selected="false" tabindex="-1" role="tab">Profile Customer</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#Alcohol" aria-selected="false" tabindex="-2" role="tab">Alcohol</a>
+    </li>
+</ul>
 
-<h3>Choose option for roles and users</h3>
-<div class="row">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="User" , asp-action="Index">View all users</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Roles" , asp-action="Index">View all roles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Roles" , asp-action="CreateRole">Create new role</a>
-        </li>
-    </ul>
-</div>
 
-<h3>Choose option for customer options</h3>
-<div class="row">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="Index">Show all customer</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="AddCustomer">Add new customer</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="AddCustomerContactInformaction">Add  new customer contact informaction</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="GetAllContactCustoInf">Show all contacts customer informaction</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="AddNewAddressForCustomer">Add new address for customer</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Customer" , asp-action="GetAddressCustomerDetails">Show address customer details</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Home" , asp-action="Index">Back to home</a>
-        </li>
-    </ul>
-</div>
 
-<h3>Choose option for alcohol options</h3>
-<div class="row">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllAlcohols">Show all alcohol</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewAlcohol">Add new alcohol</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllAlcoholIngredientByItem">Show all alcohol ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewAlcoholIngredient">Add new alcohol ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllCategory">Show all alcohol category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewCategory">Add new alcohol category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllIngredients">Show all ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewIngredients">Add new ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllType">Show all alcohol type</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewType">Add new alcohol type</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllTags">Show all alcohol tags</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewTag">Add new alcohol tag</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Home" , asp-action="Index">Back to home</a>
-        </li>
-    </ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active show" id="Role" role="tabpanel">
+        <p>
+        </p>
+        <div class="row">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" asp-controller="User" , asp-action="Index">View all users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" asp-controller="Roles" , asp-action="Index">View all roles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" asp-controller="Roles" , asp-action="CreateRole">Create new role</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="Customer" role="tabpanel">
+        <p>
+            <div class="row">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="Index">Show all customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="AddCustomer">Add new customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="AddCustomerContactInformaction">Add  new customer contact informaction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="GetAllContactCustoInf">Show all contacts customer informaction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="AddNewAddressForCustomer">Add new address for customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Customer" , asp-action="GetAddressCustomerDetails">Show address customer details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" , asp-action="Index">Back to home</a>
+                    </li>
+                </ul>
+            </div>
+        </p>
+    </div>
+    <div class="tab-pane fade" id="Alcohol" role="tabpanel">
+        <p>
+            <div class="row">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllAlcohols">Show all alcohol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewAlcohol">Add new alcohol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllAlcoholIngredientByItem">Show all alcohol ingredients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewAlcoholIngredient">Add new alcohol ingredients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllCategory">Show all alcohol category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewCategory">Add new alcohol category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllIngredients">Show all ingredients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewIngredients">Add new ingredients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllType">Show all alcohol type</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewType">Add new alcohol type</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="GetAllTags">Show all alcohol tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Alcohol" , asp-action="AddNewTag">Add new alcohol tag</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" , asp-action="Index">Back to home</a>
+                    </li>
+                </ul>
+            </div>
+        </p>
+    </div>
 </div>

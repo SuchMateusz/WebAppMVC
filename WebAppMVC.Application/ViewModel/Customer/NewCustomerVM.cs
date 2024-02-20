@@ -27,6 +27,8 @@ namespace WebAppMVC.Application.ViewModel.Customer
 
         public string AddressEmail { get; set; }
 
+        public bool isActive { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewCustomerVM, WebAppMVC.Domain.Model.Customer>().ReverseMap();
