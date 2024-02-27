@@ -14,6 +14,8 @@ using WebAppMVC.Application.Services;
 using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Interface;
 using WebAppMVC.Domain.Model;
+using WebAppMVC.Application.ViewModel.Alcohol;
+using Azure;
 
 namespace Application.UnitTests.Services
 {
@@ -344,6 +346,30 @@ namespace Application.UnitTests.Services
 
             //Assert
             _alcoDescriptionsRepository.Verify(r => r.EditDescription(It.IsAny<AlcoholDescription>()), Times.Once());
+        }
+
+        [Fact]
+        public void SuggarForNewWine_ProperRequest__ProvidingGetNumberOfSugarSucced()
+        {
+            //Arrange 
+            var item = new SugarForNewAlcoholForVM
+            {
+                LitersOfWine = 10,
+                SugarInIngredients = 100,
+                Power = 10,
+            };
+            int addedSugar;
+            Int32.TryParse(item.SugarInIngredients.ToString(), out addedSugar);
+            
+            //Act
+
+            var returnedModel = _alcoholService.SuggarForNewWine(addedSugar, item.LitersOfWine, item.Power);
+
+            //Assert
+            returnedModel.Should().NotBeNull();
+            returnedModel.Power.Should().Be(item.Power);
+            returnedModel.LitersOfWine.Should().Be(item.LitersOfWine);
+            returnedModel.neededSugar.Should().BePositive();
         }
     }
 }

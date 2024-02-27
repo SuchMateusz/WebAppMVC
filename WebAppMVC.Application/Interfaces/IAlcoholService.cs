@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppMVC.Application.ViewModel.Alcohol;
 using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Model;
 
@@ -51,5 +52,7 @@ namespace WebAppMVC.Application.Interfaces
         void DeleteDescription(int id);
 
         void EditDescription(DescriptionForListVM model);
+
+        SugarForNewAlcoholForVM SuggarForNewWine(int addedSugar, int litersOfWine, int power);
     }
 }

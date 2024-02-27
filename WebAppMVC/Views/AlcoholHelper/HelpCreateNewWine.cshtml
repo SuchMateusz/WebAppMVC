@@ -1,0 +1,45 @@
+﻿@model WebAppMVC.Application.ViewModel.Alcohol.SugarForNewAlcoholForVM
+
+@{
+    ViewData["Title"] = "HelpCreateNewWine";
+}
+
+<h1>HelpCreateNewWine</h1>
+
+<form asp-action="HelpCreateNewWine" asp-controller="AlcoholHelper" method="post">
+<form class="d-flex">
+    <p>
+        Wpisz jaką chcesz mieć moc wina [%]
+    </p>
+    <input class="form-control me-sm-2" type="text" asp-for="Power" name="Power" id="Power" />
+    <p>
+            Wpisz wartość cukru zawartą w owocach
+    </p>
+    <input class="form-control me-sm-2" type="text" asp-for="SugarInIngredients" name="SugarInIngredients" id="SugarInIngredients" />
+    <p>
+        Wpisz liczbę litrów ile chcesz uzyskać
+    </p>
+    <input class="form-control me-sm-2" type="text" asp-for="LitersOfWine" name="LitersOfWine" id="LitersOfWine" />
+    <p>
+    </p>
+    <div style="text-align:center">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Zatwierdź</button>
+        </div>
+</form>
+
+<div>
+    <h4>SugarForNewAlcoholForVM</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NeededSugar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NeededSugar)
+        </dd>
+    </dl>
+</div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

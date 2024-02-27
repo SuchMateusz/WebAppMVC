@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using System.Collections.Generic;
 using System.Linq;
 using WebAppMVC.Application.Interfaces;
+using WebAppMVC.Application.ViewModel.Alcohol;
 using WebAppMVC.Application.ViewModel.Item;
 using WebAppMVC.Domain.Interface;
 using WebAppMVC.Domain.Model;
@@ -220,6 +221,22 @@ namespace WebAppMVC.Application.Services
         {
             var item = _mapper.Map<AlcoholDescription>(model);
             _alcoDescriptionsRepository.EditDescription(item);
+        }
+
+        public SugarForNewAlcoholForVM SuggarForNewWine(int addedSugar, int litersOfWine, int power)
+        {
+            int neededSugar;
+
+            neededSugar = (17 * power * litersOfWine) - addedSugar;
+            var model = new SugarForNewAlcoholForVM()
+            {
+                NeededSugar = neededSugar,
+                LitersOfWine = litersOfWine,
+                Power = power,
+                SugarInIngredients = addedSugar
+            };
+
+            return model;
         }
     }
 }

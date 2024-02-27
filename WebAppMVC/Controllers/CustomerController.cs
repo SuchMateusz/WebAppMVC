@@ -19,7 +19,6 @@ namespace WebAppMVC.Controllers
             _logger = logger;
         }
 
-
         [HttpGet]
         public IActionResult Index()
         {

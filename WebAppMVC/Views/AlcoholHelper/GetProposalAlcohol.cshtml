@@ -1,0 +1,112 @@
+﻿@model WebAppMVC.Application.ViewModel.Alcohol.ListAlcoholsProposalForListVM
+
+@{
+    ViewData["Title"] = "GetProposalAlcohol";
+}
+<div style="text-align:center">
+<h1>Get Proposal Alcohol</h1>
+</div>
+
+<form asp-action="GetProposalAlcohol" asp-controller="AlcoholHelper" method="post">
+
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" asp-for="Ingredient1" name="Ingredient1" id="Ingredient1" />
+        <p>
+        </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
+        </div>
+        <input class="form-control me-sm-2" type="text" asp-for="Ingredient2" name="Ingredient2" id="Ingredient2" />
+        <p>
+        </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
+        </div>
+        <input class="form-control me-sm-2" type="text" asp-for="Ingredient3" name="Ingredient3" id="Ingredient3" />
+        <p>
+        </p>
+        <div style="text-align:center">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
+        </div>
+    </form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Alcohol Name
+            </th>
+            <th>
+                Ingredient Id
+            </th>
+            <th>
+                Ingredient Name
+            </th>
+            <th>
+                Liters ingredient
+            </th>
+            <th>
+                Number of piece
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Alcohols)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlcoholRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredient.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredient.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfLiters)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPiece)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+    <div class="row">
+        <table>
+             <tr>
+                 @for (int i = 1; i < Math.Ceiling(Model.TotalCount / (double)Model.PageSize); i++)
+                 {
+                     <td>
+                            @if (i != Model.CurrentPage)
+                            {
+                                <a href="javascript:PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <span>@i</span>
+                            }
+                     </td>
+                 }
+                </tr>
+            </table>
+        <input type="hidden" name="pageNo" id="pageNo" />
+        <input type="hidden" name="pageSize" id="pageSize" value="2" />
+        </div>
+</form>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

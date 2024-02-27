@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAppMVC.Models;
-using System.Diagnostics;
 using WebAppMVC.Application.Interfaces;
-using AutoMapper;
 using WebAppMVC.Application.ViewModel.Item;
-using System.Drawing.Printing;
 using Microsoft.AspNetCore.Authorization;
 
 namespace WebAppMVC.Controllers
@@ -27,7 +23,6 @@ namespace WebAppMVC.Controllers
 
         public IActionResult Index() 
         {
-
             return View();
         }
 
