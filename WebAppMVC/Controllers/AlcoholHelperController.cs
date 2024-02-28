@@ -7,15 +7,12 @@ namespace WebAppMVC.Controllers
     public class AlcoholHelperController : Controller
     {
         private readonly IAlcoholService _alcoholService;
-        private readonly IIngredientsService _ingredientsService;
-        private readonly IMarkAlcoholService _markAlcoService;
         private readonly ILogger<AlcoholController> _logger;
 
-        public AlcoholHelperController(IAlcoholService alcoholService, IIngredientsService ingredientsService, IMarkAlcoholService markAlcoholService, ILogger<AlcoholController> logger)
+        public AlcoholHelperController(IAlcoholService alcoholService,  ILogger<AlcoholController> logger)
         {
             _alcoholService = alcoholService;
-            _ingredientsService = ingredientsService;
-            _markAlcoService = markAlcoholService;
+
             _logger = logger;
         }
 
@@ -28,8 +25,8 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser, User")]
         public IActionResult GetProposalAlcohol()
         {
-            //var model = _alcoholService.GetAlcoholProposal("", "", "");
-            return View();
+            var model = _alcoholService.GetAlcoholProposal("", "", "");
+            return View(model);
         }
 
         [HttpPost]
