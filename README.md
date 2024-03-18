@@ -16,19 +16,10 @@ User could quickly calculate the starting sugar for the production of his wine b
 ##Database stucture for customers
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/cb15ed3a-52bc-4e91-a4c6-cbf859873d27)
 
-#Technologies
-ClosedXML" Version="0.102.1"
-itext7" Version="8.0.2"
-itext7.bouncy-castle-adapter" Version="8.0.2"
-Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12"
-Microsoft.EntityFrameworkCore" Version="7.0.12"
-Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12"
-Microsoft.AspNetCore.Authentication.Google" Version="7.0.13"
-Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12"
-Microsoft.EntityFrameworkCore.Tools" Version="7.0.12"
-AutoMapper" Version="12.0.1"
+##Technologies
 
-#Views
+
+##Views
 **- Home view**
   
 **- Admin view**
