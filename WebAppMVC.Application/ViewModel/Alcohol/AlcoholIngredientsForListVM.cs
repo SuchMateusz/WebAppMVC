@@ -18,11 +18,11 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public IngredientForListVM Ingredient { get; set; }
 
-        public AlcoholForListVM Item { get; set; }
+        public AlcoholForListVM Alcohol { get; set; }
 
         public int AlcoholRef { get; set; }
 
-        public int AlcoholIngredientsId { get; set; }
+        public int IngredientId { get; set; }
 
         public string NumberOfPiece { get; set; }
 
@@ -43,7 +43,7 @@ namespace WebAppMVC.Application.ViewModel.Item
         {
             RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Ingredient).NotEmpty();
-            RuleFor(x => x.Item).NotEmpty();
+            RuleFor(x => x.Alcohol).NotEmpty();
             RuleFor(x => x.AlcoholRef).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Name).Length(2, 100);

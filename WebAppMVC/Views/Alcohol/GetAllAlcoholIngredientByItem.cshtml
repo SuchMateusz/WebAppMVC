@@ -12,15 +12,11 @@
 </p>
 <form asp-action="GetAllAlcoholIngredientByItem" asp-controller="Alcohol" method="post">
 
-@* <div class="row">
-    <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
-    <input type="submit" value="Wyszukaj po item ID"/>
-</div> *@
 
 <p> 
 </p>
 <form class="d-flex">
-    <input class="form-control me-sm-2" type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <input class="form-control me-sm-2" type="text" asp-for="SearchString" name="itemId" id="searchString" />
     <p>
     </p>
         <div style="text-align:center">
@@ -59,10 +55,10 @@
     @foreach (var item in Model.Ingredients) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Item.Id)
+                    @Html.DisplayFor(modelItem => item.Alcohol.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Item.Name)
+                    @Html.DisplayFor(modelItem => item.Alcohol.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ingredient.Id)

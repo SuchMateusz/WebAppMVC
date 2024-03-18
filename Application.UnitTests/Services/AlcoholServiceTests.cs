@@ -369,7 +369,7 @@ namespace Application.UnitTests.Services
             returnedModel.Should().NotBeNull();
             returnedModel.Power.Should().Be(item.Power);
             returnedModel.LitersOfWine.Should().Be(item.LitersOfWine);
-            returnedModel.neededSugar.Should().BePositive();
+            returnedModel.NeededSugar.Should().BePositive();
         }
     }
 }

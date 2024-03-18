@@ -19,7 +19,7 @@ namespace Application.UnitTests.Validation.AlcoholValidator
             var validator = new AlcoholIngredientsValidation();
             var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
             command.Ingredient = _generatorHelper.GenerateIngredientForListVM();
-            command.Item = _generatorHelper.GenerateAlcoholForListVM();
+            command.Alcohol = _generatorHelper.GenerateAlcoholForListVM();
 
             validator.TestValidate(command).ShouldNotHaveAnyValidationErrors();
         }
@@ -69,9 +69,9 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         {
             var validator = new AlcoholIngredientsValidation();
             var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
-            command.Item = null;
+            command.Alcohol = null;
 
-            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Item));
+            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Alcohol));
         }
     }
 }

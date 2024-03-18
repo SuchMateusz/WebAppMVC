@@ -31,14 +31,48 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">ViewAllAccounts</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Alcohol options</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Alcohol operation</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllAlcohols">Show alcohols</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllAlcoholIngredientByItem">Show alcohol ingredients</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" asp-action="GetAllCategory">View category</a>
+
+
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllAlcohols">Show all alcohol</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewAlcohol">Add new alcohol</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllAlcoholIngredientByItem">Show all alcohol ingredients</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewAlcoholIngredient">Add new alcohol ingredients</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllCategory">Show all alcohol category</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewCategory">Add new alcohol category</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllIngredients">Show all ingredients</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewIngredients">Add new ingredients</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllType">Show all alcohol type</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewType">Add new alcohol type</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="GetAllTags">Show all alcohol tags</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Alcohol" , asp-action="AddNewTag">Add new alcohol tag</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
                             </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Customer operation</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="Index">Show all customer</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="AddCustomer">Add new customer</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="AddCustomerContactInformaction">Add  new customer contact informaction</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="GetAllContactCustoInf">Show all contacts customer informaction</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="AddNewAddressForCustomer">Add new address for customer</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Customer" , asp-action="GetAddressCustomerDetails">Show address customer details</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Alcohol helper</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="AlcoholHelper" asp-action="GetProposalAlcohol">Proposal alcohol</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="AlcoholHelper" asp-action="HelpCreateNewWine">Helper to create new wine</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Role Access

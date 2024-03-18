@@ -59,6 +59,7 @@ namespace WebAppMVC.Controllers
                 paigeNo = 1;
             }
 
+            paigeSize = 10;
             searchString ??= string.Empty;
             var model = _alcoholService.GetAllAlcohols(paigeSize, paigeNo.Value, searchString);
             return View(model); 
@@ -275,6 +276,8 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
+            model.Ingredient = _ingredientsService.GetIngredientDetails(model.IngredientId);
+            model.Alcohol = _alcoholService.GetAlcoholDetails(model.AlcoholRef);
             _alcoholService.AddAlcoholIngredients(model);
             return View();
         }
@@ -282,18 +285,19 @@ namespace WebAppMVC.Controllers
         [HttpGet]
         public IActionResult GetAllAlcoholIngredientByItem()
         {
-            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(5, 1, 2);
+            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(5, 1, 0);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult GetAllAlcoholIngredientByItem(int pageSize, int? pageNo, int itemId)
+        public IActionResult GetAllAlcoholIngredientByItem(int paigeSize, int? pageNo, int itemId)
         {
+            paigeSize = 10;
             if (!pageNo.HasValue)
             {
                 pageNo = 1;
             }
-            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(pageSize, pageNo.Value, itemId);
+            var model = _alcoholService.GetAllAlcoholIngredientsByIdItem(paigeSize, pageNo.Value, itemId);
             return View(model);
         }
 

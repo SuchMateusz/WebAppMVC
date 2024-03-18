@@ -98,7 +98,7 @@ namespace WebAppMVC.Application.Services
 
         public ListAlcoholsIngredientsForListVM GetAllAlcoholIngredientsByIdItem(int pageSize, int pageNo, int id)
         {
-                var item = _alcoIngredientRepository.GetAllAlcoholIngredients()
+                var item = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p=>p.AlcoholRef ==id)
                 .ProjectTo<AlcoholIngredientsForListVM>(_mapper.ConfigurationProvider).ToList();
                 var itemIngredientsToShow = item.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
                 var itemIngredientsList = new ListAlcoholsIngredientsForListVM()
@@ -161,9 +161,9 @@ namespace WebAppMVC.Application.Services
             ingredient1 ??= string.Empty;
             ingredient2 ??= string.Empty;
             ingredient3 ??= string.Empty;
-            var model1 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient1)).ToList();
-            var model2 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient2)).ToList();
-            var model3 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredients.Name.StartsWith(ingredient3)).ToList();
+            var model1 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredient.Name.StartsWith(ingredient1)).ToList();
+            var model2 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredient.Name.StartsWith(ingredient2)).ToList();
+            var model3 = _alcoIngredientRepository.GetAllAlcoholIngredients().Where(p => p.Ingredient.Name.StartsWith(ingredient3)).ToList();
 
             List<int> ints = new();
 
