@@ -10,13 +10,13 @@ User could quickly calculate the starting sugar for the production of his wine b
 - [Technologies](#Technologies)
 - [Views](#views)
 
-##Database Structure for alcohols
+#Database Structure for alcohols
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/3884c7a4-8d87-4308-a13b-1b0481cbf420)
 
 ##Database stucture for customers
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/cb15ed3a-52bc-4e91-a4c6-cbf859873d27)
 
-##Technologies
+#Technologies
 ClosedXML" Version="0.102.1"
 itext7" Version="8.0.2"
 itext7.bouncy-castle-adapter" Version="8.0.2"
@@ -28,7 +28,7 @@ Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12"
 Microsoft.EntityFrameworkCore.Tools" Version="7.0.12"
 AutoMapper" Version="12.0.1"
 
-##Views
+#Views
 **- Home view**
   
 **- Admin view**
