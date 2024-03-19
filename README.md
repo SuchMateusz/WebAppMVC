@@ -38,8 +38,8 @@ User could quickly calculate the starting sugar for the production of his wine b
 **- View all alcohols**
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/ca55acb3-de83-4ba2-9c72-936058ddc052)
 
-[center]**-View create new alcohol**
-[/center]
+**-View create new alcohol**
+
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/1a81fe91-a8a5-4f74-8ee1-3a727c8ba16a)
 
 **-View Helper to  create new wine**
