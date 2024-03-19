@@ -30,7 +30,7 @@ User could quickly calculate the starting sugar for the production of his wine b
   ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/0a8e8554-cfad-4b7d-894f-7f16c87973db)
 
 **- View all user account**
- ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/af96f2e8-5d08-41ec-8176-7a84044c921e)
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/64c04e67-167d-44c9-84a0-5f84e6c1dd12)
 
 **- View edit user**
   ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/000d50d7-a94f-4bf0-a3a3-77093bf9ed5b)
@@ -38,7 +38,8 @@ User could quickly calculate the starting sugar for the production of his wine b
 **- View all alcohols**
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/ca55acb3-de83-4ba2-9c72-936058ddc052)
 
-**-View create new alcohol**
+[center]**-View create new alcohol**
+[/center]
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/1a81fe91-a8a5-4f74-8ee1-3a727c8ba16a)
 
 **-View Helper to  create new wine**
