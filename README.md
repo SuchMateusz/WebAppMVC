@@ -68,6 +68,9 @@ Used in xUnit test:
 
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/ca55acb3-de83-4ba2-9c72-936058ddc052)
 
+**- View alcohols ingredients**
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/d54cca91-721d-4bd8-b115-0f54cf84025a)
+
 **-View create new alcohol**
 
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/1a81fe91-a8a5-4f74-8ee1-3a727c8ba16a)
