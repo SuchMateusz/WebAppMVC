@@ -13,7 +13,7 @@ User could quickly calculate the starting sugar for the production of his wine b
 ## Database structure for alcohols
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/3884c7a4-8d87-4308-a13b-1b0481cbf420)
 
-## Database2
+## Database22
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/cb15ed3a-52bc-4e91-a4c6-cbf859873d27)
 
 ## Technologies
