@@ -74,6 +74,7 @@ Used in xUnit test:
 
 **-View Helper to  create new wine**
 
-![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/a8735c8f-6241-4f9c-8c13-a25b5d5bc62c)
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/04fca7de-21e6-4f29-b4cb-492fe6439503)
 
 </div>
+
