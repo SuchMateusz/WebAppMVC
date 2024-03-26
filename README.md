@@ -18,7 +18,7 @@ User could quickly calculate the starting sugar for the production of his wine b
 
 ## Technologies
 
-<p align="center"
+<p align="center">
 ## Views
 
 
