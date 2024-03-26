@@ -5,15 +5,15 @@ Users could create, remove, update, delete produts.
 He might even receive suggestions what alcohol he could make from his ingredients.
 User could quickly calculate the starting sugar for the production of his wine by providing the appropriate parameters.
 
-- [Alcohol structure](#Database Structure for alcohols)
-- [Database stucture](#Database stucture for customers)
+- [Alcohol structure](#Database1 structure for alcohols)
+- [Database stucture](#Database2)
 - [Technologies](#Technologies)
 - [Views](#views)
 
-## Database Structure for alcohols
+## Database structure for alcohols
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/3884c7a4-8d87-4308-a13b-1b0481cbf420)
 
-## Database stucture for customers
+## Database2
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/cb15ed3a-52bc-4e91-a4c6-cbf859873d27)
 
 ## Technologies
