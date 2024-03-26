@@ -24,7 +24,9 @@ User could quickly calculate the starting sugar for the production of his wine b
 
 **- Home view**
   ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/71fb5f7b-3a2c-417f-b3f6-e340af7a1175)
+
 </p>
+
 **- Admin view**
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/c735daa3-a953-4228-9c47-53a27f8109b8)
 
