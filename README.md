@@ -21,6 +21,9 @@ User could quickly calculate the starting sugar for the production of his wine b
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/cb15ed3a-52bc-4e91-a4c6-cbf859873d27)
 
 ## Technologies
+
+</div>
+
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore Version="7.0.9" 
 - Microsoft.EntityFrameworkCore Version="7.0.12" 
 - Microsoft.EntityFrameworkCore.SqlServer Version="7.0.12" 
@@ -37,6 +40,8 @@ Used in xUnit test:
 - FluentAssertions Version="6.12.0"
 - Moq" Version="4.20.70"
 
+<div align="center">
+  
 ## Views
 
 **- Home view**
