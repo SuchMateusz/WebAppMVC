@@ -18,5 +18,7 @@ namespace WebAppMVC.Application.Interfaces
         public IQueryable<Alcohol> GetAllAlcohols();
 
         public Alcohol EditAlcohol(Alcohol item);
+
+        public int AddNewAlcoholTag(AlcoholTag alcoholTag);
     }
 }

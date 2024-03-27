@@ -31,7 +31,6 @@ namespace WebAppMVC.Application.Services
         {
             var tag = _mapper.Map<Tag>(model);
             int id = _tagsRepo.AddTag(tag);
-            //_tagsRepo.AddNewObject(tag);
             return id;
         }
 
@@ -56,8 +55,6 @@ namespace WebAppMVC.Application.Services
         {
             var tags = _tagsRepo.GetAllTags().Where(p => p.Name.StartsWith(searchString))
                 .ProjectTo<TagForListVM>(_mapper.ConfigurationProvider).ToList();
-            //var tags = _tagsRepo.GetAll().Where(p => p.Name.StartsWith(searchString))
-            //    .ProjectTo<TagForListVM>(_mapper.ConfigurationProvider).ToList();
             var tagsToShow = tags.Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
             var tagsList = new ListTagsForListVM()
             {
@@ -96,7 +93,6 @@ namespace WebAppMVC.Application.Services
         public TagForListVM GetTagToEdit(int id)
         {
             var tag = _tagsRepo.GetTagById(id);
-            //var tag = _tagsRepo.GetById(id);
             var tagToEdit = _mapper.Map<TagForListVM>(tag);
             return tagToEdit;
         }
@@ -118,7 +114,6 @@ namespace WebAppMVC.Application.Services
         {
             var tag = _mapper.Map<Tag>(model);
             _tagsRepo.EditTag(tag);
-            //_tagsRepo.UpdateObject(tag);
         }
 
         public void UpdateType(TypeForListVM model)

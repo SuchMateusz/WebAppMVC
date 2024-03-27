@@ -13,7 +13,7 @@ namespace WebAppMVC.Domain.Model
 
         public string NumberOfPiece { get; set; }
 
-        public int NumberOfLiters { get; set; }
+        public decimal NumberOfLiters { get; set; }
 
         public decimal Price { get; set; }
 

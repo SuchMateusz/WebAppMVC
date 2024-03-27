@@ -2,6 +2,7 @@
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Item;
 using Microsoft.AspNetCore.Authorization;
+using WebAppMVC.Domain.Model;
 
 namespace WebAppMVC.Controllers
 {
@@ -276,8 +277,6 @@ namespace WebAppMVC.Controllers
         [HttpPost]
         public IActionResult AddNewAlcoholIngredient(AlcoholIngredientsForListVM model)
         {
-            model.Ingredient = _ingredientsService.GetIngredientDetails(model.IngredientId);
-            model.Alcohol = _alcoholService.GetAlcoholDetails(model.AlcoholRef);
             _alcoholService.AddAlcoholIngredients(model);
             return View();
         }
@@ -408,6 +407,22 @@ namespace WebAppMVC.Controllers
         {
             _alcoholService.EditDescription(description);
             return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, SuperUser, User")]
+        public IActionResult AddNewAlcoholTag()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewAlcoholTag(AlcoholTag alcoholTag)
+        {
+            _alcoholService.AddAlcoholTag(alcoholTag);
+            return RedirectToAction("GetAllAlcohols");
         }
     }
 }

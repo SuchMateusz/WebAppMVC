@@ -238,5 +238,11 @@ namespace WebAppMVC.Application.Services
 
             return model;
         }
+
+        public AlcoholTag AddAlcoholTag(AlcoholTag tag)
+        {
+            _alcoRepository.AddNewAlcoholTag(tag);
+            return tag;
+        }
     }
 }

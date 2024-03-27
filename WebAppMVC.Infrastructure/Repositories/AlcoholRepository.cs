@@ -58,5 +58,12 @@ namespace WebAppMVC.Infrastructure.Repositories
             var alcohols = _context.Alcohols;
             return alcohols;
         }
+
+        public int AddNewAlcoholTag(AlcoholTag alcoholTag)
+        {
+            _context.AlcoholTag.Add(alcoholTag);
+            _context.SaveChanges();
+            return alcoholTag.AlcoholId;
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace WebAppMVC.Infrastructure
                 .HasForeignKey(e => e.AlcoholCategoryId);
 
             builder.Entity<AlcoholIngredient>()
-                .HasKey(it => new { it.Id, it.AlcoholRef});
+                .HasKey(it => new { it.IngredientId, it.AlcoholRef});
 
             builder.Entity<AlcoholIngredient>()
                 .HasOne<Alcohol>(it => it.Alcohol)

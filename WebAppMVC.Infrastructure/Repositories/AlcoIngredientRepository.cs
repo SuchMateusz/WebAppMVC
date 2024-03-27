@@ -16,8 +16,8 @@ namespace WebAppMVC.Infrastructure.Repositories
         public AlcoIngredientRepository(Context context)
         {
             _context = context;
-               
         }
+
         public int AddAlcoholIngredients(AlcoholIngredient ingredients)
         {
             _context.AlcoholIngredients.Add(ingredients);

@@ -5,39 +5,39 @@
 }
 
 <h3>
-    calculating the sugar needed to create the required wine
+    Calculating the sugar needed to create the required wine
 </h3>
 
 <form asp-action="HelpCreateNewWine" asp-controller="AlcoholHelper" method="post">
 <form class="d-flex">
     <p>
-        Wpisz jaką chcesz mieć moc wina [%]
+        Specify what power of wine you want [%]
     </p>
     <input class="form-control me-sm-2" type="text" asp-for="Power" name="Power" id="Power" />
     <p>
-            Wpisz wartość cukru zawartą w owocach
+        Give the value of sugar contained in fruit
     </p>
     <input class="form-control me-sm-2" type="text" asp-for="SugarInIngredients" name="SugarInIngredients" id="SugarInIngredients" />
     <p>
-        Wpisz liczbę litrów ile chcesz uzyskać
+        Enter the number of liters you want to receive
     </p>
     <input class="form-control me-sm-2" type="text" asp-for="LitersOfWine" name="LitersOfWine" id="LitersOfWine" />
     <p>
     </p>
     <div style="text-align:center">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Zatwierdź</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Calculate</button>
         </div>
 </form>
 
 <div>
-    <h4>SugarForNewAlcoholForVM</h4>
+    <h4>The amount of sugar you need to add to new wine </h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NeededSugar)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NeededSugar)
+            @Html.DisplayFor(model => model.NeededSugar) [g]
         </dd>
     </dl>
 </div>

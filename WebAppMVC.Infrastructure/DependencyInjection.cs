@@ -28,8 +28,6 @@ namespace WebAppMVC.Infrastructure
             services.AddTransient<IIngredientRepository, IngredientRepository>(); 
             services.AddTransient<ITagsRepository, TagsRepository>();
             services.AddTransient<ITypesRepository, TypesRepository>();
-            //services.AddTransient<ITagRepositoryTest, TagRepositoryTest>();
-            //services.AddTransient<IBaseRepository<Tag>, BaseRepository<Tag>>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             return services;

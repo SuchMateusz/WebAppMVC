@@ -45,16 +45,6 @@ namespace Application.UnitTests.Validation.AlcoholValidator
         }
 
         [Fact]
-        public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_WrongName_ShouldReturnValidationsErrorForAlcoholIngredientName()
-        {
-            var validator = new AlcoholIngredientsValidation();
-            var command = _generatorHelper.GenerateAlcoholIngredientsForListVM();
-            command.Name = "T";
-
-            validator.TestValidate(command).ShouldHaveValidationErrorFor(nameof(AlcoholIngredientsForListVM.Name));
-        }
-
-        [Fact]
         public void Add_AlcoholIngredientsValidation_InvalidRequestRequest_EmptyIngredient_ShouldReturnValidationsErrorForEmptyIngredient()
         {
             var validator = new AlcoholIngredientsValidation();

@@ -54,5 +54,7 @@ namespace WebAppMVC.Application.Interfaces
         void EditDescription(DescriptionForListVM model);
 
         SugarForNewAlcoholForVM SuggarForNewWine(int addedSugar, int litersOfWine, int power);
+
+        AlcoholTag AddAlcoholTag(AlcoholTag tag);
     }
 }

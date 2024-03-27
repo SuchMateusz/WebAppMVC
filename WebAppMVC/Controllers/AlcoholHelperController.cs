@@ -25,7 +25,7 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser, User")]
         public IActionResult GetProposalAlcohol()
         {
-            var model = _alcoholService.GetAlcoholProposal("", "", "");
+            var model = _alcoholService.GetAlcoholProposal("Water", "", "");
             return View(model);
         }
 

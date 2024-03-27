@@ -26,7 +26,7 @@ namespace WebAppMVC.Application.ViewModel.Item
 
         public string NumberOfPiece { get; set; }
 
-        public int NumberOfLiters { get; set; }
+        public decimal NumberOfLiters { get; set; }
 
         public decimal Price { get; set; }
 
@@ -41,12 +41,9 @@ namespace WebAppMVC.Application.ViewModel.Item
     {
         public AlcoholIngredientsValidation()
         {
-            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Ingredient).NotEmpty();
             RuleFor(x => x.Alcohol).NotEmpty();
             RuleFor(x => x.AlcoholRef).NotEmpty().GreaterThan(0);
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Name).Length(2, 100);
         }
     }
 }
