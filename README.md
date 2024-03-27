@@ -14,10 +14,7 @@ User could quickly calculate the starting sugar for the production of his wine b
 
 ## Database_Structure_Alcohols
 
-![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/3884c7a4-8d87-4308-a13b-1b0481cbf420)
-
-
-![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/f4a67131-ed62-44e7-8244-c4e8f7dc9137)
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/8c9fdfd4-ab1e-4842-ad66-6aa8833f82da)
 
 ## Database_Structure_Customer
 
