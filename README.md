@@ -48,6 +48,12 @@ Used in xUnit test:
 
   ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/71fb5f7b-3a2c-417f-b3f6-e340af7a1175)
 
+**- Register view**
+
+Registration and login can be done by creating an account on our website or using Facebook and Google.
+
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/2ac38115-cd08-4714-a043-8644060e4383)
+
 **- Admin view**
 
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/c735daa3-a953-4228-9c47-53a27f8109b8)
