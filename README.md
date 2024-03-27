@@ -50,7 +50,7 @@ Used in xUnit test:
 
 **- Register view**
 
-Registration and login can be done by creating an account on our website or using Facebook and Google.
+Registration and login can be done by creating an account on our website or using Facebook or Google.
 
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/2ac38115-cd08-4714-a043-8644060e4383)
 
