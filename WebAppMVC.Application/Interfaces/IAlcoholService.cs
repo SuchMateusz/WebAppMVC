@@ -45,6 +45,8 @@ namespace WebAppMVC.Application.Interfaces
 
         List<Alcohol> GetAlcoholProposal(string ingredient1, string ingredient2, string ingredient3);
 
+        ListAlcoholsProposalForListVM GetAlcoholProposalViewModel(List<Alcohol> model);
+
         int AddNewDescription(DescriptionForListVM description);
 
         DescriptionForListVM GetAlcoholDescription(int id);
@@ -56,5 +58,7 @@ namespace WebAppMVC.Application.Interfaces
         SugarForNewAlcoholForVM SuggarForNewWine(int addedSugar, int litersOfWine, int power);
 
         AlcoholTag AddAlcoholTag(AlcoholTag tag);
+
+
     }
 }

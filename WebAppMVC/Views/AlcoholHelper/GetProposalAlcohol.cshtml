@@ -14,41 +14,33 @@
         <p>
         </p>
         <div style="text-align:center">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
         </div>
         <input class="form-control me-sm-2" type="text" asp-for="Ingredient2" name="Ingredient2" id="Ingredient2" />
         <p>
         </p>
         <div style="text-align:center">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
         </div>
         <input class="form-control me-sm-2" type="text" asp-for="Ingredient3" name="Ingredient3" id="Ingredient3" />
         <p>
         </p>
         <div style="text-align:center">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyszukaj categorie by name</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search wine by ingredient name you have</button>
         </div>
     </form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Id
+                Alcohol id
             </th>
             <th>
                 Alcohol Name
             </th>
             <th>
-                Ingredient Id
+                Alcohol category id
             </th>
             <th>
-                Ingredient Name
-            </th>
-            <th>
-                Liters ingredient
-            </th>
-            <th>
-                Number of piece
+                Type id
             </th>
         </tr>
     </thead>
@@ -63,16 +55,10 @@
                 @Html.DisplayFor(modelItem => item.Alcohol.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ingredient.Id)
+                @Html.DisplayFor(modelItem => item.Alcohol.AlcoholCategoryId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ingredient.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfLiters)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPiece)
+                @Html.DisplayFor(modelItem => item.Alcohol.TypeId)
             </td>
         </tr>
         }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMVC.Application.Interfaces;
+using WebAppMVC.Application.ViewModel.Alcohol;
+using WebAppMVC.Application.ViewModel.Item;
 
 namespace WebAppMVC.Controllers
 {
@@ -25,8 +27,9 @@ namespace WebAppMVC.Controllers
         [Authorize(Roles = "Admin, SuperUser, User")]
         public IActionResult GetProposalAlcohol()
         {
-            var model = _alcoholService.GetAlcoholProposal("Water", "", "");
-            return View(model);
+            var model = _alcoholService.GetAlcoholProposal("", "", "");
+            var listToShow = _alcoholService.GetAlcoholProposalViewModel(model);
+            return View(listToShow);
         }
 
         [HttpPost]
@@ -36,7 +39,8 @@ namespace WebAppMVC.Controllers
             ingredient2 ??= String.Empty;
             ingredient3 ??= String.Empty;
             var model = _alcoholService.GetAlcoholProposal(ingredient1, ingredient2, ingredient3);
-            return View(model);
+            var listToShow = _alcoholService.GetAlcoholProposalViewModel(model);
+            return View(listToShow);
         }
 
         [HttpGet]

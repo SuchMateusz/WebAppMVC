@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using WebAppMVC.Application.Interfaces;
 using WebAppMVC.Application.ViewModel.Alcohol;
 using WebAppMVC.Application.ViewModel.Item;
@@ -167,11 +168,11 @@ namespace WebAppMVC.Application.Services
 
             List<int> ints = new();
 
-            for (int i = 0; i <= model1.Count; i++)
+            for (int i = 0; i < model1.Count; i++)
             {
-                for (int j = 0; j<= model2.Count; j++)
+                for (int j = 0; j< model2.Count; j++)
                 {
-                    for(int k = 0; k <=model3.Count; k++)
+                    for(int k = 0; k <model3.Count; k++)
                     {
                         if (model1[i].AlcoholRef == model3[k].AlcoholRef && model2[j].AlcoholRef == model3[k].AlcoholRef && model1[i].AlcoholRef == model2[j].AlcoholRef)
                         {
@@ -189,12 +190,25 @@ namespace WebAppMVC.Application.Services
             }
 
             List<Alcohol> listAlcoholsToShow = new();
-            for(int i = 0; i<=ints.Count; i++)
+            for(int i = 0; i<ints.Count; i++)
             {
                 var model = _alcoRepository.GetAlcoholById(ints[i]);
                 listAlcoholsToShow.Add(model);
             }
 
+            return listAlcoholsToShow;
+        }
+
+        public ListAlcoholsProposalForListVM GetAlcoholProposalViewModel(List<Alcohol> model)
+        {
+            ListAlcoholsProposalForListVM listAlcoholsToShow = new ListAlcoholsProposalForListVM();
+            List<AlcoholIngredient> itemToAdd = new List<AlcoholIngredient>();
+            for (int i = 0; i < model.Count; i++)
+            {
+                var model1 = _alcoIngredientRepository.GetAlcoholIngredientsById(model[i].Id);
+                itemToAdd.Add(model1);
+            }
+            listAlcoholsToShow.Alcohols = itemToAdd;
             return listAlcoholsToShow;
         }
 

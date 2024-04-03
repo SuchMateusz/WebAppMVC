@@ -43,7 +43,7 @@ namespace WebAppMVC.Infrastructure.Repositories
 
         public AlcoholIngredient GetAlcoholIngredientsById(int itemId)
         {
-            var ingredients = _context.AlcoholIngredients.FirstOrDefault(p => p.Id == itemId);
+            var ingredients = _context.AlcoholIngredients.FirstOrDefault(p => p.AlcoholRef == itemId);
             return ingredients;
         }
 
