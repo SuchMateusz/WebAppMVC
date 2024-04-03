@@ -85,5 +85,10 @@ Registration and login can be done by creating an account on our website or usin
 
 ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/04fca7de-21e6-4f29-b4cb-492fe6439503)
 
+**-View Helper to search alcohol you can build with your own ingredients name**
+
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/0b603b8d-3c8a-476b-b068-62c29c57d03c)
+
+
 </div>
 
