@@ -46,7 +46,7 @@ Used in xUnit test:
 
 **- Home view**
 
-  ![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/71fb5f7b-3a2c-417f-b3f6-e340af7a1175)
+![obraz](https://github.com/SuchMateusz/WebAppMVC/assets/103280699/f315d69b-d393-4093-ad60-9d2ea4bdd65f)
 
 **- Register view**
 
