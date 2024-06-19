@@ -29,4 +29,8 @@
     <Folder Include="Logs\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\types-of-alcohol.jpg" />
+  </ItemGroup>
+
 </Project>

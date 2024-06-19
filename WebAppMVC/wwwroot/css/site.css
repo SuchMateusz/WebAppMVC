@@ -18,5 +18,10 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+/*    background-image: url('alcohols.jpg');
+    background-position: center;
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    margin: auto;*/
+    margin-bottom: 60px;
 }
